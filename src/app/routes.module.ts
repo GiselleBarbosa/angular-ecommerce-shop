@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './modules/home/home.component';
+import { AppComponent } from './app.component';
 
 export const homeRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: AppComponent,
   },
 ];

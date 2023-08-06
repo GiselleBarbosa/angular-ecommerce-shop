@@ -8,4 +8,12 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
 })
-export class AppComponent {}
+export class AppComponent {
+  public isLightTheme = true;
+
+  public onThemeSwitchChange(): void {
+    this.isLightTheme = !this.isLightTheme;
+
+    document.body.setAttribute('data-theme', this.isLightTheme ? 'light' : 'dark');
+  }
+}
