@@ -1,6 +1,6 @@
-import { AsyncPipe, NgClass } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ThemeService } from './core/services/theme/theme.service';
 
 @Component({
@@ -8,20 +8,24 @@ import { ThemeService } from './core/services/theme/theme.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [RouterOutlet, AsyncPipe, NgClass],
+  imports: [RouterOutlet],
 })
-export class AppComponent implements OnInit {
-  private _themeService = inject(ThemeService);
+export class AppComponent implements OnInit, OnDestroy {
+  private subscription!: Subscription;
 
-  public theme$ = this._themeService.theme$;
+  constructor(private themeService: ThemeService) {}
 
   public ngOnInit(): void {
-    this._themeService.theme$.subscribe(theme => {
+    this.subscription = this.themeService.theme$.subscribe(theme => {
       document.body.className = theme;
     });
   }
 
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
   public toggleTheme(): void {
-    this._themeService.toggleTheme();
+    this.themeService.toggleTheme();
   }
 }
