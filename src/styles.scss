@@ -3,8 +3,29 @@
 @import 'primeng/resources/themes/lara-light-blue/theme.css';
 @import 'primeng/resources/primeng.css';
 
+/* Tema light */
+:root .light {
+  --background-color: #ffffff;
+  --font-size: 16px;
+}
+
+/* Tema dark */
+:root .dark {
+  --background-color: #303030;
+  --font-size: 16px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
 body {
   font-family: var(--font-family);
-  height: 100%;
+  background-color: var(--background-color);
+  font-size: var(--font-size);
+  height: 100vh;
   margin: 0;
 }

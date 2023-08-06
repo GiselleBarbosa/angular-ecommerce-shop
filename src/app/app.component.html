@@ -1,22 +1,4 @@
-<div class="container">
-  <header>
-    <div class="menu-items">
-      <a class="menu-item"> Home </a>
-      <a class="menu-item"> Articles> </a>
-      <a class="menu-item"> Tags </a>
-      <a class="menu-item"> About Us </a>
-    </div>
-    <div class="theme-switcher">
-      <label class="swtich">
-        <input
-          type="checkbox"
-          [checked]="isLightTheme"
-          (change)="onThemeSwitchChange()" />
-      </label>
-    </div>
-  </header>
-  <main>
-    <h1>Welcome to Code Beyond Limits</h1>
-  </main>
+<div class="container" ngClass="theme$ | async">
+  <button (click)="toggleTheme()">Toggle Theme</button>
+  <!-- <router-outlet></router-outlet> -->
 </div>
-<!-- <router-outlet></router-outlet> -->
