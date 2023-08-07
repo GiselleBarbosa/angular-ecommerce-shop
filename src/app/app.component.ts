@@ -1,26 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { ThemeService } from './core/services/theme/theme.service';
 import { PrimeNGConfig } from 'primeng/api';
+import { MenubarComponent } from './layout/menubar/menubar.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [MenubarComponent, RouterOutlet],
 })
-export class AppComponent implements OnInit, OnDestroy {
-  private subscription!: Subscription;
-
-  constructor(private themeService: ThemeService, private primengConfig: PrimeNGConfig) {}
+export class AppComponent implements OnInit {
+  constructor(private primengConfig: PrimeNGConfig) {}
 
   public ngOnInit(): void {
-    this.subscription = this.themeService.theme$.subscribe(theme => {
-      document.body.className = theme;
-    });
-
     // ripple - animations primeNg
     this.primengConfig.ripple = true;
 
@@ -30,13 +23,5 @@ export class AppComponent implements OnInit, OnDestroy {
       menu: 1000, // overlay menus
       tooltip: 1100, // tooltip
     };
-  }
-
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
-  public toggleTheme(): void {
-    this.themeService.toggleTheme();
   }
 }

@@ -1,15 +1,15 @@
-@import './styles/themes';
-
 @import 'primeng/resources/themes/lara-light-blue/theme.css';
 @import 'primeng/resources/primeng.css';
 
-/* Tema default */
+@import './styles/themes';
+
+/* default */
 :root {
   --background-color: #ffffff;
   --font-size: 16px;
 }
 
-/* Tema dark */
+/* dark */
 :root .dark {
   --background-color: #303030;
   --font-size: 16px;
@@ -26,6 +26,5 @@ body {
   font-family: var(--font-family);
   background-color: var(--background-color);
   font-size: var(--font-size);
-  height: 100vh;
   margin: 0;
 }
