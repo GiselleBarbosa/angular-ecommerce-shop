@@ -1,12 +1,8 @@
-<p-menubar [model]="items">
+<p-menubar [model]="items" [ngClass]="theme$ | async">
   <ng-template pTemplate="start">
-    <h1>ECOMMERCE</h1>
+    <h2 class="mr-5">Angular Shop</h2>
   </ng-template>
-  <ng-template pTemplate="end">
-    <input type="text" pInputText placeholder="Search" class="w-full" />
-  </ng-template>
+  <div class="card flex justify-content-center">
+    <p-button (click)="toggleTheme()" label="Toogle Theme" icon="pi pi-check"></p-button>
+  </div>
 </p-menubar>
-
-<div class="card flex justify-content-center">
-  <p-button (click)="toggleTheme()" label="Toogle Theme" icon="pi pi-check"></p-button>
-</div>

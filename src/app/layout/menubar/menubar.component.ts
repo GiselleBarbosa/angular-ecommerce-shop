@@ -1,3 +1,4 @@
+import { AsyncPipe, NgClass } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -10,11 +11,12 @@ import { ThemeService } from 'src/app/core/services/theme/theme.service';
   templateUrl: './menubar.component.html',
   styleUrls: ['./menubar.component.scss'],
   standalone: true,
-  imports: [MenubarModule, ButtonModule],
+  imports: [MenubarModule, ButtonModule, NgClass, AsyncPipe],
 })
 export class MenubarComponent implements OnInit, OnDestroy {
   public items: MenuItem[] | undefined;
   private subscription!: Subscription;
+  public theme$ = this.themeService.theme$;
 
   constructor(private themeService: ThemeService) {}
 
