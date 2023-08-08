@@ -1,8 +1,18 @@
-<p-menubar [model]="items" [ngClass]="theme$ | async">
+<p-menubar [model]="items">
   <ng-template pTemplate="start">
-    <h2 class="mr-5">Angular Shop</h2>
+    <h2 class="mr-5">E-Commerce</h2>
   </ng-template>
-  <div class="card flex justify-content-center">
-    <p-button (click)="toggleTheme()" label="Toogle Theme" icon="pi pi-check"></p-button>
-  </div>
+
+  <ng-template pTemplate="end">
+    <div class="card flex justify-content-center">
+      <svg (click)="toggleThemeClicked()" class="icon toggle-on">
+        <use
+          xlink:href="assets/svg/icons.svg#icon-toggle-on"
+          *ngIf="setButtonTheme"></use>
+        <use
+          xlink:href="assets/svg/icons.svg#icon-toggle-off"
+          *ngIf="!setButtonTheme"></use>
+      </svg>
+    </div>
+  </ng-template>
 </p-menubar>

@@ -1,30 +1,22 @@
-import { AsyncPipe, NgClass } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
-import { Subscription } from 'rxjs';
-import { ThemeService } from 'src/app/core/services/theme/theme.service';
 
 @Component({
   selector: 'app-menubar',
   templateUrl: './menubar.component.html',
   styleUrls: ['./menubar.component.scss'],
   standalone: true,
-  imports: [MenubarModule, ButtonModule, NgClass, AsyncPipe],
+  imports: [MenubarModule, NgIf],
 })
-export class MenubarComponent implements OnInit, OnDestroy {
+export class MenubarComponent implements OnInit {
   public items: MenuItem[] | undefined;
-  private subscription!: Subscription;
-  public theme$ = this.themeService.theme$;
 
-  constructor(private themeService: ThemeService) {}
+  @Input() public setButtonTheme!: boolean;
+  @Output() public toggleTheme = new EventEmitter();
 
   public ngOnInit(): void {
-    this.subscription = this.themeService.theme$.subscribe(theme => {
-      document.body.className = theme;
-    });
-
     this.items = [
       {
         label: 'File',
@@ -150,11 +142,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
     ];
   }
 
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
-  public toggleTheme(): void {
-    this.themeService.toggleTheme();
+  public toggleThemeClicked(): void {
+    this.toggleTheme.emit();
   }
 }

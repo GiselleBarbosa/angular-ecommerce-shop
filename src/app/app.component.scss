@@ -1,7 +1,10 @@
 .container {
-  background-color: var(--background-color);
-}
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
 
-.pink {
-  background-color: pink;
+  & .container__router {
+    padding: 0 1rem;
+  }
 }
