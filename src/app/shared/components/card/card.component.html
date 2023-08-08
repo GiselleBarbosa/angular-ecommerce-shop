@@ -1,0 +1,16 @@
+<div class="card flex justify-content-center primary-color">
+  <p-card header="Product Name" subheader="Product category" [style]="{ width: '350px' }">
+    <ng-template pTemplate="header">
+      <!-- adicionar uma imagem ao card <img alt="Card" src="image.png" />-->
+    </ng-template>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <ng-template pTemplate="footer">
+      <p-button label="Save" icon="pi pi-check"></p-button>
+      <p-button
+        label="Cancel"
+        icon="pi pi-times"
+        styleClass="p-button-secondary"
+        [style]="{ 'margin-left': '.8em' }"></p-button>
+    </ng-template>
+  </p-card>
+</div>

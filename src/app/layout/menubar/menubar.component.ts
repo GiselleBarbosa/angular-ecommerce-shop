@@ -20,7 +20,7 @@ export class MenubarComponent implements OnInit {
     this.items = [
       {
         label: 'Products',
-        icon: 'pi pi-fw pi-file',
+        icon: 'pi pi-fw pi-gift',
         items: [
           {
             label: 'Categories',
@@ -50,7 +50,7 @@ export class MenubarComponent implements OnInit {
 
       {
         label: 'Cart',
-        icon: 'pi pi-fw pi-pencil',
+        icon: 'pi pi-fw pi-shopping-cart',
       },
 
       {
