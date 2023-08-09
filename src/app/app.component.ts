@@ -4,13 +4,14 @@ import { PrimeNGConfig } from 'primeng/api';
 import { Subscription, take } from 'rxjs';
 import { ThemeService } from './core/services/theme/theme.service';
 import { MenubarComponent } from './layout/menubar/menubar.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [MenubarComponent, RouterOutlet],
+  imports: [MenubarComponent, RouterOutlet, FooterComponent],
 })
 export class AppComponent implements OnInit, OnDestroy {
   private primengConfig = inject(PrimeNGConfig);

@@ -30,10 +30,6 @@ export class MenubarComponent implements OnInit {
                 label: 'Bookmark',
                 icon: 'pi pi-fw pi-bookmark',
               },
-              {
-                label: 'Video',
-                icon: 'pi pi-fw pi-video',
-              },
             ],
           },
 
@@ -51,11 +47,6 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Cart',
         icon: 'pi pi-fw pi-shopping-cart',
-      },
-
-      {
-        label: 'Quit',
-        icon: 'pi pi-fw pi-power-off',
       },
     ];
   }
