@@ -1,4 +1,12 @@
 <div class="container">
-  <button (click)="toggleTheme()">Toggle Theme</button>
-  <!-- <router-outlet></router-outlet> -->
+  <div class="container__menubar">
+    <app-menubar [setButtonTheme]="setButtonTheme" (toggleTheme)="toggleTheme()" />
+  </div>
+  <div class="container__router">
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="container__footer">
+    <app-footer />
+  </div>
 </div>

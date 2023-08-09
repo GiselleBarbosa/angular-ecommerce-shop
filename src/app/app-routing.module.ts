@@ -5,13 +5,13 @@ import { NotFoundPageComponent } from './modules/not-found-page/not-found-page.c
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'products',
     pathMatch: 'full',
   },
 
   {
-    path: 'home',
-    loadChildren: () => import('./routes.module').then(module => module.homeRoutes),
+    path: 'products',
+    loadChildren: () => import('./routes.module').then(module => module.productsRoutes),
   },
 
   {

@@ -1,0 +1,12 @@
+<p-menubar [model]="items">
+  <ng-template pTemplate="start">
+    <h2 class="mr-5">E-Shop</h2>
+  </ng-template>
+
+  <ng-template pTemplate="end">
+    <div (click)="toggleThemeClicked()">
+      <div class="icon pi pi-sun w-2rem" *ngIf="setButtonTheme"></div>
+      <div class="icon pi pi-moon w-2rem" *ngIf="!setButtonTheme"></div>
+    </div>
+  </ng-template>
+</p-menubar>
