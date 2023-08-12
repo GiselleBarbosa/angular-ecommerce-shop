@@ -5,12 +5,12 @@ import { NotFoundPageComponent } from './shared/components/not-found-page/not-fo
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'products',
     pathMatch: 'full',
   },
 
   {
-    path: 'home',
+    path: 'products',
     loadChildren: () => import('./routes.module').then(module => module.productsRoutes),
   },
 
