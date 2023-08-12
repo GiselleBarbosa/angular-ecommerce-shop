@@ -43,6 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
       this.setButtonTheme = theme === 'light' ? true : false;
     });
+
     this.themeService.toggleTheme();
   }
 

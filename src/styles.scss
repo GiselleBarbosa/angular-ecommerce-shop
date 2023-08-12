@@ -1,5 +1,7 @@
 @import 'primeflex/primeflex.scss';
+@import 'primeng/resources/primeng.css';
 @import 'primeicons/primeicons.css';
+
 
 * {
   padding: 0;
@@ -15,6 +17,13 @@ body {
   background-color: var(--background-color);
   font-size: var(--font-size);
   color: var(--text-color);
+}
+
+.p-menubar {
+  padding: 0.5rem;
+  background: red;
+  color: #495057;
+  border: 1px solid #dee2e6;
 }
 
 :root {

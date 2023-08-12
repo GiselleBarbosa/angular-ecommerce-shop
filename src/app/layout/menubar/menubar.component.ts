@@ -1,5 +1,6 @@
 import { NgIf } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 
@@ -8,10 +9,11 @@ import { MenubarModule } from 'primeng/menubar';
   templateUrl: './menubar.component.html',
   styleUrls: ['./menubar.component.scss'],
   standalone: true,
-  imports: [MenubarModule, NgIf],
+  imports: [MenubarModule, NgIf, RouterLink],
 })
 export class MenubarComponent implements OnInit {
   public items: MenuItem[] | undefined;
+  private router = inject(Router);
 
   @Input() public setButtonTheme!: boolean;
   @Output() public toggleTheme = new EventEmitter();
@@ -21,25 +23,15 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Products',
         icon: 'pi pi-fw pi-gift',
+        command: () => this.router.navigate(['products']),
         items: [
           {
             label: 'Categories',
-            icon: 'pi pi-fw pi-plus',
             items: [
               {
-                label: 'Bookmark',
-                icon: 'pi pi-fw pi-bookmark',
+                label: 'Pending',
               },
             ],
-          },
-
-          {
-            separator: true,
-          },
-
-          {
-            label: 'Export',
-            icon: 'pi pi-fw pi-external-link',
           },
         ],
       },
@@ -47,6 +39,7 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Cart',
         icon: 'pi pi-fw pi-shopping-cart',
+        command: () => this.router.navigate(['cart']),
       },
     ];
   }
