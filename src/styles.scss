@@ -2,7 +2,6 @@
 @import 'primeng/resources/primeng.css';
 @import 'primeicons/primeicons.css';
 
-
 * {
   padding: 0;
   margin: 0;
@@ -10,6 +9,18 @@
   text-decoration: none;
   outline: none;
   box-sizing: border-box;
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
 }
 
 body {
@@ -17,13 +28,22 @@ body {
   background-color: var(--background-color);
   font-size: var(--font-size);
   color: var(--text-color);
-}
 
-.p-menubar {
-  padding: 0.5rem;
-  background: red;
-  color: #495057;
-  border: 1px solid #dee2e6;
+  .p-menubar {
+    background-color: var(--surface-800);
+    color: var(--surface-0);
+    border-radius: 0;
+
+    .p-element,
+    .p-menuitem-text,
+    .p-menuitem-icon {
+      color: var(--surface-0);
+    }
+
+    .p-menubar-root-list {
+      background-color: var(--surface-800);
+    }
+  }
 }
 
 :root {
