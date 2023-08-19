@@ -1,17 +1,17 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
 import { Subscription, take } from 'rxjs';
 import { ThemeService } from './core/services/theme/theme.service';
-import { MenubarComponent } from './layout/menubar/menubar.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { HeaderComponent } from './layout/header/header.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [MenubarComponent, RouterOutlet, FooterComponent],
+  imports: [RouterOutlet, FooterComponent, HeaderComponent],
 })
 export class AppComponent implements OnInit, OnDestroy {
   private primengConfig = inject(PrimeNGConfig);

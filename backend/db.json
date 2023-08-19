@@ -1,0 +1,34 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Celular Smartphone",
+      "categoria": "Eletrônicos",
+      "preco": 999.99,
+      "descricao": "Um smartphone avançado com ótimas funcionalidades.",
+      "estoque": 15,
+      "estado": "novo",
+      "imagem": "https://source.unsplash.com/random/150x150/?electronics"
+    },
+    {
+      "id": 2,
+      "nome": "Notebook Ultra",
+      "categoria": "Informática",
+      "preco": 1499.99,
+      "descricao": "Um notebook de alta performance para tarefas exigentes.",
+      "estoque": 8,
+      "estado": "novo",
+      "imagem": "https://source.unsplash.com/random/150x150/?electronics"
+    },
+    {
+      "id": 3,
+      "nome": "Livro Aventura Fantástica",
+      "categoria": "Livros",
+      "preco": 29.99,
+      "descricao": "Um livro cheio de emoção e fantasia.",
+      "estoque": 25,
+      "estado": "usado",
+      "imagem": "https://source.unsplash.com/random/150x150/?electronics"
+    }
+  ]
+}

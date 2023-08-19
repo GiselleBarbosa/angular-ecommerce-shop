@@ -1,12 +1,9 @@
-<div class="container">
-  <div class="container__menubar">
-    <app-menubar [setButtonTheme]="setButtonTheme" (toggleTheme)="toggleTheme()" />
-  </div>
-  <div class="container__router">
-    <router-outlet></router-outlet>
-  </div>
+<app-header style="width: 100%" />
 
-  <div class="container__footer">
-    <app-footer />
-  </div>
+<div class="p-5">
+  <router-outlet />
+</div>
+
+<div class="bottom-0 fixed" style="width: 100%">
+  <app-footer />
 </div>

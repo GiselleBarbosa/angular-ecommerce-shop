@@ -1,0 +1,29 @@
+<p-toolbar styleClass="bg-primary pt-2 pb-2 pl-3 pr-5 align-items-center ">
+  <div class="p-toolbar-group-start">
+    <app-sidebar class="mr-2" />
+    <h1 class="cursor-pointer mr-8" routerLink="products">Angular Shopping</h1>
+  </div>
+
+  <div class="p-toolbar-group-end mb-4 gap-5 md: mt-4 flex-wrap">
+    <div class="flex cursor-pointer">
+      <i class="icon pi pi-shopping-cart mr-2"></i>
+      <p>Cart</p>
+    </div>
+
+    <div class="flex cursor-pointer">
+      <i class="icon pi pi-user mr-2"></i>
+      <p>Login</p>
+    </div>
+
+    <div class="flex cursor-pointer">
+      <i class="icon pi pi-language mr-2"></i>
+      <p>Translate</p>
+    </div>
+
+    <div (click)="toggleTheme()" class="flex cursor-pointer">
+      <i class="icon pi pi-sun mr-2" *ngIf="setButtonTheme"></i>
+      <i class="icon pi pi-moon mr-2" *ngIf="!setButtonTheme"></i>
+      <p>DarkMode</p>
+    </div>
+  </div>
+</p-toolbar>
