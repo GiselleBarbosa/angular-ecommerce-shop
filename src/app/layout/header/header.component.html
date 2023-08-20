@@ -23,7 +23,8 @@
     <div (click)="toggleTheme()" class="flex cursor-pointer">
       <i class="icon pi pi-sun mr-2" *ngIf="setButtonTheme"></i>
       <i class="icon pi pi-moon mr-2" *ngIf="!setButtonTheme"></i>
-      <p>DarkMode</p>
+      <p *ngIf="!setButtonTheme">Dark</p>
+      <p *ngIf="setButtonTheme">Light</p>
     </div>
   </div>
 </p-toolbar>

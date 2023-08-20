@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { DataViewModule } from 'primeng/dataview';
-import { Product } from 'src/app/modules/products/interface/Product';
 import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
-import { FormsModule } from '@angular/forms';
+import { Product } from 'src/app/modules/products/interface/Product';
 
 @Component({
   selector: 'app-data-view',
@@ -15,14 +15,14 @@ import { FormsModule } from '@angular/forms';
 export class DataViewComponent {
   public layout = 'list';
 
-  public products!: Product[];
+  @Input() public products!: Product[];
 
   public getSeverity(product: Product): string | null {
     switch (product.status) {
-      case 'New':
+      case 'new':
         return 'success';
 
-      case 'Used':
+      case 'used':
         return 'warning';
 
       default:
