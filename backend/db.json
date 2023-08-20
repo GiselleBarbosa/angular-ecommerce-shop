@@ -9,7 +9,8 @@
       "description": "Um smartphone avançado com ótimas funcionalidades.",
       "stock": 15,
       "status": "new",
-      "image": "https://source.unsplash.com/random/150x150/?electronics"
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 4.2
     },
     {
       "id": 2,
@@ -20,7 +21,8 @@
       "description": "Um notebook de alta performance para tarefas exigentes.",
       "stock": 8,
       "status": "new",
-      "image": "https://source.unsplash.com/random/150x150/?electronics"
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 2
     },
     {
       "id": 3,
@@ -31,7 +33,8 @@
       "description": "Um livro cheio de emoção e fantasia.",
       "stock": 25,
       "status": "used",
-      "image": "https://source.unsplash.com/random/150x150/?electronics"
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 5
     }
   ],
 
