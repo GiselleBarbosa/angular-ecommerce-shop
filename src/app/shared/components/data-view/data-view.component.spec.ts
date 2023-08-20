@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenubarComponent } from './menubar.component';
+import { DataViewComponent } from './data-view.component';
 
-describe('MenubarComponent', () => {
-  let component: MenubarComponent;
-  let fixture: ComponentFixture<MenubarComponent>;
+describe('DataViewComponent', () => {
+  let component: DataViewComponent;
+  let fixture: ComponentFixture<DataViewComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MenubarComponent],
+      declarations: [DataViewComponent]
     });
-    fixture = TestBed.createComponent(MenubarComponent);
+    fixture = TestBed.createComponent(DataViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

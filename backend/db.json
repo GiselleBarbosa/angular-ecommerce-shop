@@ -1,0 +1,51 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Celular Smartphone",
+      "category": "Eletronics",
+      "categoryId": 1,
+      "price": 999.99,
+      "description": "Um smartphone avançado com ótimas funcionalidades.",
+      "stock": 15,
+      "status": "new",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 4.2
+    },
+    {
+      "id": 2,
+      "name": "Notebook Ultra",
+      "category": "Eletronics",
+      "categoryId": 1,
+      "price": 1499.99,
+      "description": "Um notebook de alta performance para tarefas exigentes.",
+      "stock": 8,
+      "status": "new",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 2
+    },
+    {
+      "id": 3,
+      "name": "Livro Aventura Fantástica",
+      "category": "Books",
+      "categoryId": 2,
+      "price": 29.99,
+      "description": "Um livro cheio de emoção e fantasia.",
+      "stock": 25,
+      "status": "used",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 5
+    }
+  ],
+
+  "categories": [
+    {
+      "id": 1,
+      "name": "Eletronics"
+    },
+    {
+      "id": 2,
+      "name": "Books"
+    }
+  ]
+}
