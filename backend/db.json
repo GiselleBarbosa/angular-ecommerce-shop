@@ -2,39 +2,183 @@
   "products": [
     {
       "id": 1,
-      "name": "Celular Smartphone",
+      "name": "Celular Smartphone LG 16GB",
       "category": "Eletronics",
       "categoryId": 1,
-      "price": 999.99,
+      "price": 5999.99,
       "description": "Um smartphone avançado com ótimas funcionalidades.",
-      "stock": 15,
+      "stock": 0,
       "status": "new",
       "image": "https://source.unsplash.com/random/150x150/?electronics",
       "rating": 4.2
     },
     {
       "id": 2,
-      "name": "Notebook Ultra",
+      "name": "Notebook Positivo 16GB RAM",
       "category": "Eletronics",
       "categoryId": 1,
       "price": 1499.99,
       "description": "Um notebook de alta performance para tarefas exigentes.",
-      "stock": 8,
+      "stock": 15,
       "status": "new",
       "image": "https://source.unsplash.com/random/150x150/?electronics",
       "rating": 2
     },
     {
       "id": 3,
-      "name": "Livro Aventura Fantástica",
+      "name": "Livro Codigo Limpo",
       "category": "Books",
       "categoryId": 2,
       "price": 29.99,
       "description": "Um livro cheio de emoção e fantasia.",
-      "stock": 25,
+      "stock": 18,
+      "status": "new",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 5
+    },
+    {
+      "id": 4,
+      "name": "Celular Smartphone Xiaomi Poco 164GB",
+      "category": "Eletronics",
+      "categoryId": 1,
+      "price": 999.99,
+      "description": "Um smartphone avançado com ótimas funcionalidades.",
+      "stock": 45,
+      "status": "new",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 1
+    },
+    {
+      "id": 5,
+      "name": "Cabo US B3.0",
+      "category": "Acessories",
+      "categoryId": 3,
+      "price": 1499.99,
+      "description": "Cabo usb de alta velocidade.",
+      "stock": 2,
+      "status": "new",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 0
+    },
+    {
+      "id": 6,
+      "name": "Livro Decodificador Limpo",
+      "category": "Books",
+      "categoryId": 2,
+      "price": 29.99,
+      "description": "Um livro cheio de emoção e fantasia.",
+      "stock": 0,
       "status": "used",
       "image": "https://source.unsplash.com/random/150x150/?electronics",
       "rating": 5
+    },
+    {
+      "id": 7,
+      "name": "Celular Smartphone Samsung Galaxy 12",
+      "category": "Eletronics",
+      "categoryId": 1,
+      "price": 4500.0,
+      "description": "Um smartphone avançado com ótimas funcionalidades.",
+      "stock": 0,
+      "status": "used",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 5
+    },
+    {
+      "id": 8,
+      "name": "Notebook Ultra Mac Book Pro",
+      "category": "Eletronics",
+      "categoryId": 1,
+      "price": 14299.99,
+      "description": "Um notebook de alta performance para tarefas exigentes.",
+      "stock": 8,
+      "status": "new",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 3
+    },
+    {
+      "id": 9,
+      "name": "Livro Estrutura de Dados em Javascript",
+      "category": "Books",
+      "categoryId": 2,
+      "price": 29.99,
+      "description": "Um livro cheio de emoção e fantasia.",
+      "stock": 2,
+      "status": "used",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 1
+    },
+    {
+      "id": 10,
+      "name": "Iphone 14",
+      "category": "Eletronics",
+      "categoryId": 1,
+      "price": 8999.99,
+      "description": "Um smartphone avançado com ótimas funcionalidades.",
+      "stock": 6,
+      "status": "new",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 4
+    },
+    {
+      "id": 11,
+      "name": "Notebook Ultra",
+      "category": "Eletronics",
+      "categoryId": 1,
+      "price": 1499.99,
+      "description": "Um notebook de alta performance para tarefas exigentes.",
+      "stock": 8,
+      "status": "used",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 5
+    },
+    {
+      "id": 12,
+      "name": "Livro Javascript",
+      "category": "Books",
+      "categoryId": 2,
+      "price": 58.99,
+      "description": "Um livro cheio de emoção e fantasia.",
+      "stock": 67,
+      "status": "used",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 5
+    },
+    {
+      "id": 13,
+      "name": "Celular Smartphone Asus Zenfone 9",
+      "category": "Eletronics",
+      "categoryId": 1,
+      "price": 999.99,
+      "description": "Um smartphone avançado com ótimas funcionalidades.",
+      "stock": 88,
+      "status": "new",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 3
+    },
+    {
+      "id": 14,
+      "name": "Notebook Ultra",
+      "category": "Eletronics",
+      "categoryId": 1,
+      "price": 99.85,
+      "description": "Um notebook de alta performance para tarefas exigentes.",
+      "stock": 8,
+      "status": "used",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 0
+    },
+    {
+      "id": 15,
+      "name": "Generic Product",
+      "category": "Books",
+      "categoryId": 2,
+      "price": 29.99,
+      "description": "Um livro cheio de emoção e fantasia.",
+      "stock": 5,
+      "status": "used",
+      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "rating": 1
     }
   ],
 
@@ -46,6 +190,10 @@
     {
       "id": 2,
       "name": "Books"
+    },
+    {
+      "id": 3,
+      "name": "Acessories"
     }
   ]
 }

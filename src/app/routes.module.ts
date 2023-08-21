@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ProductsComponent } from './modules/products/products.component';
 import { CartComponent } from './modules/cart/cart.component';
+import { ProductsComponent } from './modules/products/products-view/products.component';
 
 export const productsRoutes: Routes = [
   {
