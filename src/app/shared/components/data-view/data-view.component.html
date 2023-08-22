@@ -10,9 +10,8 @@
     <div class="flex justify-content-between">
       <p-dropdown
         [options]="sortOptions"
-        [(ngModel)]="sortKey"
         placeholder="Sort By Price"
-        (click)="sortChangeClicked($event)"
+        (onChange)="sortChangeClicked($event)"
         styleClass="md:mb-0"></p-dropdown>
       <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
     </div>
@@ -22,9 +21,11 @@
     <div class="col-12">
       <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
         <img
-          class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
-          src="{{ product.image }}"
+          class="w-9 sm:w-16rem xl:w-8rem shadow-2 block xl:block mx-auto border-round"
+          [src]="product.image"
+          alt="product.name"
           title="product.name" />
+
         <div
           class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
           <div class="flex flex-column align-items-center sm:align-items-start gap-3">
@@ -58,7 +59,7 @@
   </ng-template>
 
   <ng-template let-product pTemplate="gridItem">
-    <div class="col-12 sm:col-6 lg:col-12 xl:col-2 p-2">
+    <div class="xl:col-2 lg:col-3 md:col-3 sm:col-6 p-2">
       <div class="p-4 border-1 surface-border surface-card border-round">
         <div class="flex flex-wrap align-items-center justify-content-between gap-2">
           <span class="flex align-items-center gap-2">
@@ -70,9 +71,10 @@
         <div class="flex flex-column align-items-center gap-3 py-5">
           <img
             class="w-9 shadow-2 border-round"
-            src="{{ product.image }}"
+            [src]="product.image"
+            alt="product.name"
             title="product.name" />
-          <div class="text-1xl font-semibold" style="min-height: 3rem">
+          <div class="text-1xl font-semibold" style="min-height: 4rem">
             {{ product.name }}
           </div>
           <p-rating

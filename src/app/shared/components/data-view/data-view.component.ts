@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { SelectItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
@@ -32,12 +31,10 @@ export class DataViewComponent {
 
   @Input() public sortField!: string;
 
-  @Input() public sortKey!: string;
+  @Output() public sortChange = new EventEmitter();
 
-  @Output() public sortChange = new EventEmitter<Event>();
-
-  public sortChangeClicked(event: Event): void {
-    this.sortChange.emit(event);
+  public sortChangeClicked($event: any): void {
+    this.sortChange.emit($event);
   }
 
   public getSeverity(product: Product): string | null {

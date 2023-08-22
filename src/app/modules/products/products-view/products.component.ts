@@ -21,8 +21,6 @@ export class ProductsComponent implements OnInit {
   public sortOrder!: number;
   public sortField!: string;
 
-  public sortKey!: string;
-
   public ngOnInit(): void {
     this._productService
       .getAllProducts()
@@ -38,9 +36,7 @@ export class ProductsComponent implements OnInit {
   }
 
   public onSortChange(event: any): void {
-    this.sortKey = event.value;
-
-    let value = this.sortKey;
+    const value = event.value;
 
     if (value.indexOf('!') === 0) {
       this.sortOrder = -1;
