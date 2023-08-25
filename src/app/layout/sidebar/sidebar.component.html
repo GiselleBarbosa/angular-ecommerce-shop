@@ -1,4 +1,12 @@
-<p-sidebar [(visible)]="sidebarVisible" position="right" styleClass="w-15rem">
-  <p-menu [model]="items"></p-menu>
+<p-sidebar
+  class="card flex justify-content-center"
+  position="right"
+  [(visible)]="sidebarVisible"
+  styleClass="w-15rem bg-black-alpha-60">
+  <div class="mb-5">
+    <p-menu [model]="items"></p-menu>
+  </div>
+
+  <app-multi-select />
 </p-sidebar>
 <p-button (click)="sidebarHandler()" icon="pi pi-align-justify"></p-button>
