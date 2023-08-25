@@ -2,11 +2,25 @@
   class="card flex justify-content-center"
   position="right"
   [(visible)]="sidebarVisible"
-  styleClass="w-15rem bg-black-alpha-60">
+  styleClass="w-15rem bg-black-alpha-80">
   <div class="mb-5">
-    <p-menu [model]="items"></p-menu>
+    <h2 class="mb-2 text-900 font-normal">Panel</h2>
+
+    <p-menu [model]="navigationMenuItems"></p-menu>
   </div>
 
-  <app-multi-select />
+  <div class="mb-5">
+    <h2 class="mb-2 text-900 font-normal">Categories</h2>
+    <!-- <p-menu [model]="categories"></p-menu> -->
+  </div>
+
+  <div class="mb-5">
+    <h2 class="mb-2 text-900 font-normal">Filters</h2>
+
+    <app-multi-select
+      [categories]="categories"
+      [selectedCategories]="selectedCategories"
+      [defaultLabel]="'Filter Categories'" />
+  </div>
 </p-sidebar>
 <p-button (click)="sidebarHandler()" icon="pi pi-align-justify"></p-button>

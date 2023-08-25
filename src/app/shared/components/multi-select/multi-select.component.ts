@@ -11,6 +11,6 @@ import { MultiSelectModule } from 'primeng/multiselect';
 })
 export class MultiSelectComponent {
   @Input() public categories!: any[];
-
-  public selectedCategories!: any[];
+  @Input() public selectedCategories!: any[];
+  @Input() public defaultLabel!: string;
 }
