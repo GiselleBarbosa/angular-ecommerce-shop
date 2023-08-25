@@ -1,7 +1,4 @@
-<p-sidebar [(visible)]="sidebarVisible">
-  <h3>Sidebar</h3>
-  <ul>
-    <li>Categories</li>
-  </ul>
+<p-sidebar [(visible)]="sidebarVisible" position="right" styleClass="w-15rem">
+  <p-menu [model]="items"></p-menu>
 </p-sidebar>
 <p-button (click)="sidebarHandler()" icon="pi pi-align-justify"></p-button>

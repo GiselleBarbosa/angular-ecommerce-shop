@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { NotFoundPageComponent } from './shared/components/not-found-page/not-found-page.component';
 
 const routes: Routes = [
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'cart',
     loadChildren: () => import('./routes.module').then(module => module.cartRoutes),
+  },
+
+  {
+    path: 'auth',
+    loadChildren: () => import('./routes.module').then(module => module.authRoutes),
   },
 
   {
