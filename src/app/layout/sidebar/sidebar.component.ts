@@ -18,7 +18,7 @@ import { ProductService } from 'src/app/modules/products/services/product.servic
 export class SidebarComponent implements OnInit {
   private _productsService = inject(ProductService);
 
-  public sidebarVisible = true;
+  public sidebarVisible = false;
 
   public navigationMenuItems!: MenuItem[];
 
