@@ -1,7 +1,28 @@
-<p-sidebar [(visible)]="sidebarVisible">
-  <h3>Sidebar</h3>
-  <ul>
-    <li>Categories</li>
-  </ul>
+<p-sidebar
+  #sidebar
+  class="card flex justify-content-center"
+  position="right"
+  [(visible)]="sidebarVisible"
+  styleClass="w-15rem bg-black-alpha-40">
+  <div class="mb-5">
+    <h2 class="mb-2 text-900 font-normal">Panel</h2>
+
+    <p-menu [model]="navigationMenuItems"></p-menu>
+  </div>
+
+  <div class="mb-5">
+    <h2 class="mb-2 text-900 font-normal">Categories</h2>
+    <p-menu [model]="categories"></p-menu>
+  </div>
+
+  <div class="mb-5">
+    <h2 class="mb-2 text-900 font-normal">Filters</h2>
+
+    <p-multiSelect
+      [appendTo]="sidebar"
+      styleClass="w-12rem"
+      [options]="categories"
+      [(ngModel)]="selectedCategories" />
+  </div>
 </p-sidebar>
 <p-button (click)="sidebarHandler()" icon="pi pi-align-justify"></p-button>
