@@ -1,4 +1,5 @@
 <p-sidebar
+  #sidebar
   class="card flex justify-content-center"
   position="right"
   [(visible)]="sidebarVisible"
@@ -11,16 +12,17 @@
 
   <div class="mb-5">
     <h2 class="mb-2 text-900 font-normal">Categories</h2>
-    <!-- <p-menu [model]="categories"></p-menu> -->
+    <p-menu [model]="categories"></p-menu>
   </div>
 
   <div class="mb-5">
     <h2 class="mb-2 text-900 font-normal">Filters</h2>
 
-    <app-multi-select
-      [categories]="categories"
-      [selectedCategories]="selectedCategories"
-      [defaultLabel]="'Filter Categories'" />
+    <p-multiSelect
+      [appendTo]="sidebar"
+      styleClass="w-12rem"
+      [options]="categories"
+      [(ngModel)]="selectedCategories" />
   </div>
 </p-sidebar>
 <p-button (click)="sidebarHandler()" icon="pi pi-align-justify"></p-button>

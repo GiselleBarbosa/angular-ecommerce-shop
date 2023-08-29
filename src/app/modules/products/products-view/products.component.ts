@@ -1,7 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SelectItem } from 'primeng/api';
-import { first } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { DataViewComponent } from 'src/app/shared/components/data-view/data-view.component';
+
 import { Product } from '../interface/Product';
 import { ProductService } from '../services/product.service';
 
@@ -12,9 +14,12 @@ import { ProductService } from '../services/product.service';
   standalone: true,
   imports: [DataViewComponent],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   private _productService = inject(ProductService);
+  private _route = inject(ActivatedRoute);
 
+  private subscription!: Subscription;
+  private categoryId!: string | null;
   public product: Product[] = [];
 
   public sortOptions!: SelectItem[];
@@ -22,17 +27,32 @@ export class ProductsComponent implements OnInit {
   public sortField!: string;
 
   public ngOnInit(): void {
+    this.getSortProductsValues();
+    this.getProductsByRouteParams();
+  }
+
+  public getAllProducts(): void {
     this._productService
-      .getAllProducts()
-      .pipe(first())
+      .getAllProductsByCategory(this.categoryId)
+
       .subscribe(data => {
         this.product = data;
-
-        this.sortOptions = [
-          { label: 'Price High', value: '!price' },
-          { label: 'Price Low', value: 'price' },
-        ];
       });
+  }
+
+  public getProductsByRouteParams(): void {
+    this.subscription = this._route.paramMap.subscribe((params: ParamMap) => {
+      this.categoryId = params.get('id');
+
+      this.getAllProducts();
+    });
+  }
+
+  public getSortProductsValues(): void {
+    this.sortOptions = [
+      { label: 'Price High', value: '!price' },
+      { label: 'Price Low', value: 'price' },
+    ];
   }
 
   public onSortChange(event: any): void {
@@ -45,5 +65,9 @@ export class ProductsComponent implements OnInit {
       this.sortOrder = 1;
       this.sortField = value;
     }
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

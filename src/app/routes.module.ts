@@ -9,6 +9,10 @@ export const productsRoutes: Routes = [
     path: '',
     component: ProductsComponent,
   },
+  {
+    path: 'category/:id',
+    component: ProductsComponent,
+  },
 ];
 
 export const cartRoutes: Routes = [

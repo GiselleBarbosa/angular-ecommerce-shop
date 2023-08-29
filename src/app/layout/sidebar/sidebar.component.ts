@@ -1,26 +1,19 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SidebarModule } from 'primeng/sidebar';
-import { first } from 'rxjs';
-import { Categories } from 'src/app/modules/products/interface/categories';
+import { map } from 'rxjs';
 import { ProductService } from 'src/app/modules/products/services/product.service';
-import { MultiSelectComponent } from 'src/app/shared/components/multi-select/multi-select.component';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
   standalone: true,
-  imports: [
-    SidebarModule,
-    ButtonModule,
-    MenuModule,
-    MultiSelectModule,
-    MultiSelectComponent,
-  ],
+  imports: [SidebarModule, ButtonModule, FormsModule, MenuModule, MultiSelectModule],
 })
 export class SidebarComponent implements OnInit {
   private _productsService = inject(ProductService);
@@ -29,10 +22,8 @@ export class SidebarComponent implements OnInit {
 
   public navigationMenuItems!: MenuItem[];
 
-  private categoryId!: string | null;
-
-  public categories!: Categories[];
-  public selectedCategories!: Categories[];
+  public categories!: MenuItem[];
+  public selectedCategories!: MenuItem[];
 
   public ngOnInit(): void {
     this.getItemsForThePanelNavigationMenu();
@@ -70,9 +61,16 @@ export class SidebarComponent implements OnInit {
   public getItemCategoriesMenu(): void {
     this._productsService
       .getAllCategories()
-      .pipe(first())
-      .subscribe(category => {
-        this.categories = category;
-      });
+      .pipe(
+        map(category => {
+          this.categories = category.map(category => {
+            return {
+              label: category.name,
+              routerLink: `products/category/${category.id}`,
+            };
+          });
+        })
+      )
+      .subscribe();
   }
 }

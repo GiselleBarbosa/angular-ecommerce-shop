@@ -2,26 +2,26 @@
   "products": [
     {
       "id": 1,
-      "name": "Celular Smartphone LG 16GB",
-      "category": "Eletronics",
+      "name": "Smartphone 16GB",
+      "category": "Smartphones",
       "categoryId": 1,
       "price": 5999.99,
       "description": "Um smartphone avançado com ótimas funcionalidades.",
       "stock": 0,
       "status": "new",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/smartphones/smartphone-01.jpeg",
       "rating": 4.2
     },
     {
       "id": 2,
-      "name": "Notebook Positivo 16GB RAM",
-      "category": "Eletronics",
-      "categoryId": 1,
+      "name": "Notebook 16GB RAM",
+      "category": "Notebooks",
+      "categoryId": 5,
       "price": 1499.99,
       "description": "Um notebook de alta performance para tarefas exigentes.",
       "stock": 15,
       "status": "new",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/notebooks/notebook-01.jpeg",
       "rating": 2
     },
     {
@@ -33,31 +33,31 @@
       "description": "Um livro cheio de emoção e fantasia.",
       "stock": 18,
       "status": "new",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/books/book-01.jpeg",
       "rating": 5
     },
     {
       "id": 4,
       "name": "Celular Smartphone Xiaomi Poco 164GB",
-      "category": "Eletronics",
+      "category": "Smartphones",
       "categoryId": 1,
       "price": 999.99,
       "description": "Um smartphone avançado com ótimas funcionalidades.",
       "stock": 45,
       "status": "new",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/smartphones/smartphone-02.jpeg",
       "rating": 1
     },
     {
       "id": 5,
-      "name": "Cabo US B3.0",
-      "category": "Acessories",
+      "name": "Motherboard Asus TUF Gaming - H310M-Plus",
+      "category": "Motherboard",
       "categoryId": 3,
-      "price": 1499.99,
-      "description": "Cabo usb de alta velocidade.",
+      "price": 749.99,
+      "description": "Placa mãe de altissima performance.",
       "stock": 2,
       "status": "new",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/motherboards/motherboard-01.jpeg",
       "rating": 0
     },
     {
@@ -66,34 +66,34 @@
       "category": "Books",
       "categoryId": 2,
       "price": 29.99,
-      "description": "Um livro cheio de emoção e fantasia.",
+      "description": "Este livro aborda técnicas de programação.",
       "stock": 0,
       "status": "used",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/books/book-02.jpeg",
       "rating": 5
     },
     {
       "id": 7,
       "name": "Celular Smartphone Samsung Galaxy 12",
-      "category": "Eletronics",
+      "category": "Smartphones",
       "categoryId": 1,
       "price": 4500.0,
       "description": "Um smartphone avançado com ótimas funcionalidades.",
-      "stock": 0,
+      "stock": 6,
       "status": "used",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/smartphones/smartphone-03.jpeg",
       "rating": 5
     },
     {
       "id": 8,
       "name": "Notebook Ultra Mac Book Pro",
-      "category": "Eletronics",
-      "categoryId": 1,
+      "category": "Notebooks",
+      "categoryId": 5,
       "price": 14299.99,
       "description": "Um notebook de alta performance para tarefas exigentes.",
       "stock": 8,
       "status": "new",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/notebooks/notebook-02.jpeg",
       "rating": 3
     },
     {
@@ -105,31 +105,31 @@
       "description": "Um livro cheio de emoção e fantasia.",
       "stock": 2,
       "status": "used",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/books/book-03.jpeg",
       "rating": 1
     },
     {
       "id": 10,
       "name": "Iphone 14",
-      "category": "Eletronics",
+      "category": "Smartphones",
       "categoryId": 1,
       "price": 8999.99,
       "description": "Um smartphone avançado com ótimas funcionalidades.",
       "stock": 6,
       "status": "new",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/smartphones/smartphone-04.jpeg",
       "rating": 4
     },
     {
       "id": 11,
-      "name": "Notebook Ultra",
-      "category": "Eletronics",
-      "categoryId": 1,
-      "price": 1499.99,
+      "name": "Laptop Acer",
+      "category": "Notebooks",
+      "categoryId": 5,
+      "price": 599.99,
       "description": "Um notebook de alta performance para tarefas exigentes.",
       "stock": 8,
       "status": "used",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/notebooks/notebook-03.jpeg",
       "rating": 5
     },
     {
@@ -141,43 +141,43 @@
       "description": "Um livro cheio de emoção e fantasia.",
       "stock": 67,
       "status": "used",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/books/book-04.jpeg",
       "rating": 5
     },
     {
       "id": 13,
       "name": "Celular Smartphone Asus Zenfone 9",
-      "category": "Eletronics",
+      "category": "Smartphones",
       "categoryId": 1,
       "price": 999.99,
       "description": "Um smartphone avançado com ótimas funcionalidades.",
       "stock": 88,
       "status": "new",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/smartphones/smartphone-05.jpeg",
       "rating": 3
     },
     {
       "id": 14,
-      "name": "Notebook Ultra",
-      "category": "Eletronics",
-      "categoryId": 1,
+      "name": "Notebook Ultra High",
+      "category": "Notebooks",
+      "categoryId": 5,
       "price": 99.85,
       "description": "Um notebook de alta performance para tarefas exigentes.",
       "stock": 8,
       "status": "used",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/notebooks/notebook-04.jpeg",
       "rating": 0
     },
     {
       "id": 15,
-      "name": "Generic Product",
-      "category": "Books",
-      "categoryId": 2,
-      "price": 29.99,
-      "description": "Um livro cheio de emoção e fantasia.",
-      "stock": 5,
+      "name": "Analogic Watch Premium TOP",
+      "category": "watchs",
+      "categoryId": 4,
+      "price": 2999.99,
+      "description": "Um lindo relogio.",
+      "stock": 12,
       "status": "used",
-      "image": "https://source.unsplash.com/random/150x150/?electronics",
+      "image": "assets/images/products/watchs/watch-01.jpeg",
       "rating": 1
     }
   ],
@@ -185,7 +185,7 @@
   "categories": [
     {
       "id": 1,
-      "name": "Eletronics"
+      "name": "Smartphones"
     },
     {
       "id": 2,
@@ -193,7 +193,15 @@
     },
     {
       "id": 3,
-      "name": "Acessories"
+      "name": "Motherboards"
+    },
+    {
+      "id": 4,
+      "name": "Watchs"
+    },
+    {
+      "id": 5,
+      "name": "Notebooks"
     }
   ]
 }
