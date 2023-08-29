@@ -3,26 +3,28 @@
   class="card flex justify-content-center"
   position="right"
   [(visible)]="sidebarVisible"
-  styleClass="w-15rem bg-black-alpha-40">
+  styleClass="w-25rem bg-black-alpha-40">
   <div class="mb-5">
     <h2 class="mb-2 text-900 font-normal">Panel</h2>
 
-    <p-menu [model]="navigationMenuItems"></p-menu>
+    <p-menu styleClass="w-auto" [model]="navigationMenuItems"></p-menu>
   </div>
 
   <div class="mb-5">
-    <h2 class="mb-2 text-900 font-normal">Categories</h2>
-    <p-menu [model]="categories"></p-menu>
+    <h2 class="mb-2 text-0 font-normal">Categories</h2>
+    <p-menu styleClass="w-auto" [model]="categories"></p-menu>
   </div>
 
   <div class="mb-5">
-    <h2 class="mb-2 text-900 font-normal">Filters</h2>
+    <h2 class="mb-2 text-0 font-normal">Filters</h2>
 
     <p-multiSelect
+      styleClass="w-20rem "
       [appendTo]="sidebar"
-      styleClass="w-12rem"
       [options]="categories"
-      [(ngModel)]="selectedCategories" />
+      [defaultLabel]="'Select categories'"
+      [(ngModel)]="selectedCategories"
+      display="chip" />
   </div>
 </p-sidebar>
 <p-button (click)="sidebarHandler()" icon="pi pi-align-justify"></p-button>
