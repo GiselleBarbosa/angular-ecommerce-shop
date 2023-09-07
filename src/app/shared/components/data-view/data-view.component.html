@@ -1,7 +1,7 @@
 <p-dataView
   #dv
   [rows]="8"
-  [value]="product"
+  [value]="items"
   [layout]="'grid'"
   [paginator]="true"
   [sortField]="sortField"
@@ -22,15 +22,15 @@
       <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
         <img
           class="w-9 sm:w-16rem xl:w-8rem shadow-2 block xl:block mx-auto border-round"
-          [src]="product.image"
-          alt="product.name"
-          title="product.name" />
+          [src]="product.images[0]"
+          alt="product.title"
+          title="product.title" />
 
         <div
           class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
           <div class="flex flex-column align-items-center sm:align-items-start gap-3">
             <div class="text-1xl font-semibold" style="min-height: 3rem">
-              {{ product.name }}
+              {{ product.title }}
             </div>
             <p-rating
               [ngModel]="product.rating"
@@ -41,7 +41,6 @@
                 <i class="pi pi-tag"></i>
                 <span class="font-semibold">{{ product.category }}</span>
               </span>
-              <p-tag [value]="product.status" [severity]="getSeverity(product)!"></p-tag>
             </div>
           </div>
           <div
@@ -66,16 +65,15 @@
             <i class="pi pi-tag"></i>
             <span class="font-normal">{{ product.category }}</span>
           </span>
-          <p-tag [value]="product.status" [severity]="getSeverity(product)!"></p-tag>
         </div>
         <div class="flex flex-column align-items-center gap-3 py-5">
           <img
             class="w-9 shadow-2 border-round"
-            [src]="product.image"
-            alt="product.name"
-            title="product.name" />
+            [src]="product.images[0]"
+            alt="product.title"
+            title="product.title" />
           <div class="text-1xl font-semibold" style="min-height: 4rem">
-            {{ product.name }}
+            {{ product.title }}
           </div>
           <p-rating
             [ngModel]="product.rating"

@@ -65,8 +65,8 @@ export class SidebarComponent implements OnInit {
         map(category => {
           this.categories = category.map(category => {
             return {
-              label: category.name,
-              routerLink: `products/category/${category.id}`,
+              label: category,
+              routerLink: `products/category/${category}`,
             };
           });
         })

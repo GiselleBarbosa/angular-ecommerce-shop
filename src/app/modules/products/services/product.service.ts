@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
-import { Categories } from '../interface/categories';
-import { Product } from '../interface/Product';
+import { Products } from '../interface/Products';
 
 @Injectable({
   providedIn: 'root',
@@ -14,25 +13,27 @@ export class ProductService {
 
   private http = inject(HttpClient);
 
-  public getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.productsUrl}/products`);
+  public getAllProducts(): Observable<Products[]> {
+    return this.http.get<{ products: Products[] }>(`${this.productsUrl}/products`).pipe(
+      map(data => {
+        return data.products;
+      })
+    );
   }
 
-  public getAllCategories(): Observable<Categories[]> {
-    return this.http.get<Categories[]>(`${this.productsUrl}/categories`);
+  public getAllCategories(): Observable<[]> {
+    return this.http.get<[]>(`${this.productsUrl}/products/categories`);
   }
 
-  public getAllProductsByCategory(categoryId: string | null): Observable<Product[]> {
-    if (categoryId === null || undefined) {
-      return this.http.get<Product[]>(`${this.productsUrl}/products`);
-    } else {
-      return this.http.get<Product[]>(
-        `${this.productsUrl}/products?categoryId=${categoryId}`
+  public getAllProductsByCategory(categoryName: string): Observable<Products[]> {
+    return this.http
+      .get<{ products: Products[] }>(
+        `${this.productsUrl}/products/category/${categoryName}`
+      )
+      .pipe(
+        map(data => {
+          return data.products;
+        })
       );
-    }
-  }
-
-  public getProductById(id: number): Observable<Product> {
-    return this.http.get<Product>(`${this.productsUrl}/products/${id}`);
   }
 }
