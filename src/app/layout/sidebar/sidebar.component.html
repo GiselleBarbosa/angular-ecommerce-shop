@@ -1,30 +1,25 @@
 <p-sidebar
-  #sidebar
   class="card flex justify-content-center"
-  position="right"
   [(visible)]="sidebarVisible"
-  styleClass="w-25rem bg-black-alpha-40">
+  styleClass="w-20rem bg-gray-200">
   <div class="mb-5">
-    <h2 class="mb-2 text-900 font-normal">Panel</h2>
+    <h1 class="cursor-pointer mb-5 font-semibold" routerLink="products">
+      Angular Shopping
+    </h1>
 
-    <p-menu styleClass="w-auto" [model]="navigationMenuItems"></p-menu>
+    <h2 class="mb-2 font-normal text-700">Panel</h2>
+
+    <app-navigation-panel />
   </div>
 
   <div class="mb-5">
-    <h2 class="mb-2 text-0 font-normal">Categories</h2>
-    <p-menu styleClass="w-auto" [model]="categories"></p-menu>
+    <h2 class="mb-2 text-0 font-normal text-700">Categories</h2>
+    <app-navigation-category />
   </div>
 
   <div class="mb-5">
-    <h2 class="mb-2 text-0 font-normal">Filters</h2>
-
-    <p-multiSelect
-      styleClass="w-20rem "
-      [appendTo]="sidebar"
-      [options]="categories"
-      [defaultLabel]="'Select categories'"
-      [(ngModel)]="selectedCategories"
-      display="chip" />
+    <h2 class="mb-2 text-0 font-normal text-700">Filters</h2>
+    <app-categories />
   </div>
 </p-sidebar>
 <p-button (click)="sidebarHandler()" icon="pi pi-align-justify"></p-button>

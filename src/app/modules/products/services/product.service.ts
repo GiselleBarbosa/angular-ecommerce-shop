@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
+import { Categories } from '../interface/categories';
 import { Products } from '../interface/Products';
 
 @Injectable({
@@ -21,8 +22,8 @@ export class ProductService {
     );
   }
 
-  public getAllCategories(): Observable<[]> {
-    return this.http.get<[]>(`${this.productsUrl}/products/categories`);
+  public getAllCategories(): Observable<Categories[]> {
+    return this.http.get<Categories[]>(`${this.productsUrl}/products/categories`);
   }
 
   public getAllProductsByCategory(categoryName: string): Observable<Products[]> {
