@@ -28,6 +28,27 @@ body {
   background-color: var(--background-color);
   font-size: var(--font-size);
   color: var(--text-color);
+
+  .p-sidebar {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+
+  .p-toolbar {
+    background-color: var(--surface-700);
+    color: var(--surface-0);
+
+    .p-button {
+      background-color: transparent;
+      color: var(--surface-0);
+      border: none;
+    }
+  }
+
+  .p-sidebar {
+    background-color: var(--surface-700);
+    color: var(--surface-0);
+  }
 }
 
 :root {

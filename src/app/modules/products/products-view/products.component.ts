@@ -3,8 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { first, Subscription } from 'rxjs';
 import { DataViewComponent } from 'src/app/shared/components/data-view/data-view.component';
-
-import { ProductService } from '../services/product.service';
+import { ProductService } from 'src/app/shared/services/products/product.service';
 
 @Component({
   selector: 'app-products',

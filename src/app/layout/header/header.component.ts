@@ -1,11 +1,12 @@
 import { NgIf } from '@angular/common';
-import { Component, OnDestroy, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToolbarModule } from 'primeng/toolbar';
 import { Subscription, take } from 'rxjs';
-import { ThemeService } from 'src/app/core/services/theme/theme.service';
+import { ThemeService } from 'src/app/shared/services/theme/theme.service';
+
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({

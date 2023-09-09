@@ -8,7 +8,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { SidebarModule } from 'primeng/sidebar';
 import { first, map } from 'rxjs';
 import { Categories } from 'src/app/modules/products/interface/categories';
-import { ProductService } from 'src/app/modules/products/services/product.service';
+import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
 
 import { CategoriesComponent } from './filter/categories/categories.component';
 import { NavigationCategoryComponent } from './navigation-category/navigation-category.component';
@@ -33,9 +33,9 @@ import { NavigationPanelComponent } from './navigation-panel/navigation-panel.co
   ],
 })
 export class SidebarComponent implements OnInit {
-  private _productsService = inject(ProductService);
+  private _categoriesService = inject(CategoriesService);
 
-  public sidebarVisible = true;
+  public sidebarVisible = false;
 
   public categories!: string[];
   public selectedCategories!: Categories[];
@@ -49,7 +49,7 @@ export class SidebarComponent implements OnInit {
   }
 
   public getItemCategoriesMenu(): void {
-    this._productsService
+    this._categoriesService
       .getAllCategories()
       .pipe(
         first(),
