@@ -4,18 +4,24 @@
       Angular Shopping
     </h1>
 
-    <h2 class="mb-2 font-normal">Panel</h2>
+    <h2 class="mb-4 font-normal">Panel</h2>
     <app-navigation-panel />
   </div>
 
   <div class="mb-5">
-    <h2 class="mb-2 text-0 font-normal">Categories</h2>
+    <h2 class="mb-4 font-normal">Categories</h2>
     <app-navigation-category />
   </div>
 
   <div class="mb-5">
-    <h2 class="mb-2 text-0 font-normal">Filters</h2>
+    <h2 class="mb-4 font-normal">Filters</h2>
     <app-categories />
   </div>
+
+  <p-button
+    (click)="sidebarHandler()"
+    styleClass="p-button-sm"
+    label="Apply Filters"></p-button>
 </p-sidebar>
+
 <p-button (click)="sidebarHandler()" icon="pi pi-align-justify"></p-button>
