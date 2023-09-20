@@ -5,23 +5,25 @@
     </h1>
 
     <h2 class="mb-4 font-normal">Panel</h2>
-    <app-navigation-panel />
+    <p-menu [model]="navigationMenuItems" styleClass="w-15rem"></p-menu>
   </div>
 
   <div class="mb-5">
     <h2 class="mb-4 font-normal">Categories</h2>
-    <app-navigation-category />
-  </div>
-
-  <div class="mb-5">
-    <h2 class="mb-4 font-normal">Filters</h2>
-    <app-categories />
+    <div *ngFor="let category of categories" class="field-checkbox">
+      <p-checkbox
+        [value]="category"
+        [(ngModel)]="selectedCategories"
+        (onChange)="handlerSelectedCategories()"
+        [inputId]="category.name"></p-checkbox>
+      <label [for]="category.name">{{ category }}</label>
+    </div>
   </div>
 
   <p-button
-    (click)="sidebarHandler()"
-    styleClass="p-button-sm"
-    label="Apply Filters"></p-button>
+    label="Primary"
+    styleClass="p-button-raised 
+  " />
 </p-sidebar>
 
-<p-button (click)="sidebarHandler()" icon="pi pi-align-justify"></p-button>
+<p-button (click)="sidebarHandler()" icon="pi pi-align-justify" />

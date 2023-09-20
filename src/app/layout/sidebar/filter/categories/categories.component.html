@@ -1,8 +1,0 @@
-<div *ngFor="let category of categories" class="field-checkbox">
-  <p-checkbox
-    [value]="category"
-    [(ngModel)]="selectedCategories"
-    (onChange)="handlerSelectedCategories()"
-    [inputId]="category.name"></p-checkbox>
-  <label [for]="category.name">{{ category }}</label>
-</div>

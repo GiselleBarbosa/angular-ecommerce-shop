@@ -6,13 +6,13 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SidebarModule } from 'primeng/sidebar';
-import { first, map } from 'rxjs';
+import { first } from 'rxjs';
 import { Categories } from 'src/app/modules/products/interface/categories';
 import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
 
-import { CategoriesComponent } from './filter/categories/categories.component';
-import { NavigationCategoryComponent } from './navigation-category/navigation-category.component';
-import { NavigationPanelComponent } from './navigation-panel/navigation-panel.component';
+import { MenuItem } from 'primeng/api';
+import { MenuModule } from 'primeng/menu';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
   selector: 'app-sidebar',
@@ -26,21 +26,25 @@ import { NavigationPanelComponent } from './navigation-panel/navigation-panel.co
     MultiSelectModule,
     DropdownModule,
     NgFor,
-    CategoriesComponent,
-    NavigationPanelComponent,
-    NavigationCategoryComponent,
     RouterLink,
+    MenuModule,
+    CheckboxModule,
   ],
 })
 export class SidebarComponent implements OnInit {
   private _categoriesService = inject(CategoriesService);
 
-  public sidebarVisible = false;
+  public sidebarVisible = true;
 
-  public categories!: string[];
+  public navigationMenuItems!: MenuItem[];
+
+  public categories!: Categories[];
+
   public selectedCategories!: Categories[];
 
   public ngOnInit(): void {
+    this.getItemsForThePanelNavigationMenu();
+
     this.getItemCategoriesMenu();
   }
 
@@ -51,12 +55,38 @@ export class SidebarComponent implements OnInit {
   public getItemCategoriesMenu(): void {
     this._categoriesService
       .getAllCategories()
-      .pipe(
-        first(),
-        map(category => {
-          this.selectedCategories = category;
-        })
-      )
-      .subscribe();
+      .pipe(first())
+      .subscribe(category => {
+        console.log(category);
+        this.categories = category;
+      });
+  }
+
+  public getItemsForThePanelNavigationMenu(): void {
+    this.navigationMenuItems = [
+      {
+        label: 'Cart',
+        icon: 'pi pi-shopping-cart',
+        routerLink: '/cart',
+      },
+
+      {
+        label: 'Login',
+        icon: 'pi pi-user',
+        routerLink: 'auth/login',
+      },
+
+      {
+        label: 'Translate',
+        icon: 'pi pi-language',
+        command: (): void => {
+          alert('pending implementation');
+        },
+      },
+    ];
+  }
+
+  public handlerSelectedCategories(): void {
+    return console.log(this.selectedCategories);
   }
 }

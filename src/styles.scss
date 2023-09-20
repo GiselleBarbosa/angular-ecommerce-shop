@@ -43,10 +43,11 @@ body {
     }
 
     .p-button {
-      background-color: transparent;
+      background-color: var(--surface-700);
       border: none;
+      color: var(--surface-500);
       &:hover {
-        background: var(--surface-400);
+        background: var(--surface-500);
       }
     }
   }
