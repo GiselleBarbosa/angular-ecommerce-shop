@@ -19,7 +19,7 @@ import { MenuModule } from 'primeng/menu';
 export class SidebarComponent implements OnInit {
   private _categoriesService = inject(CategoriesService);
 
-  public sidebarVisible = true;
+  public sidebarVisible = false;
 
   public navigationMenuItems!: MenuItem[];
 

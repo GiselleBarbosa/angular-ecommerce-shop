@@ -1,16 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { Products } from 'src/app/modules/products/interface/Products';
 
-import { Products } from '../../../modules/products/interface/Products';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
+export class ProductsService {
   private http = inject(HttpClient);
-
   private url = `${environment.baseApi}/products`;
 
   public getAllProducts(category: string | null): Observable<Products[]> {
@@ -23,5 +22,10 @@ export class ProductService {
         return data.products;
       })
     );
+  }
+
+  public getProductsById(id: string | null): Observable<Products> {
+    const url = `${this.url}/${id}`;
+    return this.http.get<Products>(url);
   }
 }
