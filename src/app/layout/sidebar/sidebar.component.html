@@ -14,14 +14,19 @@
       <p-checkbox
         [value]="category"
         [(ngModel)]="selectedCategories"
-        (onChange)="handlerSelectedCategories()"
+        (onChange)="getSelectedCategories()"
         [inputId]="category.name"></p-checkbox>
       <label [for]="category.name">{{ category }}</label>
     </div>
   </div>
 
+  <div class="mb-5">
+    <p-rating (onRate)="getSelectedRating()" [(ngModel)]="selectedRating"></p-rating>
+  </div>
+
   <p-button
-    label="Primary"
+    (onClick)="requestFilters()"
+    label="Aplicar filtros"
     styleClass="p-button-raised 
   " />
 </p-sidebar>
