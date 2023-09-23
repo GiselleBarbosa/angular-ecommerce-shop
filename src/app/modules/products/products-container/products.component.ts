@@ -1,21 +1,32 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 import { SelectItem } from 'primeng/api';
-import { Subscription } from 'rxjs';
-import { DataViewComponent } from 'src/app/shared/components/data-view/data-view.component';
-import { ProductService } from 'src/app/shared/services/products/product.service';
+import { ButtonModule } from 'primeng/button';
+import { DataViewModule } from 'primeng/dataview';
+import { DropdownModule } from 'primeng/dropdown';
+import { RatingModule } from 'primeng/rating';
+import { first, Subscription } from 'rxjs';
+import { ProductsService } from 'src/app/shared/services/products/products.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
   standalone: true,
-  imports: [DataViewComponent],
+  imports: [
+    DataViewModule,
+    RatingModule,
+    FormsModule,
+    DropdownModule,
+    ButtonModule,
+    RouterLink,
+  ],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  private _productsService = inject(ProductService);
+  private _productsService = inject(ProductsService);
   private _route = inject(ActivatedRoute);
-  private subscription!: Subscription;
+  private _subscription!: Subscription;
 
   public products!: any[];
 
@@ -29,12 +40,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   public getAllProducts(): void {
-    this.subscription = this._route.paramMap.subscribe((params: ParamMap) => {
+    this._subscription = this._route.paramMap.subscribe((params: ParamMap) => {
       const categoryByRoute = params.get('categoryName');
 
-      this._productsService.getAllProducts(categoryByRoute).subscribe(data => {
-        this.products = data;
-      });
+      this._productsService
+        .getAllProducts(categoryByRoute)
+        .pipe(first())
+        .subscribe(data => {
+          this.products = data;
+          console.log(data);
+        });
     });
   }
 
@@ -58,6 +73,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this._subscription.unsubscribe();
   }
 }
