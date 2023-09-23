@@ -1,9 +1,8 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SelectItem } from 'primeng/api';
-import { first, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { DataViewComponent } from 'src/app/shared/components/data-view/data-view.component';
-import { FiltersService } from 'src/app/shared/services/filters/filters.service';
 import { ProductService } from 'src/app/shared/services/products/product.service';
 
 @Component({
@@ -15,9 +14,7 @@ import { ProductService } from 'src/app/shared/services/products/product.service
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   private _productsService = inject(ProductService);
-  private _filtersService = inject(FiltersService);
   private _route = inject(ActivatedRoute);
-
   private subscription!: Subscription;
 
   public products!: any[];
@@ -27,24 +24,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
   public sortField!: string;
 
   public ngOnInit(): void {
-    this.getSortProductsValues();
     this.getAllProducts();
+    this.getSortProductsValues();
   }
 
   public getAllProducts(): void {
-    let categoryByRoute!: string | null;
-
     this.subscription = this._route.paramMap.subscribe((params: ParamMap) => {
       const categoryByRoute = params.get('categoryName');
 
-      const categories = this._filtersService.categories.join('|');
-
-      this._productsService
-        .getAllProductsFiltered(categories, categoryByRoute, this._filtersService.rating)
-        .pipe(first())
-        .subscribe(data => {
-          this.products = data;
-        });
+      this._productsService.getAllProducts(categoryByRoute).subscribe(data => {
+        this.products = data;
+      });
     });
   }
 

@@ -1,64 +1,27 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, Subject, Subscription } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
-import { environment } from '../../../../environments/environment';
 import { Products } from '../../../modules/products/interface/Products';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private productsUrl = environment.productsUrl;
   private http = inject(HttpClient);
 
-  private _productsSubscription = new BehaviorSubject<Products[]>([]);
-  public products$ = this._productsSubscription.asObservable();
+  private url = `${environment.baseApi}/products`;
 
-  public getAllProductsFiltered(
-    category: string,
-    categories: string | null,
-    rating: number
-  ): Observable<Products[]> {
-    let params = new HttpParams();
-
+  public getAllProducts(category: string | null): Observable<Products[]> {
     if (category) {
-      params = params.append('category_like', category);
-    }
-    if (categories) {
-      params = params.append('categories_like', categories);
-    }
-    if (rating) {
-      params = params.append('rating', rating);
+      this.url = `${environment.baseApi}/products/category/${category}`;
     }
 
-    return this.http
-      .get<{ products: Products[] }>(`${this.productsUrl}/products`, { params })
-      .pipe(
-        map(data => {
-          return data.products;
-        })
-      );
-  }
-
-  public getAllProductsSubscription(
-    category: string,
-    categories: string | null,
-    rating: number
-  ): Subscription {
-    return this.getAllProductsFiltered(category, categories, rating).subscribe(response =>
-      this._productsSubscription.next(response)
+    return this.http.get<{ products: Products[] }>(`${this.url}`).pipe(
+      map(data => {
+        return data.products;
+      })
     );
   }
-  /*   public getAllProductsByCategory(categoryName: string): Observable<Products[]> {
-    return this.http
-      .get<{ products: Products[] }>(
-        `${this.productsUrl}/products/category/${categoryName}`
-      )
-      .pipe(
-        map(data => {
-          return data.products;
-        })
-      );
-  } */
 }

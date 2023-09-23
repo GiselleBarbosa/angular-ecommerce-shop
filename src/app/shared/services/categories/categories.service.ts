@@ -8,11 +8,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CategoriesService {
-  private productsUrl = environment.productsUrl;
+  private baseApi = environment.baseApi;
 
   private http = inject(HttpClient);
 
   public getAllCategories(): Observable<Categories[]> {
-    return this.http.get<Categories[]>(`${this.productsUrl}/products/categories`);
+    return this.http.get<Categories[]>(`${this.baseApi}/products/categories`);
   }
 }

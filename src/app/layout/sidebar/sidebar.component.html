@@ -1,34 +1,18 @@
 <p-sidebar class="card flex justify-content-center" [(visible)]="sidebarVisible">
-  <div class="mb-5">
-    <h1 class="cursor-pointer mb-5 font-semibold" routerLink="products">
+  <div class="mb-3">
+    <h1 class="cursor-pointer mb-3 font-semibold text-primary" routerLink="products">
       Angular Shopping
     </h1>
 
-    <h2 class="mb-4 font-normal">Panel</h2>
+    <h2 class="mb-3 font-normal">Panel</h2>
     <p-menu [model]="navigationMenuItems" styleClass="w-15rem"></p-menu>
   </div>
 
   <div class="mb-5">
-    <h2 class="mb-4 font-normal">Categories</h2>
-    <div *ngFor="let category of categories" class="field-checkbox">
-      <p-checkbox
-        [value]="category"
-        [(ngModel)]="selectedCategories"
-        (onChange)="getSelectedCategories()"
-        [inputId]="category.name"></p-checkbox>
-      <label [for]="category.name">{{ category }}</label>
-    </div>
-  </div>
+    <h2 class="mb-3 font-normal">Categories</h2>
 
-  <div class="mb-5">
-    <p-rating (onRate)="getSelectedRating()" [(ngModel)]="selectedRating"></p-rating>
+    <p-menu [model]="categories" styleClass="w-15rem"></p-menu>
   </div>
-
-  <p-button
-    (onClick)="requestFilters()"
-    label="Aplicar filtros"
-    styleClass="p-button-raised 
-  " />
 </p-sidebar>
 
 <p-button (click)="sidebarHandler()" icon="pi pi-align-justify" />
