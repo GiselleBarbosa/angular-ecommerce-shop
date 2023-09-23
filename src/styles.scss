@@ -28,6 +28,29 @@ body {
   background-color: var(--background-color);
   font-size: var(--font-size);
   color: var(--text-color);
+
+  .p-sidebar {
+    background-color: var(--background-color);
+    color: var(--surface-900);
+  }
+
+  .p-toolbar {
+    background-color: var(--surface-700);
+    color: var(--surface-0);
+
+    .pi-align-justify {
+      color: var(--surface-0);
+    }
+
+    .p-button {
+      background-color: var(--surface-700);
+      border: none;
+      color: var(--surface-500);
+      &:hover {
+        background: var(--surface-500);
+      }
+    }
+  }
 }
 
 :root {

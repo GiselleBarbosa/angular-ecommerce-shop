@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +14,6 @@ export class ThemeService {
   public theme$ = this.themeSubject.asObservable();
 
   constructor() {
-    // const savedTheme = localStorage.getItem(this.themeKey);
-
     const savedTheme = this._localStorageService.get(this.themeKey);
     if (savedTheme) {
       this.themeSubject.next(savedTheme);

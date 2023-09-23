@@ -3,9 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { DataViewComponent } from 'src/app/shared/components/data-view/data-view.component';
-
-import { Product } from '../interface/Product';
-import { ProductService } from '../services/product.service';
+import { ProductService } from 'src/app/shared/services/products/product.service';
 
 @Component({
   selector: 'app-products',
@@ -15,36 +13,28 @@ import { ProductService } from '../services/product.service';
   imports: [DataViewComponent],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  private _productService = inject(ProductService);
+  private _productsService = inject(ProductService);
   private _route = inject(ActivatedRoute);
-
   private subscription!: Subscription;
-  private categoryId!: string | null;
-  public product: Product[] = [];
+
+  public products!: any[];
 
   public sortOptions!: SelectItem[];
   public sortOrder!: number;
   public sortField!: string;
 
   public ngOnInit(): void {
+    this.getAllProducts();
     this.getSortProductsValues();
-    this.getProductsByRouteParams();
   }
 
   public getAllProducts(): void {
-    this._productService
-      .getAllProductsByCategory(this.categoryId)
-
-      .subscribe(data => {
-        this.product = data;
-      });
-  }
-
-  public getProductsByRouteParams(): void {
     this.subscription = this._route.paramMap.subscribe((params: ParamMap) => {
-      this.categoryId = params.get('id');
+      const categoryByRoute = params.get('categoryName');
 
-      this.getAllProducts();
+      this._productsService.getAllProducts(categoryByRoute).subscribe(data => {
+        this.products = data;
+      });
     });
   }
 

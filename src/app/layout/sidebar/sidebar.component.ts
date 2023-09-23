@@ -1,37 +1,56 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MenuItem } from 'primeng/api';
+import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { MenuModule } from 'primeng/menu';
-import { MultiSelectModule } from 'primeng/multiselect';
 import { SidebarModule } from 'primeng/sidebar';
-import { map } from 'rxjs';
-import { ProductService } from 'src/app/modules/products/services/product.service';
+import { first, map } from 'rxjs';
+import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
+
+import { MenuItem } from 'primeng/api';
+import { MenuModule } from 'primeng/menu';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
   standalone: true,
-  imports: [SidebarModule, ButtonModule, FormsModule, MenuModule, MultiSelectModule],
+  imports: [SidebarModule, ButtonModule, FormsModule, RouterLink, MenuModule],
 })
 export class SidebarComponent implements OnInit {
-  private _productsService = inject(ProductService);
+  private _categoriesService = inject(CategoriesService);
 
-  public sidebarVisible = false;
+  public sidebarVisible = true;
 
   public navigationMenuItems!: MenuItem[];
 
-  public categories!: MenuItem[];
+  public categories!: MenuItem[] | any;
   public selectedCategories!: MenuItem[];
 
   public ngOnInit(): void {
     this.getItemsForThePanelNavigationMenu();
+
     this.getItemCategoriesMenu();
   }
 
   public sidebarHandler(): void {
     this.sidebarVisible = true;
+  }
+
+  public getItemCategoriesMenu(): void {
+    this._categoriesService
+      .getAllCategories()
+      .pipe(
+        first(),
+        map(category => {
+          this.categories = category.map(category => {
+            return {
+              label: category,
+              routerLink: `products/category/${category}`,
+            };
+          });
+        })
+      )
+      .subscribe();
   }
 
   public getItemsForThePanelNavigationMenu(): void {
@@ -56,21 +75,5 @@ export class SidebarComponent implements OnInit {
         },
       },
     ];
-  }
-
-  public getItemCategoriesMenu(): void {
-    this._productsService
-      .getAllCategories()
-      .pipe(
-        map(category => {
-          this.categories = category.map(category => {
-            return {
-              label: category.name,
-              routerLink: `products/category/${category.id}`,
-            };
-          });
-        })
-      )
-      .subscribe();
   }
 }

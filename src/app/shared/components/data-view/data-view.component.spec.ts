@@ -8,7 +8,7 @@ describe('DataViewComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DataViewComponent]
+      declarations: [DataViewComponent],
     });
     fixture = TestBed.createComponent(DataViewComponent);
     component = fixture.componentInstance;
