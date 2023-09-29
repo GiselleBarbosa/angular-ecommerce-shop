@@ -5,7 +5,7 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToolbarModule } from 'primeng/toolbar';
 import { Subscription, take } from 'rxjs';
-import { ThemeService } from 'src/app/shared/services/theme/theme.service';
+import { ThemeService } from 'src/app/core/services/theme/theme.service';
 
 import { SidebarComponent } from '../sidebar/sidebar.component';
 

@@ -7,7 +7,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { first, Subscription } from 'rxjs';
-import { ProductsService } from 'src/app/shared/services/products/products.service';
+import { ProductsService } from 'src/app/core/services/products/products.service';
 
 @Component({
   selector: 'app-products',
