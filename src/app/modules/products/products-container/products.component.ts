@@ -7,6 +7,8 @@ import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { first, Subscription } from 'rxjs';
+import { Cart } from 'src/app/core/interface/cart';
+import { CartService } from 'src/app/core/services/cart/cart.service';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 
 @Component({
@@ -24,6 +26,7 @@ import { ProductsService } from 'src/app/core/services/products/products.service
   ],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
+  private _cartService = inject(CartService);
   private _productsService = inject(ProductsService);
   private _route = inject(ActivatedRoute);
   private _subscription!: Subscription;
@@ -70,6 +73,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.sortOrder = 1;
       this.sortField = value;
     }
+  }
+
+  public addProductOnCart(product: Cart): void {
+    this._cartService.addProductsToCart(product);
   }
 
   public ngOnDestroy(): void {
