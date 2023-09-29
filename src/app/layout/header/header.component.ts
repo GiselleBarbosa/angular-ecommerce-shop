@@ -1,17 +1,16 @@
-import { NgIf } from '@angular/common';
 import { Component, inject, OnDestroy } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { MegaMenuModule } from 'primeng/megamenu';
-import { SplitButtonModule } from 'primeng/splitbutton';
-import { ToolbarModule } from 'primeng/toolbar';
 import { Subscription, take } from 'rxjs';
-import { ThemeService } from 'src/app/core/services/theme/theme.service';
 
+import { MegaMenuModule } from 'primeng/megamenu';
+import { NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { ThemeService } from 'src/app/core/services/theme/theme.service';
+import { ToolbarModule } from 'primeng/toolbar';
 
 @Component({
   selector: 'app-header',
-  styleUrls: ['./header.component.scss'],
   standalone: true,
   imports: [
     ToolbarModule,
@@ -23,7 +22,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   ],
   template: `<p-toolbar styleClass="align-items-center pt-0 pb-0">
     <div class="p-toolbar-group-start">
-      <h1 class="cursor-pointer" routerLink="/products">Angular Shopping</h1>
+      <h1 class="cursor-pointer" routerLink="/">Angular Shopping</h1>
       <app-sidebar class="ml-5" />
     </div>
 

@@ -1,15 +1,16 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
-import { SelectItem } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
-import { DataViewModule } from 'primeng/dataview';
-import { DropdownModule } from 'primeng/dropdown';
-import { RatingModule } from 'primeng/rating';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { first, Subscription } from 'rxjs';
+
+import { ButtonModule } from 'primeng/button';
 import { Cart } from 'src/app/core/interface/cart';
 import { CartService } from 'src/app/core/services/cart/cart.service';
+import { DataViewModule } from 'primeng/dataview';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
 import { ProductsService } from 'src/app/core/services/products/products.service';
+import { RatingModule } from 'primeng/rating';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-products',
@@ -51,7 +52,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
         .pipe(first())
         .subscribe(data => {
           this.products = data;
-          console.log(data);
         });
     });
   }
@@ -76,7 +76,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   public addProductOnCart(product: Cart): void {
-    this._cartService.addProductsToCart(product);
+    const selectedProducts: Cart = {
+      id: product.id,
+      title: product.title,
+      category: product.category,
+      price: product.price,
+      images: product.images,
+      brand: product.brand,
+      units: (product.units = 1),
+    };
+    this._cartService.addProductsToCart(selectedProducts);
   }
 
   public ngOnDestroy(): void {

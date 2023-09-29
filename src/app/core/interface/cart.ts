@@ -5,4 +5,5 @@ export interface Cart {
   price: number;
   images: string[];
   brand?: string;
+  units: number;
 }
