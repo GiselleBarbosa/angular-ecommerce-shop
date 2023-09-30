@@ -1,5 +1,5 @@
 import { AsyncPipe, CurrencyPipe, NgFor, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -22,10 +22,14 @@ import { TagModule } from 'primeng/tag';
     NgFor,
   ],
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   private _cartService = inject(CartService);
 
   public cart$ = this._cartService.cartObservable$;
 
-  public totalOrder = 100;
+  public totalPrice$ = this._cartService.totalPrice$;
+
+  public ngOnInit(): void {
+    this._cartService.calculateTotalPrice();
+  }
 }

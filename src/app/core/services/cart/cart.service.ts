@@ -11,6 +11,9 @@ export class CartService {
   private _cartObservable = new BehaviorSubject<Cart[]>(this.cart);
   public readonly cartObservable$ = this._cartObservable.asObservable();
 
+  private _totalPriceCartObservable = new BehaviorSubject(0);
+  public readonly totalPrice$ = this._totalPriceCartObservable.asObservable();
+
   constructor() {
     const savedCart = localStorage.getItem('SAVED_CART');
 
@@ -34,5 +37,14 @@ export class CartService {
 
     localStorage.setItem('SAVED_CART', JSON.stringify(this.cart));
     this._cartObservable.next(this.cart);
+  }
+
+  public calculateTotalPrice(): void {
+    const totalPrice = this.cart.reduce(
+      (total, item) => total + item.price * item.units,
+      0
+    );
+
+    this._totalPriceCartObservable.next(totalPrice);
   }
 }
