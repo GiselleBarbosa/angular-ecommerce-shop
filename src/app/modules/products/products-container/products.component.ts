@@ -91,6 +91,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     };
     this._cartService.addProductsToCart(selectedProducts);
     this.showToast();
+    this._cartService.getTotalUnits();
   }
 
   public showToast(): void {
