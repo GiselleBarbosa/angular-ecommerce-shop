@@ -3,9 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { Cart } from 'src/app/core/interface/cart';
 import { CartService } from 'src/app/core/services/cart/cart.service';
-import { Products } from 'src/app/core/interface/products';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
