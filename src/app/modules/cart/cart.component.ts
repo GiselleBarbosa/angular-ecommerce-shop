@@ -6,6 +6,7 @@ import { CardModule } from 'primeng/card';
 import { CartService } from 'src/app/core/services/cart/cart.service';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-cart',
@@ -20,6 +21,7 @@ import { TagModule } from 'primeng/tag';
     ButtonModule,
     NgIf,
     NgFor,
+    ToastModule,
   ],
 })
 export class CartComponent implements OnInit {

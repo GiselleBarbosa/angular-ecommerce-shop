@@ -1,6 +1,7 @@
 import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { first, Subscription } from 'rxjs';
+import { MessageService, SelectItem } from 'primeng/api';
 
 import { ButtonModule } from 'primeng/button';
 import { Cart } from 'src/app/core/interface/cart';
@@ -10,7 +11,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { RatingModule } from 'primeng/rating';
-import { SelectItem } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-products',
@@ -24,11 +25,14 @@ import { SelectItem } from 'primeng/api';
     DropdownModule,
     ButtonModule,
     RouterLink,
+    ToastModule,
   ],
+  providers: [MessageService],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   private _cartService = inject(CartService);
   private _productsService = inject(ProductsService);
+  private _messageService = inject(MessageService);
   private _route = inject(ActivatedRoute);
   private _subscription!: Subscription;
 
@@ -86,6 +90,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
       units: (product.units = 1),
     };
     this._cartService.addProductsToCart(selectedProducts);
+    this.showToast();
+  }
+
+  public showToast(): void {
+    this._messageService.add({
+      severity: 'success',
+      summary: 'Added product',
+      detail: 'Sent to cart',
+      life: 700,
+    });
   }
 
   public ngOnDestroy(): void {
