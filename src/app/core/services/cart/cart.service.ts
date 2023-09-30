@@ -1,6 +1,6 @@
-import { BehaviorSubject, map, Observable } from 'rxjs';
 import { inject, Injectable } from '@angular/core';
 
+import { BehaviorSubject } from 'rxjs';
 import { Cart } from '../../interface/cart';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 
