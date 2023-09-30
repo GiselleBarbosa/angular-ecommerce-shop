@@ -37,5 +37,6 @@ export class CartComponent implements OnInit {
 
   public removeFromCart(productId: number): void {
     this._cartService.removeFromCart(productId);
+    this._cartService.getTotalUnits();
   }
 }
