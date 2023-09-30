@@ -1,12 +1,16 @@
+import { inject, Injectable } from '@angular/core';
+
 import { BehaviorSubject } from 'rxjs';
 import { Cart } from '../../interface/cart';
-import { Injectable } from '@angular/core';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   public cart: Cart[] = [];
+
+  private _localStorageService = inject(LocalStorageService);
 
   private _cartObservable = new BehaviorSubject<Cart[]>(this.cart);
   public readonly cartObservable$ = this._cartObservable.asObservable();
@@ -28,11 +32,13 @@ export class CartService {
 
     if (!index) {
       this.cart.push(cartItem);
+      this.updateCart();
 
       console.log(this.cart + ' ADD');
     } else {
       const index = this.cart.findIndex(product => product.id === cartItem.id);
       this.cart[index].units++;
+      this.updateCart();
     }
 
     localStorage.setItem('SAVED_CART', JSON.stringify(this.cart));
@@ -46,5 +52,16 @@ export class CartService {
     );
 
     this._totalPriceCartObservable.next(totalPrice);
+  }
+
+  public removeFromCart(productId: number): void {
+    this.cart = this.cart.filter(item => item.id !== productId);
+    this._localStorageService.set('SAVED_CART', this.cart);
+
+    this.updateCart();
+  }
+
+  private updateCart(): void {
+    this._cartObservable.next(this.cart);
   }
 }

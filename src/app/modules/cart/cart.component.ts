@@ -3,7 +3,9 @@ import { Component, inject, OnInit } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { Cart } from 'src/app/core/interface/cart';
 import { CartService } from 'src/app/core/services/cart/cart.service';
+import { Products } from 'src/app/core/interface/products';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
@@ -33,5 +35,9 @@ export class CartComponent implements OnInit {
 
   public ngOnInit(): void {
     this._cartService.calculateTotalPrice();
+  }
+
+  public removeFromCart(productId: number): void {
+    this._cartService.removeFromCart(productId);
   }
 }
