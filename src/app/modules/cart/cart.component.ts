@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { Cart } from 'src/app/core/interface/cart';
 import { CartService } from 'src/app/core/services/cart/cart.service';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
@@ -38,5 +39,13 @@ export class CartComponent implements OnInit {
   public removeFromCart(productId: number): void {
     this._cartService.removeFromCart(productId);
     this._cartService.getTotalUnits();
+  }
+
+  public increaseUnits(productUnits: Cart): void {
+    this._cartService.increaseUnits(productUnits);
+  }
+
+  public decreaseUnits(productUnits: Cart): void {
+    this._cartService.decreaseUnits(productUnits);
   }
 }

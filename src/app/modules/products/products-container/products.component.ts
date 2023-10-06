@@ -6,6 +6,7 @@ import { MessageService, SelectItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { Cart } from 'src/app/core/interface/cart';
 import { CartService } from 'src/app/core/services/cart/cart.service';
+import { CurrencyPipe } from '@angular/common';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
@@ -26,6 +27,7 @@ import { ToastModule } from 'primeng/toast';
     ButtonModule,
     RouterLink,
     ToastModule,
+    CurrencyPipe,
   ],
   providers: [MessageService],
 })

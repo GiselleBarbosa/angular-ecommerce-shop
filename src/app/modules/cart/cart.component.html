@@ -32,10 +32,12 @@
 
           <td>
             <p-button
+              (onClick)="decreaseUnits(product)"
               class="mr-1"
               icon="pi pi-minus"
               styleClass="p-button-rounded p-button-secondary p-button-text"></p-button>
             <p-button
+              (onClick)="increaseUnits(product)"
               class="mr-3"
               icon="pi pi-plus"
               styleClass="p-button-rounded p-button-secondary p-button-text"></p-button>

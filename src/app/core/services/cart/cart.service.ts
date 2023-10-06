@@ -69,6 +69,22 @@ export class CartService {
     return this._totalUnitsObservable.next(totalUnits);
   }
 
+  public increaseUnits(productUnits: Cart): void {
+    const index = this.cart.find(item => item.id === productUnits.id);
+
+    if (index) {
+      productUnits.units++;
+    }
+  }
+
+  public decreaseUnits(productUnits: Cart): void {
+    const index = this.cart.find(item => item.id === productUnits.id);
+
+    if (index && productUnits.units > 1) {
+      productUnits.units--;
+    }
+  }
+
   private updateCart(): void {
     this._cartObservable.next(this.cart);
   }
