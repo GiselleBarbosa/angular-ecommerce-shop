@@ -23,10 +23,18 @@
     <div class="xl:col-2 lg:col-4 md:col-3 sm:col-6 p-2">
       <div class="p-3 h-22rem border-1 surface-border surface-card border-round">
         <div class="flex flex-wrap align-items-center justify-content-between">
-          <span class="flex align-items-center gap-2">
-            <i class="pi pi-tag"></i>
-            <span class="font-normal">{{ product.category }}</span>
-          </span>
+          <div class="flex w-full justify-content-between">
+            <div class="flex align-self-center gap-2">
+              <i class="pi pi-tag"></i>
+              <span class="font-normal">{{ product.category }}</span>
+            </div>
+            <div class="flex justify-content-end">
+              <i
+                [routerLink]="['/products/product/details/' + product.id]"
+                class="pi pi-search cursor-pointer hover:text-primary"
+                title="View detail product {{ product.title }} "></i>
+            </div>
+          </div>
         </div>
         <div class="flex flex-column align-items-center gap-3 py-4 h-16rem">
           <img

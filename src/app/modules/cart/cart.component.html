@@ -24,7 +24,13 @@
         <tr>
           <td>{{ product.title }}</td>
           <td>
-            <img [src]="product.images[0]" [alt]="product.title" width="100" />
+            <img
+              class="cursor-pointer"
+              [routerLink]="['/products/product/details/' + product.id]"
+              [src]="product.images[0]"
+              [alt]="product.title"
+              [title]="'View detail product ' + product.title"
+              width="100" />
           </td>
           <td>{{ product.units }}</td>
           <td>{{ product.price | currency : 'BRL' }}</td>
