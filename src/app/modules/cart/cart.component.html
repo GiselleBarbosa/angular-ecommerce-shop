@@ -43,7 +43,7 @@
               styleClass="p-button-rounded p-button-secondary p-button-text"></p-button>
 
             <p-button
-              (onClick)="removeFromCart(product.id)"
+              (onClick)="removeAllUnits(product.id)"
               icon="pi pi-trash"
               styleClass="p-button-rounded p-button-danger  p-button-text"></p-button>
           </td>
@@ -55,11 +55,28 @@
             <div>In total there are {{ products ? products.length : 0 }} products.</div>
           </div>
 
-          <div>
+          <div *ngIf="products ? products.length : 0">
             <h2>Total order: {{ totalPrice$ | async | currency : 'BRL' }}</h2>
           </div>
         </div>
       </ng-template>
     </p-table>
+    <ng-container>
+      <div class="flex mt-5 justify-content-between">
+        <div>
+          <p-button
+            (onClick)="removeAllProducts()"
+            icon="pi pi-trash"
+            styleClass="p-button-outlined p-button-danger"
+            label="Empty cart"></p-button>
+        </div>
+        <div>
+          <p-button
+            routerLink="/checkout"
+            icon="pi pi-shopping-cart"
+            label="Buy now"></p-button>
+        </div>
+      </div>
+    </ng-container>
   </ng-container>
 </p-card>

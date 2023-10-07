@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { Cart } from 'src/app/core/interface/cart';
 import { CartService } from 'src/app/core/services/cart/cart.service';
+import { RouterLink } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
@@ -23,6 +24,7 @@ import { ToastModule } from 'primeng/toast';
     NgIf,
     NgFor,
     ToastModule,
+    RouterLink,
   ],
 })
 export class CartComponent implements OnInit {
@@ -36,16 +38,20 @@ export class CartComponent implements OnInit {
     this._cartService.calculateTotalPrice();
   }
 
-  public removeFromCart(productId: number): void {
-    this._cartService.removeFromCart(productId);
+  public increaseUnits(unitProducts: Cart): void {
+    this._cartService.increaseUnits(unitProducts);
+  }
+
+  public decreaseUnits(unitProducts: Cart): void {
+    this._cartService.decreaseUnits(unitProducts);
+  }
+
+  public removeAllUnits(productId: number): void {
+    this._cartService.removeAllUnits(productId);
     this._cartService.getTotalUnits();
   }
 
-  public increaseUnits(productUnits: Cart): void {
-    this._cartService.increaseUnits(productUnits);
-  }
-
-  public decreaseUnits(productUnits: Cart): void {
-    this._cartService.decreaseUnits(productUnits);
+  public removeAllProducts(): void {
+    this._cartService.removeAllProducts();
   }
 }

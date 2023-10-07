@@ -22,6 +22,10 @@ export class CartService {
   public readonly totalUnits$ = this._totalUnitsObservable.asObservable();
 
   constructor() {
+    this.getProductsFromLocalStorage();
+  }
+
+  public getProductsFromLocalStorage(): void {
     const savedCart = localStorage.getItem('SAVED_CART');
 
     if (savedCart) {
@@ -45,20 +49,43 @@ export class CartService {
     this.updateCart();
   }
 
-  public calculateTotalPrice(): void {
-    const totalPrice = this.cart.reduce(
-      (total, item) => total + item.price * item.units,
-      0
-    );
+  public increaseUnits(unitProducts: Cart): void {
+    const index = this.cart.find(item => item.id === unitProducts.id);
 
-    this._totalPriceCartObservable.next(totalPrice);
+    if (index) {
+      unitProducts.units++;
+      localStorage.setItem('SAVED_CART', JSON.stringify(this.cart));
+      this.calculateTotalPrice();
+      this.getTotalUnits();
+      this.updateCart();
+    }
+  }
+
+  public decreaseUnits(unitProducts: Cart): void {
+    const index = this.cart.find(item => item.id === unitProducts.id);
+
+    if (index && unitProducts.units > 1) {
+      unitProducts.units--;
+      localStorage.setItem('SAVED_CART', JSON.stringify(this.cart));
+      this.calculateTotalPrice();
+      this.getTotalUnits();
+      this.updateCart();
+    }
+  }
+
+  public removeAllUnits(productId: number): void {
+    this.cart = this.cart.filter(item => item.id !== productId);
+    this._localStorageService.set('SAVED_CART', this.cart);
+    this.calculateTotalPrice();
+    this.getTotalUnits();
     this.updateCart();
   }
 
-  public removeFromCart(productId: number): void {
-    this.cart = this.cart.filter(item => item.id !== productId);
+  public removeAllProducts(): void {
+    this.cart = [];
     this._localStorageService.set('SAVED_CART', this.cart);
-
+    this.calculateTotalPrice();
+    this.getTotalUnits();
     this.updateCart();
   }
 
@@ -69,20 +96,14 @@ export class CartService {
     return this._totalUnitsObservable.next(totalUnits);
   }
 
-  public increaseUnits(productUnits: Cart): void {
-    const index = this.cart.find(item => item.id === productUnits.id);
+  public calculateTotalPrice(): void {
+    const totalPrice = this.cart.reduce(
+      (total, item) => total + item.price * item.units,
+      0
+    );
 
-    if (index) {
-      productUnits.units++;
-    }
-  }
-
-  public decreaseUnits(productUnits: Cart): void {
-    const index = this.cart.find(item => item.id === productUnits.id);
-
-    if (index && productUnits.units > 1) {
-      productUnits.units--;
-    }
+    this._totalPriceCartObservable.next(totalPrice);
+    this.updateCart();
   }
 
   private updateCart(): void {

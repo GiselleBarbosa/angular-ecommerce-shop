@@ -101,7 +101,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       severity: 'success',
       summary: 'Added product',
       detail: 'Sent to cart',
-      life: 700,
+      life: 500,
     });
   }
 
