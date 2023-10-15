@@ -6,8 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 import { RatingModule } from 'primeng/rating';
 import { first, Subscription } from 'rxjs';
-import { ProductsService } from 'src/app/shared/services/products/products.service';
-import { Products } from '../../interface/Products';
+import { ProductsService } from 'src/app/core/services/products/products.service';
+import { Products } from '../../../core/interface/products';
 
 @Component({
   selector: 'app-product-details',

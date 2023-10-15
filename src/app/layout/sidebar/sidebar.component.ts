@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { first, map } from 'rxjs';
-import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
+import { CategoriesService } from 'src/app/core/services/categories/categories.service';
 
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
