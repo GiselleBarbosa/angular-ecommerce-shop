@@ -68,7 +68,7 @@
           </div>
 
           <div *ngIf="products ? products.length : 0">
-            <h5>Total order: {{ totalPrice$ | async | currency : 'BRL' }}</h5>
+            {{ totalPrice$ | async | currency : 'BRL' }}
           </div>
         </div>
       </ng-template>
