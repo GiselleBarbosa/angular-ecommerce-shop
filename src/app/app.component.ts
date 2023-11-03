@@ -1,6 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
 import { AppConfigComponent } from './shared/components/config/app.config.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { PrimeNGConfig } from 'primeng/api';
@@ -17,9 +18,12 @@ import { ToastModule } from 'primeng/toast';
     HeaderComponent,
     AppConfigComponent,
     ToastModule,
+    ConfirmDialogModule,
   ],
   template: `
     <p-toast />
+    <p-confirmDialog />
+
     <app-header />
 
     <div class="p-5 mb-8" style="min-height: 73vh">

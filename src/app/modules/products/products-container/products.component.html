@@ -3,7 +3,7 @@
   #dv
   [rows]="12"
   [value]="products"
-  [layout]="'list'"
+  [layout]="'grid'"
   [paginator]="true"
   [sortField]="sortField"
   [sortOrder]="sortOrder">
@@ -59,7 +59,7 @@
           <p-button
             (onClick)="addProductOnCart(product)"
             icon="pi pi-shopping-cart"
-            styleClass="p-button-rounded p-button-sm"
+            styleClass="p-button-rounded"
             [disabled]="product.stock <= 1" />
         </div>
       </div>
@@ -101,7 +101,8 @@
             <p-button
               (onClick)="addProductOnCart(product)"
               icon="pi pi-shopping-cart"
-              styleClass="p-button-rounded p-button-sm"
+              styleClass="p-button-rounded"
+              size="small"
               [disabled]="product.stock <= 1"></p-button>
           </div>
         </div>

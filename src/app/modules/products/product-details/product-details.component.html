@@ -2,7 +2,7 @@
   <div class="mb-4">
     <h4 style="color: var(--primary-color)">Comprar {{ product.title }}</h4>
   </div>
-  <p-dataView #dv [value]="[product]" [layout]="'list'">
+  <p-dataView #dv [value]="[product]" [layout]="'grid'">
     <ng-template pTemplate="header">
       <div class="flex justify-content-between">
         <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
