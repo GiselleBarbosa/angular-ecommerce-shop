@@ -2,7 +2,7 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
 import { BadgeModule } from 'primeng/badge';
-import { CartService } from 'src/app/core/services/cart/cart.service';
+import { CartService } from 'src/app/modules/cart/services/cart.service';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { RouterLink } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';

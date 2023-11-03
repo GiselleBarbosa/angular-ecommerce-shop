@@ -1,9 +1,9 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
-import { AppConfigComponent } from './shared/config/app.config.component';
+import { AppConfigComponent } from './shared/template/config/app.config.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { FooterComponent } from './layout/footer/footer.component';
-import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './shared/template/footer/footer.component';
+import { HeaderComponent } from './shared/template/header/header.component';
 import { PrimeNGConfig } from 'primeng/api';
 import { RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';

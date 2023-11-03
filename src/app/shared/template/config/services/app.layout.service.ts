@@ -1,6 +1,6 @@
-import { AppConfig } from '../../interface/app-config';
+import { AppConfig } from '../../../../core/interface/app-config';
 import { Injectable } from '@angular/core';
-import { LayoutState } from '../../interface/layout';
+import { LayoutState } from '../../../../core/interface/layout';
 import { Subject } from 'rxjs';
 
 @Injectable({

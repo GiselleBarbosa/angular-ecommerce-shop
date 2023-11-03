@@ -5,7 +5,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { Cart } from 'src/app/core/interface/cart';
-import { CartService } from 'src/app/core/services/cart/cart.service';
+import { CartService } from 'src/app/modules/cart/services/cart.service';
 import { RouterLink } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';

@@ -5,8 +5,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SidebarModule } from 'primeng/sidebar';
-import { LayoutService } from 'src/app/core/services/layout/app.layout.service';
-import { MenuService } from 'src/app/core/services/layout/app.menu.service';
+import { LayoutService } from 'src/app/shared/template/config/services/app.layout.service';
+import { MenuService } from 'src/app/shared/template/config/services/app.menu.service';
 
 @Component({
   selector: 'app-config',
