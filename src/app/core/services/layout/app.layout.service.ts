@@ -20,7 +20,7 @@ export class LayoutService {
     staticMenuDesktopInactive: false,
     overlayMenuActive: false,
     profileSidebarVisible: false,
-    configSidebarVisible: true,
+    configSidebarVisible: false,
     staticMenuMobileActive: false,
     menuHoverActive: false,
   };

@@ -37,18 +37,16 @@ export class AppComponent implements OnInit, OnDestroy {
   private primengConfig = inject(PrimeNGConfig);
   private subscription!: Subscription;
 
-  public currentTheme!: string;
   public setButtonTheme!: boolean;
 
   public ngOnInit(): void {
-    // ripple - animations primeNg
     this.primengConfig.ripple = true;
 
     this.primengConfig.zIndex = {
-      modal: 1100, // dialog, sidebar
-      overlay: 1000, // dropdown, overlaypanel
-      menu: 1000, // overlay menus
-      tooltip: 1100, // tooltip
+      modal: 1100,
+      overlay: 1000,
+      menu: 1000,
+      tooltip: 1100,
     };
   }
 

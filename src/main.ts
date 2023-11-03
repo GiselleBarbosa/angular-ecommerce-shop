@@ -15,8 +15,7 @@ bootstrapApplication(AppComponent, {
       BrowserAnimationsModule,
       HttpClientModule
     ),
-    {
-      provide: MessageService,
-    },
+
+    MessageService,
   ],
 }).catch(err => console.error(err));

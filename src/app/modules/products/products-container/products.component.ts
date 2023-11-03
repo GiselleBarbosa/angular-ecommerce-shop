@@ -26,7 +26,6 @@ import { RatingModule } from 'primeng/rating';
     RouterLink,
     CurrencyPipe,
   ],
-  providers: [MessageService],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   private _cartService = inject(CartService);

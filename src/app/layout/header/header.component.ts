@@ -35,6 +35,7 @@ import { ToolbarModule } from 'primeng/toolbar';
     <div class="p-toolbar-group-end mb-4 gap-5 md: mt-4 flex-wrap">
       <ng-container *ngIf="totalUnits$ | async as total; else emptyCart">
         <i
+          style="font-size: 2rem; color: var(--primary-color)"
           pBadge
           value="{{ total }}"
           class="icon pi pi-shopping-cart mr-2 cursor-pointer"
@@ -42,7 +43,10 @@ import { ToolbarModule } from 'primeng/toolbar';
       </ng-container>
 
       <ng-template #emptyCart>
-        <i class="icon pi pi-shopping-cart mr-2 cursor-pointer" routerLink="cart"></i>
+        <i
+          style="font-size: 2rem; color: var(--primary-color)"
+          class="icon pi pi-shopping-cart mr-2 cursor-pointer"
+          routerLink="cart"></i>
       </ng-template>
     </div>
   </p-toolbar> `,

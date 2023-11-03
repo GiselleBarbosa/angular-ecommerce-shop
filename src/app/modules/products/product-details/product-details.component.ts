@@ -1,18 +1,21 @@
-import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
-import { DataViewModule } from 'primeng/dataview';
-import { RatingModule } from 'primeng/rating';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { first, Subscription } from 'rxjs';
-import { ProductsService } from 'src/app/core/services/products/products.service';
+
+import { ButtonModule } from 'primeng/button';
+import { Cart } from 'src/app/core/interface/cart';
+import { CartService } from 'src/app/core/services/cart/cart.service';
+import { DataViewModule } from 'primeng/dataview';
+import { FormsModule } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { Products } from '../../../core/interface/products';
+import { ProductsService } from 'src/app/core/services/products/products.service';
+import { RatingModule } from 'primeng/rating';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss'],
   standalone: true,
   imports: [
     DataViewModule,
@@ -26,6 +29,8 @@ import { Products } from '../../../core/interface/products';
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
   private _productsService = inject(ProductsService);
+  private _cartService = inject(CartService);
+  private _messageService = inject(MessageService);
 
   private _route = inject(ActivatedRoute);
 
@@ -44,6 +49,30 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
           console.log(products);
           this.product = products;
         });
+    });
+  }
+
+  public addProductOnCart(product: Cart): void {
+    const selectedProducts: Cart = {
+      id: product.id,
+      title: product.title,
+      category: product.category,
+      price: product.price,
+      images: product.images,
+      brand: product.brand,
+      units: (product.units = 1),
+    };
+    this._cartService.addProductsToCart(selectedProducts);
+    this.showToast();
+    this._cartService.getTotalUnits();
+  }
+
+  public showToast(): void {
+    this._messageService.add({
+      severity: 'success',
+      summary: 'Added product',
+      detail: 'Sent to cart',
+      life: 500,
     });
   }
 
