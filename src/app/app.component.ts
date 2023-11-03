@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
-import { AppConfigComponent } from './shared/components/config/app.config.component';
+import { AppConfigComponent } from './shared/config/app.config.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';

@@ -1,6 +1,8 @@
 <ng-container *ngIf="product">
   <div class="mb-4">
-    <h4 style="color: var(--primary-color)">Comprar {{ product.title }}</h4>
+    <h5 class="font-light">
+      Are you viewing <span class="font-semibold">{{ product.title }}</span>
+    </h5>
   </div>
   <p-dataView #dv [value]="[product]" [layout]="'grid'">
     <ng-template pTemplate="header">

@@ -26,10 +26,9 @@ import { ToolbarModule } from 'primeng/toolbar';
   ],
   template: `<p-toolbar styleClass="align-items-center pt-0 pb-0">
     <div class="p-toolbar-group-start gap-4">
-      <app-sidebar />
-      <h3 class="cursor-pointer" style="color: var(--primary-color)" routerLink="/">
+      <h4 class="cursor-pointer" style="color: var(--primary-color)" routerLink="/">
         Angular e-commerce
-      </h3>
+      </h4>
     </div>
 
     <div class="p-toolbar-group-end mb-4 gap-5 md: mt-4 flex-wrap">
@@ -48,6 +47,8 @@ import { ToolbarModule } from 'primeng/toolbar';
           class="icon pi pi-shopping-cart mr-2 cursor-pointer"
           routerLink="cart"></i>
       </ng-template>
+
+      <app-sidebar />
     </div>
   </p-toolbar> `,
 })

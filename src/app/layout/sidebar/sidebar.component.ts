@@ -15,7 +15,10 @@ import { SidebarModule } from 'primeng/sidebar';
   imports: [SidebarModule, ButtonModule, FormsModule, RouterLink, MenuModule],
 
   template: `
-    <p-sidebar [(visible)]="sidebarVisible" styleClass="min-w-min w-20rem">
+    <p-sidebar
+      [(visible)]="sidebarVisible"
+      position="right"
+      styleClass="min-w-min w-20rem">
       <h4 class="cursor-pointer mb-3 font-semibold text-primary" routerLink="products">
         Angular E-commerce
       </h4>
