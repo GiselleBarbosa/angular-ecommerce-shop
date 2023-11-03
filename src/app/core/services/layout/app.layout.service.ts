@@ -17,12 +17,8 @@ export class LayoutService {
   };
 
   public state: LayoutState = {
-    staticMenuDesktopInactive: false,
     overlayMenuActive: false,
-    profileSidebarVisible: false,
     configSidebarVisible: false,
-    staticMenuMobileActive: false,
-    menuHoverActive: false,
   };
 
   private configUpdate = new Subject<AppConfig>();
@@ -40,23 +36,6 @@ export class LayoutService {
         this.overlayOpen.next(null);
       }
     }
-
-    if (this.isDesktop()) {
-      this.state.staticMenuDesktopInactive = !this.state.staticMenuDesktopInactive;
-    } else {
-      this.state.staticMenuMobileActive = !this.state.staticMenuMobileActive;
-
-      if (this.state.staticMenuMobileActive) {
-        this.overlayOpen.next(null);
-      }
-    }
-  }
-
-  public showProfileSidebar(): void {
-    this.state.profileSidebarVisible = !this.state.profileSidebarVisible;
-    if (this.state.profileSidebarVisible) {
-      this.overlayOpen.next(null);
-    }
   }
 
   public showConfigSidebar(): void {
@@ -65,14 +44,6 @@ export class LayoutService {
 
   public isOverlay(): boolean {
     return this.config.menuMode === 'overlay';
-  }
-
-  public isDesktop(): boolean {
-    return window.innerWidth > 991;
-  }
-
-  public isMobile(): boolean {
-    return !this.isDesktop();
   }
 
   public onConfigUpdate(): void {

@@ -26,7 +26,7 @@ import { MenuService } from 'src/app/core/services/layout/app.menu.service';
 export class AppConfigComponent {
   @Input() public minimal = false;
 
-  public scales: number[] = [12, 13, 14, 15, 16];
+  public scales: number[] = [14, 15, 16, 17, 18];
 
   constructor(public layoutService: LayoutService, public menuService: MenuService) {}
 
