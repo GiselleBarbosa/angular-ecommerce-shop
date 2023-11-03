@@ -1,6 +1,5 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, take } from 'rxjs';
 
 import { BadgeModule } from 'primeng/badge';
 import { CartService } from 'src/app/core/services/cart/cart.service';
@@ -8,7 +7,7 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { RouterLink } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { ThemeService } from 'src/app/core/services/theme/theme.service';
+import { Subscription } from 'rxjs';
 import { ToolbarModule } from 'primeng/toolbar';
 
 @Component({
@@ -23,11 +22,14 @@ import { ToolbarModule } from 'primeng/toolbar';
     SidebarComponent,
     AsyncPipe,
     BadgeModule,
+    SidebarComponent,
   ],
   template: `<p-toolbar styleClass="align-items-center pt-0 pb-0">
-    <div class="p-toolbar-group-start">
-      <h1 class="cursor-pointer" routerLink="/">Angular Shopping</h1>
-      <app-sidebar class="ml-5" />
+    <div class="p-toolbar-group-start gap-4">
+      <app-sidebar />
+      <h3 class="cursor-pointer" style="color: var(--primary-color)" routerLink="/">
+        Angular e-commerce
+      </h3>
     </div>
 
     <div class="p-toolbar-group-end mb-4 gap-5 md: mt-4 flex-wrap">
@@ -42,16 +44,10 @@ import { ToolbarModule } from 'primeng/toolbar';
       <ng-template #emptyCart>
         <i class="icon pi pi-shopping-cart mr-2 cursor-pointer" routerLink="cart"></i>
       </ng-template>
-
-      <div (click)="toggleTheme()" class="flex cursor-pointer">
-        <i class="icon pi pi-sun mr-2" *ngIf="setButtonTheme"></i>
-        <i class="icon pi pi-moon mr-2" *ngIf="!setButtonTheme"></i>
-      </div>
     </div>
   </p-toolbar> `,
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  private _themeService = inject(ThemeService);
   private _cartService = inject(CartService);
 
   private subscription!: Subscription;
@@ -63,16 +59,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this._cartService.getTotalUnits();
-  }
-
-  public toggleTheme(): void {
-    this._themeService.theme$.pipe(take(1)).subscribe(theme => {
-      this.currentTheme = theme;
-
-      this.setButtonTheme = theme === 'light' ? true : false;
-    });
-
-    this._themeService.toggleTheme();
   }
 
   public ngOnDestroy(): void {

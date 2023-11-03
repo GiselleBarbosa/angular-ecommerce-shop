@@ -12,12 +12,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { RatingModule } from 'primeng/rating';
-import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
   standalone: true,
   imports: [
     DataViewModule,
@@ -26,7 +24,6 @@ import { ToastModule } from 'primeng/toast';
     DropdownModule,
     ButtonModule,
     RouterLink,
-    ToastModule,
     CurrencyPipe,
   ],
   providers: [MessageService],
