@@ -22,7 +22,7 @@ export class CartService {
   }
 
   public getProductsFromLocalStorage(): void {
-    const savedCart = localStorage.getItem('SAVED_CART');
+    const savedCart = localStorage.getItem('saved_cart');
 
     if (savedCart) {
       this.cart = JSON.parse(savedCart);
@@ -41,7 +41,7 @@ export class CartService {
       this.cart[index].units++;
     }
 
-    localStorage.setItem('SAVED_CART', JSON.stringify(this.cart));
+    localStorage.setItem('saved_cart', JSON.stringify(this.cart));
     this.updateCart();
   }
 
@@ -50,7 +50,7 @@ export class CartService {
 
     if (index) {
       unitProducts.units++;
-      localStorage.setItem('SAVED_CART', JSON.stringify(this.cart));
+      localStorage.setItem('saved_cart', JSON.stringify(this.cart));
       this.calculateTotalPrice();
       this.getTotalUnits();
       this.updateCart();
@@ -62,7 +62,7 @@ export class CartService {
 
     if (index && unitProducts.units > 1) {
       unitProducts.units--;
-      localStorage.setItem('SAVED_CART', JSON.stringify(this.cart));
+      localStorage.setItem('saved_cart', JSON.stringify(this.cart));
       this.calculateTotalPrice();
       this.getTotalUnits();
       this.updateCart();
@@ -71,7 +71,7 @@ export class CartService {
 
   public removeAllUnits(productId: number): void {
     this.cart = this.cart.filter(item => item.id !== productId);
-    localStorage.setItem('SAVED_CART', JSON.stringify(this.cart));
+    localStorage.setItem('saved_cart', JSON.stringify(this.cart));
     this.calculateTotalPrice();
     this.getTotalUnits();
     this.updateCart();
@@ -79,7 +79,7 @@ export class CartService {
 
   public removeAllProducts(): void {
     this.cart = [];
-    localStorage.setItem('SAVED_CART', JSON.stringify(this.cart));
+    localStorage.setItem('saved_cart', JSON.stringify(this.cart));
     this.calculateTotalPrice();
     this.getTotalUnits();
     this.updateCart();
