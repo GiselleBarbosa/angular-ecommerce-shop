@@ -12,6 +12,7 @@ import { MessageService } from 'primeng/api';
 import { Products } from '../../../core/interface/products';
 import { ProductsService } from 'src/app/modules/management/services/products/products.service';
 import { RatingModule } from 'primeng/rating';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-product-details',
@@ -25,6 +26,7 @@ import { RatingModule } from 'primeng/rating';
     NgFor,
     NgIf,
     CurrencyPipe,
+    TranslocoModule,
   ],
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {

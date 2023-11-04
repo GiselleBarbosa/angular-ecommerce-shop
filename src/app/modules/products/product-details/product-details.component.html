@@ -1,27 +1,85 @@
-<ng-container *ngIf="product">
-  <div class="mb-4">
-    <h5 style="color: var(--primary-color)">Are you viewing {{ product.title }}</h5>
-  </div>
-  <p-dataView #dv [value]="[product]" [layout]="'grid'">
-    <ng-template pTemplate="header">
-      <div class="flex justify-content-between">
-        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-      </div>
-    </ng-template>
+<ng-container *transloco="let transloco"
+  ><ng-container *ngIf="product">
+    <div class="mb-4">
+      <h5 style="color: var(--primary-color)">
+        {{ transloco('detail-product-page.main-title') }} {{ product.title }}
+      </h5>
+    </div>
+    <p-dataView #dv [value]="[product]" [layout]="'list'">
+      <ng-template pTemplate="header">
+        <div class="flex justify-content-between">
+          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+        </div>
+      </ng-template>
 
-    <ng-template let-product pTemplate="listItem">
-      <div class="col-12">
-        <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
-          <img
-            class="w-9 sm:w-16rem xl:w-15rem shadow-2 block xl:block mx-auto border-round cursor-pointer"
-            [src]="product.images[0]"
-            [alt]="product.title"
-            title="{{ product.title }}" />
-          <div
-            class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-            <div class="flex flex-column align-items-center sm:align-items-start gap-3">
-              <div class="text-2xl font-bold text-900">
+      <ng-template let-product pTemplate="listItem">
+        <div class="col-12">
+          <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+            <img
+              class="w-9 sm:w-16rem xl:w-15rem shadow-2 block xl:block mx-auto border-round cursor-pointer"
+              [src]="product.images[0]"
+              [alt]="product.title"
+              title="{{ product.title }}" />
+            <div
+              class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+              <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                <div class="font-bold text-900">
+                  {{ product.title }}
+                </div>
+
+                <div class="font-bold text-900">
+                  {{ transloco('detail-product-page.brand') }}: {{ product.brand }}
+                </div>
+                <div class="text-900">
+                  {{ product.description }}
+                </div>
+                <p-rating
+                  [ngModel]="product.rating"
+                  [readonly]="true"
+                  [cancel]="false"></p-rating>
+                <div class="flex gap-8">
+                  <span class="flex align-items-center gap-2">
+                    <i class="pi pi-tag"></i>
+                    <span class="font-normal">{{ product.category }}</span>
+                  </span>
+
+                  <span class="font-semibold flex justify-content-end w-full">{{
+                    product.price | currency : 'BRL'
+                  }}</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap w-full align-items-between justify-content-end">
+                <button
+                  (click)="addProductOnCart(product)"
+                  pButton
+                  icon="pi pi-shopping-cart"
+                  class="p-button-rounded"
+                  [disabled]="product.stock <= 0"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template let-product pTemplate="gridItem">
+        <div class="xl:col-12 lg:col-12 md:col-12 sm:col-4 p-4">
+          <div class="p-4 border-1 surface-border surface-card border-round">
+            <div class="flex flex-wrap align-items-center justify-content-between gap-2">
+              <span class="flex align-items-center gap-2">
+                <i class="pi pi-tag"></i>
+                <span class="font-normal">{{ product.category }}</span>
+              </span>
+            </div>
+            <div class="flex flex-column align-items-center gap-3 py-5">
+              <img
+                class="w-3 shadow-2 border-round cursor-pointer w-14rem"
+                [src]="product.images[0]"
+                [alt]="product.title" />
+              <span class="text-1xl font-bold text-900">
                 {{ product.title }}
+              </span>
+              <div class="text-1xl font-bold text-900">
+                {{ transloco('detail-product-page.brand') }}: {{ product.brand }}
               </div>
               <div class="text-1xl text-900">
                 {{ product.description }}
@@ -30,69 +88,22 @@
                 [ngModel]="product.rating"
                 [readonly]="true"
                 [cancel]="false"></p-rating>
-              <div class="flex gap-8">
-                <span class="flex align-items-center gap-2">
-                  <i class="pi pi-tag"></i>
-                  <span class="font-normal">{{ product.category }}</span>
-                </span>
-              </div>
             </div>
             <div class="flex w-full align-items-between justify-content-between">
-              <span class="text-2xl font-semibold">{{
+              <span class="text-1xl font-semibold">{{
                 product.price | currency : 'BRL'
               }}</span>
+
               <button
-                (click)="addProductOnCart(product)"
                 pButton
+                (click)="addProductOnCart(product)"
                 icon="pi pi-shopping-cart"
                 class="p-button-rounded"
                 [disabled]="product.stock <= 0"></button>
             </div>
           </div>
         </div>
-      </div>
-    </ng-template>
-
-    <ng-template let-product pTemplate="gridItem">
-      <div class="xl:col-12 lg:col-12 md:col-12 sm:col-4 p-4">
-        <div class="p-4 border-1 surface-border surface-card border-round">
-          <div class="flex flex-wrap align-items-center justify-content-between gap-2">
-            <span class="flex align-items-center gap-2">
-              <i class="pi pi-tag"></i>
-              <span class="font-normal">{{ product.category }}</span>
-            </span>
-          </div>
-          <div class="flex flex-column align-items-center gap-3 py-5">
-            <img
-              class="w-3 shadow-2 border-round cursor-pointer w-14rem"
-              [src]="product.images[0]"
-              [alt]="product.title" />
-            <span class="text-1xl font-bold text-900">
-              {{ product.title }}
-            </span>
-            <div class="text-1xl font-bold text-900">Marca: {{ product.brand }}</div>
-            <div class="text-1xl text-900">
-              {{ product.description }}
-            </div>
-            <p-rating
-              [ngModel]="product.rating"
-              [readonly]="true"
-              [cancel]="false"></p-rating>
-          </div>
-          <div class="flex w-full align-items-between justify-content-between">
-            <span class="text-1xl font-semibold">{{
-              product.price | currency : 'BRL'
-            }}</span>
-
-            <button
-              pButton
-              (click)="addProductOnCart(product)"
-              icon="pi pi-shopping-cart"
-              class="p-button-rounded"
-              [disabled]="product.stock <= 0"></button>
-          </div>
-        </div>
-      </div>
-    </ng-template>
-  </p-dataView>
+      </ng-template>
+    </p-dataView>
+  </ng-container>
 </ng-container>

@@ -12,6 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from 'src/app/modules/management/services/products/products.service';
 import { RatingModule } from 'primeng/rating';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-products',
@@ -25,6 +26,7 @@ import { RatingModule } from 'primeng/rating';
     ButtonModule,
     RouterLink,
     CurrencyPipe,
+    TranslocoModule,
   ],
 })
 export class ProductsComponent implements OnInit, OnDestroy {

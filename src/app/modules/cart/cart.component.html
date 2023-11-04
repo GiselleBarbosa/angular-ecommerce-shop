@@ -1,94 +1,99 @@
-<div class="mb-4">
-  <h5 style="color: var(--primary-color)">Shopping cart</h5>
-</div>
+<ng-container *transloco="let transloco">
+  <div class="mb-4">
+    <h5 style="color: var(--primary-color)">{{ transloco('cart-page.main-title') }}</h5>
+  </div>
 
-<p-card>
-  <ng-container *ngIf="cart$ | async as products">
-    <p-table [value]="products" [tableStyle]="{ 'min-width': '60rem' }">
-      <ng-template pTemplate="caption">
-        <div class="flex align-items-center justify-content-between">
-          <h5>These are the products added to your cart</h5>
-        </div>
-      </ng-template>
-      <ng-template pTemplate="header" *ngIf="cart$ | async as products">
-        <tr>
-          <th>Product name</th>
-          <th>Image</th>
-          <th>Units</th>
-          <th>Unit price</th>
-          <th>Subtotal</th>
-          <th>Actions</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-product>
-        <tr>
-          <td>{{ product.title }}</td>
-          <td>
-            <img
-              class="cursor-pointer"
-              [routerLink]="['/products/product/details/' + product.id]"
-              [src]="product.images[0]"
-              [alt]="product.title"
-              [title]="'View detail product ' + product.title"
-              width="100" />
-          </td>
-          <td>{{ product.units }}</td>
-          <td>{{ product.price | currency : 'BRL' }}</td>
-          <td>{{ product.price * product.units | currency : 'BRL' }}</td>
-
-          <td>
-            <p-button
-              (onClick)="decreaseUnits(product)"
-              class="mr-1"
-              icon="pi pi-minus"
-              styleClass="p-button-rounded p-button-secondary p-button-text"></p-button>
-            <p-button
-              (onClick)="increaseUnits(product)"
-              class="mr-3"
-              icon="pi pi-plus"
-              styleClass="p-button-rounded p-button-secondary p-button-text"></p-button>
-
-            <p-button
-              (onClick)="removeAllUnits(product.id)"
-              icon="pi pi-trash"
-              styleClass="p-button-rounded p-button-danger  p-button-text"></p-button>
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="summary">
-        <div class="flex align-items-center justify-content-between">
-          <div *ngIf="products ? products.length : 0">
-            <div>In total there are {{ products ? products.length : 0 }} products.</div>
+  <p-card>
+    <ng-container *ngIf="cart$ | async as products">
+      <p-table [value]="products" [tableStyle]="{ 'min-width': '60rem' }">
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            <h5>{{ transloco('cart-page.subtitle') }}</h5>
           </div>
+        </ng-template>
+        <ng-template pTemplate="header" *ngIf="cart$ | async as products">
+          <tr>
+            <th>{{ transloco('cart-page.product-name') }}</th>
+            <th>{{ transloco('cart-page.image') }}</th>
+            <th>{{ transloco('cart-page.units') }}</th>
+            <th>{{ transloco('cart-page.unit-price') }}</th>
+            <th>{{ transloco('cart-page.subtotal') }}</th>
+            <th>{{ transloco('cart-page.actions') }}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product *ngIf="products ? products.length : 0">
+          <tr>
+            <td>{{ product.title }}</td>
+            <td>
+              <img
+                class="cursor-pointer"
+                [routerLink]="['/products/product/details/' + product.id]"
+                [src]="product.images[0]"
+                [alt]="product.title"
+                [title]="'View detail product ' + product.title"
+                width="100" />
+            </td>
+            <td>{{ product.units }}</td>
+            <td>{{ product.price | currency : 'BRL' }}</td>
+            <td>{{ product.price * product.units | currency : 'BRL' }}</td>
 
-          <div *ngIf="products.length === 0">
-            <div style="color: var(--surface-600); font-weight: 400">
-              Your shopping cart is empty.
+            <td>
+              <p-button
+                (onClick)="decreaseUnits(product)"
+                class="mr-1"
+                icon="pi pi-minus"
+                styleClass="p-button-rounded p-button-secondary p-button-text"></p-button>
+              <p-button
+                (onClick)="increaseUnits(product)"
+                class="mr-3"
+                icon="pi pi-plus"
+                styleClass="p-button-rounded p-button-secondary p-button-text"></p-button>
+
+              <p-button
+                (onClick)="removeAllUnits(product.id)"
+                icon="pi pi-trash"
+                styleClass="p-button-rounded p-button-danger  p-button-text"></p-button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+            <div *ngIf="products ? products.length : 0">
+              <div>
+                {{ transloco('cart-page.total-items') }}
+                {{ products ? products.length : 0 }} {{ transloco('cart-page.product') }}
+              </div>
+            </div>
+
+            <div *ngIf="products.length === 0">
+              <div style="color: var(--surface-600); font-weight: 400">
+                {{ transloco('cart-page.empty-cart') }}
+              </div>
+            </div>
+
+            <div *ngIf="products ? products.length : 0">
+              {{ totalPrice$ | async | currency : 'BRL' }}
             </div>
           </div>
-
-          <div *ngIf="products ? products.length : 0">
-            {{ totalPrice$ | async | currency : 'BRL' }}
+        </ng-template>
+      </p-table>
+      <ng-container *ngIf="products ? products.length : 0">
+        <div class="flex mt-5 justify-content-between">
+          <div>
+            <p-button
+              (onClick)="onConfirm($event)"
+              icon="pi pi-trash"
+              styleClass="p-button-outlined p-button-primary"
+              label="Empty cart"></p-button>
+          </div>
+          <div>
+            <p-button
+              routerLink="/checkout"
+              icon="pi pi-shopping-cart"
+              label="Buy now"></p-button>
           </div>
         </div>
-      </ng-template>
-    </p-table>
-    <ng-container *ngIf="products ? products.length : 0">
-      <div class="flex mt-5 justify-content-between">
-        <div>
-          <p-button
-            (onClick)="onConfirm($event)"
-            icon="pi pi-trash"
-            styleClass="p-button-outlined p-button-primary"
-            label="Empty cart"></p-button>
-        </div>
-        <div>
-          <p-button
-            routerLink="/checkout"
-            icon="pi pi-shopping-cart"
-            label="Buy now"></p-button>
-        </div>
-      </div>
+      </ng-container>
     </ng-container>
-  </ng-container>
-</p-card>
+  </p-card>
+</ng-container>

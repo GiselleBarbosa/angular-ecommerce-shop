@@ -1,0 +1,24 @@
+{
+  "home-page": {
+    "main-title": "Catalogo de produtos"
+  },
+
+  "cart-page": {
+    "main-title": "Carrinho de compras",
+    "subtitle": "Estes são os produtos adicionados ao seu carrinho",
+    "product-name": "Nome do produto",
+    "image": "Imagem",
+    "units": "Unidades",
+    "unit-price": "Preço unitário",
+    "subtotal": "Subtotal",
+    "actions": "Ações",
+    "total-items": "No total existem",
+    "empty-cart": "Seu carrinho de compras está vazio.",
+    "product": "produto(s)"
+  },
+
+  "detail-product-page": {
+    "main-title": "Você esta vendo ",
+    "brand": "Marca"
+  }
+}

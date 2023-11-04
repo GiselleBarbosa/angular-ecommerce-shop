@@ -1,13 +1,19 @@
-import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
+import { APP_INITIALIZER, importProvidersFrom, isDevMode } from '@angular/core';
 import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientModule,
+  provideHttpClient,
+} from '@angular/common/http';
 
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigService } from './app/shared/template/config/services/config.service';
+import { provideTransloco } from '@ngneat/transloco';
 import { RequestsInterceptor } from './app/core/interceptors/request-interceptor.service';
+import { TranslocoHttpLoader } from './app/modules/internationalization/transloco-loader';
 
 export function setSavedTheme(_configService: ConfigService) {
   return (): void => {
@@ -55,5 +61,16 @@ bootstrapApplication(AppComponent, {
 
     ConfirmationService,
     MessageService,
+    provideHttpClient(),
+    provideTransloco({
+      config: {
+        availableLangs: ['en', 'pt'],
+        defaultLang: 'pt',
+        // Remove this option if your application doesn't support changing language in runtime.
+        reRenderOnLangChange: true,
+        prodMode: !isDevMode(),
+      },
+      loader: TranslocoHttpLoader,
+    }),
   ],
 }).catch(err => console.error(err));
