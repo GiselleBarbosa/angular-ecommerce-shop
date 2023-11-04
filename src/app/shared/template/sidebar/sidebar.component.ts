@@ -56,7 +56,7 @@ export class SidebarComponent implements OnInit {
   private _categoriesService = inject(CategoriesService);
   private _changeLanguageService = inject(ChangeLanguageService);
 
-  public sidebarVisible = true;
+  public sidebarVisible = false;
 
   public navigationMenuItems!: MenuItem[];
 
