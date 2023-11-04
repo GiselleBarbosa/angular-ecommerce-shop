@@ -33,8 +33,9 @@ export class AppConfigComponent implements OnInit {
   public scales: number[] = [14, 15, 16, 17, 18];
 
   public ngOnInit(): void {
-    const savedRipple = localStorage.getItem('saved_ripple');
     const savedFontSize = this._configService.getFontSize();
+
+    const savedRipple = localStorage.getItem('saved_ripple');
 
     if (savedFontSize) {
       this.scale = savedFontSize;

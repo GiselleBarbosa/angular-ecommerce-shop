@@ -23,19 +23,8 @@ export class ConfigService {
     if (savedScheme) {
       return savedScheme;
     }
+
     return 'light';
-  }
-
-  public getFontSize(): number {
-    const savedFontSize = localStorage.getItem('saved_font_size');
-
-    if (savedFontSize) JSON.parse(savedFontSize);
-
-    return 14;
-  }
-
-  public applyScale(scale: number): void {
-    document.documentElement.style.fontSize = scale + 'px';
   }
 
   public setTheme(theme: string, colorScheme: string): void {
@@ -43,8 +32,22 @@ export class ConfigService {
     localStorage.setItem('saved_scheme', colorScheme);
   }
 
+  public getFontSize(): number {
+    const savedFontSize = localStorage.getItem('saved_font_size');
+
+    if (savedFontSize) {
+      return JSON.parse(savedFontSize);
+    }
+
+    return 14;
+  }
+
   public setFontSize(size: number): void {
     localStorage.setItem('saved_font_size', JSON.stringify(size));
+  }
+
+  public applyScale(scale: number): void {
+    document.documentElement.style.fontSize = scale + 'px';
   }
 
   public changeTheme(theme: string, colorScheme: string): void {
