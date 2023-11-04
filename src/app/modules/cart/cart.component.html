@@ -1,5 +1,5 @@
-<div class="mb-3">
-  <h1>Shopping cart</h1>
+<div class="mb-4">
+  <h5 style="color: var(--primary-color)">Shopping cart</h5>
 </div>
 
 <p-card>
@@ -7,7 +7,7 @@
     <p-table [value]="products" [tableStyle]="{ 'min-width': '60rem' }">
       <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
-          <h2>These are the products added to your cart</h2>
+          <h5>These are the products added to your cart</h5>
         </div>
       </ng-template>
       <ng-template pTemplate="header" *ngIf="cart$ | async as products">
@@ -57,23 +57,29 @@
       </ng-template>
       <ng-template pTemplate="summary">
         <div class="flex align-items-center justify-content-between">
-          <div>
+          <div *ngIf="products ? products.length : 0">
             <div>In total there are {{ products ? products.length : 0 }} products.</div>
           </div>
 
+          <div *ngIf="products.length === 0">
+            <div style="color: var(--surface-600); font-weight: 400">
+              Your shopping cart is empty.
+            </div>
+          </div>
+
           <div *ngIf="products ? products.length : 0">
-            <h2>Total order: {{ totalPrice$ | async | currency : 'BRL' }}</h2>
+            {{ totalPrice$ | async | currency : 'BRL' }}
           </div>
         </div>
       </ng-template>
     </p-table>
-    <ng-container>
+    <ng-container *ngIf="products ? products.length : 0">
       <div class="flex mt-5 justify-content-between">
         <div>
           <p-button
-            (onClick)="removeAllProducts()"
+            (onClick)="onConfirm($event)"
             icon="pi pi-trash"
-            styleClass="p-button-outlined p-button-danger"
+            styleClass="p-button-outlined p-button-primary"
             label="Empty cart"></p-button>
         </div>
         <div>

@@ -1,51 +1,57 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { PrimeNGConfig } from 'primeng/api';
-import { Subscription, take } from 'rxjs';
 
-import { FooterComponent } from './layout/footer/footer.component';
-import { HeaderComponent } from './layout/header/header.component';
-import { ThemeService } from './core/services/theme/theme.service';
+import { AppConfigComponent } from './shared/template/config/app.config.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { FooterComponent } from './shared/template/footer/footer.component';
+import { HeaderComponent } from './shared/template/header/header.component';
+import { PrimeNGConfig } from 'primeng/api';
+import { RouterOutlet } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [RouterOutlet, FooterComponent, HeaderComponent],
+  imports: [
+    RouterOutlet,
+    FooterComponent,
+    HeaderComponent,
+    AppConfigComponent,
+    ToastModule,
+    ConfirmDialogModule,
+  ],
+  template: `
+    <p-toast />
+    <p-confirmDialog />
+
+    <app-header />
+
+    <div class="p-5 mb-8" style="min-height: 73vh">
+      <router-outlet />
+    </div>
+
+    <app-config />
+
+    <div class="bottom-0" style="width: 100%">
+      <app-footer />
+    </div>
+  `,
 })
 export class AppComponent implements OnInit, OnDestroy {
   private primengConfig = inject(PrimeNGConfig);
-  private themeService = inject(ThemeService);
   private subscription!: Subscription;
 
-  public currentTheme!: string;
   public setButtonTheme!: boolean;
 
   public ngOnInit(): void {
-    this.subscription = this.themeService.theme$.subscribe(theme => {
-      document.body.className = theme;
-    });
-
-    // ripple - animations primeNg
     this.primengConfig.ripple = true;
 
     this.primengConfig.zIndex = {
-      modal: 1100, // dialog, sidebar
-      overlay: 1000, // dropdown, overlaypanel
-      menu: 1000, // overlay menus
-      tooltip: 1100, // tooltip
+      modal: 1100,
+      overlay: 1000,
+      menu: 1000,
+      tooltip: 1100,
     };
-  }
-
-  public toggleTheme(): void {
-    this.themeService.theme$.pipe(take(1)).subscribe(theme => {
-      this.currentTheme = theme;
-
-      this.setButtonTheme = theme === 'light' ? true : false;
-    });
-
-    this.themeService.toggleTheme();
   }
 
   public ngOnDestroy(): void {
