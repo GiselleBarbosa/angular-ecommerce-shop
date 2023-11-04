@@ -1,5 +1,18 @@
 {
   "home-page": {
     "main-title": "Products catalog"
+  },
+
+  "cart-page": {
+    "main-title": "Shopping cart",
+    "subtitle": "These are the products added to your cart",
+    "product-name": "Product name",
+    "image": "Image",
+    "units": "Units",
+    "unit-price": "Unit price",
+    "subtotal": "Subtotal",
+    "actions": "Actions",
+    "total-items": "In total there are ",
+    "empty-cart": "Your shopping cart is empty."
   }
 }
