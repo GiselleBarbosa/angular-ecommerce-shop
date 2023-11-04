@@ -1,9 +1,8 @@
 <ng-container *transloco="let transloco">
   <div class="mb-4">
-    <h5 style="color: var(--primary-color)">Product catalog</h5>
+    <h5 style="color: var(--primary-color)">{{ transloco('home-page.main-title') }}</h5>
   </div>
-  <h1>{{ transloco('home-page.main-title') }}</h1>
-  <p-button styleClass="p-button-danger" (click)="changeLanguage()">Traduzir</p-button>
+
   <p-dataView
     #dv
     [rows]="12"

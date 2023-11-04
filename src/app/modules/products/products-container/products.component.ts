@@ -2,7 +2,6 @@ import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 import { catchError, first, Subscription } from 'rxjs';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MessageService, SelectItem } from 'primeng/api';
-import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 import { ButtonModule } from 'primeng/button';
 import { Cart } from 'src/app/core/interface/cart';
@@ -13,6 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from 'src/app/modules/management/services/products/products.service';
 import { RatingModule } from 'primeng/rating';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-products',
@@ -35,7 +35,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private _messageService = inject(MessageService);
   private _route = inject(ActivatedRoute);
   private _subscription!: Subscription;
-  private _translocoService = inject(TranslocoService);
 
   public products!: any[];
 
@@ -116,26 +115,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
       detail: 'Unable to load products',
       life: 3000,
     });
-  }
-
-  public getCurrentLanguage(): string {
-    const currentLang = this._translocoService.getActiveLang();
-    return currentLang;
-  }
-
-  public changeLanguage(): void {
-    const portuguese = 'pt';
-    const english = 'en';
-
-    const checkCurrentLang = this.getCurrentLanguage();
-
-    if (checkCurrentLang === english) {
-      this._translocoService.setActiveLang(portuguese);
-      console.log(checkCurrentLang);
-    } else if (checkCurrentLang === portuguese) {
-      this._translocoService.setActiveLang(english);
-      console.log(checkCurrentLang);
-    }
   }
 
   public ngOnDestroy(): void {
