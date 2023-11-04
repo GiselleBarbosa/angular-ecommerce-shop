@@ -1,6 +1,6 @@
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { Component, inject, OnInit } from '@angular/core';
-import { filter, map } from 'rxjs';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { filter, map, Subscription } from 'rxjs';
 
 import { AppConfigComponent } from './shared/template/config/app.config.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -38,10 +38,12 @@ import { ToastModule } from 'primeng/toast';
     </div>
   `,
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   private _primengConfig = inject(PrimeNGConfig);
   private _router = inject(Router);
   private _titleService = inject(Title);
+
+  private _subscription!: Subscription;
 
   public ngOnInit(): void {
     this.setPageTitles();
@@ -57,7 +59,7 @@ export class AppComponent implements OnInit {
   }
 
   public setPageTitles(): void {
-    this._router.events
+    this._subscription = this._router.events
       .pipe(
         filter(event => event instanceof NavigationEnd),
         map(() => {
@@ -77,5 +79,9 @@ export class AppComponent implements OnInit {
           this._titleService.setTitle(`E-commerce - ${title}`);
         }
       });
+  }
+
+  public ngOnDestroy(): void {
+    this._subscription.unsubscribe();
   }
 }
