@@ -36,9 +36,13 @@ export class AppConfigComponent implements OnInit {
     const savedRipple = localStorage.getItem('saved_ripple');
     const savedFontSize = this._configService.getFontSize();
 
-    if (savedFontSize) this.scale = savedFontSize;
+    if (savedFontSize) {
+      this.scale = savedFontSize;
+    }
 
-    if (savedRipple) this.ripple = JSON.parse(savedRipple);
+    if (savedRipple) {
+      this.ripple = JSON.parse(savedRipple);
+    }
   }
 
   get visible(): boolean {

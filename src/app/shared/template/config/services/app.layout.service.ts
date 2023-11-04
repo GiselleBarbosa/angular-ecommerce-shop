@@ -22,11 +22,9 @@ export class LayoutService {
   };
 
   private configUpdate = new Subject<AppConfig>();
-
-  private overlayOpen = new Subject<any>();
-
   public readonly configUpdate$ = this.configUpdate.asObservable();
 
+  private overlayOpen = new Subject<any>();
   public readonly overlayOpen$ = this.overlayOpen.asObservable();
 
   public onMenuToggle(): void {

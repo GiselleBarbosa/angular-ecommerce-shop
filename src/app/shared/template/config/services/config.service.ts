@@ -10,7 +10,9 @@ export class ConfigService {
   public getTheme(): string {
     const savedTheme = localStorage.getItem('saved_theme');
 
-    if (savedTheme) savedTheme;
+    if (savedTheme) {
+      return savedTheme;
+    }
 
     return 'lara-light-indigo';
   }
@@ -18,8 +20,9 @@ export class ConfigService {
   public getScheme(): string {
     const savedScheme = localStorage.getItem('saved_scheme');
 
-    if (savedScheme) savedScheme;
-
+    if (savedScheme) {
+      return savedScheme;
+    }
     return 'light';
   }
 
@@ -29,6 +32,10 @@ export class ConfigService {
     if (savedFontSize) JSON.parse(savedFontSize);
 
     return 14;
+  }
+
+  public applyScale(scale: number): void {
+    document.documentElement.style.fontSize = scale + 'px';
   }
 
   public setTheme(theme: string, colorScheme: string): void {
@@ -70,9 +77,5 @@ export class ConfigService {
       cloneLinkElement.setAttribute('id', id);
       onComplete();
     });
-  }
-
-  public applyScale(scale: number): void {
-    document.documentElement.style.fontSize = scale + 'px';
   }
 }
