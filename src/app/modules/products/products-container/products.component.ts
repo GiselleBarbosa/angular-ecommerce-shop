@@ -1,6 +1,6 @@
 import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
+import { catchError, first, Subscription } from 'rxjs';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { first, Subscription } from 'rxjs';
 import { MessageService, SelectItem } from 'primeng/api';
 
 import { ButtonModule } from 'primeng/button';
@@ -51,7 +51,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
       this._productsService
         .getAllProducts(categoryByRoute)
-        .pipe(first())
+        .pipe(
+          first(),
+          catchError(err => {
+            throw (this.showErrorToast(), err);
+          })
+        )
         .subscribe(data => {
           this.products = data;
         });
@@ -98,6 +103,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
       summary: 'Added product',
       detail: 'Sent to cart',
       life: 500,
+    });
+  }
+
+  private showErrorToast(): void {
+    this._messageService.add({
+      severity: 'error',
+      summary: 'Unexpected error',
+      detail: 'Unable to load products',
+      life: 3000,
     });
   }
 
