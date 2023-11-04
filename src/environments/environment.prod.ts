@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseApi: 'https://dummyjson.com',
+  baseApi: 'https://dummyjson.comm',
 };
