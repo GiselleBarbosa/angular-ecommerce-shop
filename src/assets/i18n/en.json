@@ -14,5 +14,9 @@
     "actions": "Actions",
     "total-items": "In total there are ",
     "empty-cart": "Your shopping cart is empty."
+  },
+  "detail-product-page": {
+    "main-title": "Are you viewing ",
+    "brand" : "Brand"
   }
 }

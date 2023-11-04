@@ -14,5 +14,10 @@
     "actions": "Ações",
     "total-items": "No total existem",
     "empty-cart": "Seu carrinho de compras está vazio."
+  },
+
+  "detail-product-page": {
+    "main-title": "Você esta vendo ",
+    "brand": "Marca"
   }
 }
