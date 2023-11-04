@@ -56,6 +56,9 @@ This project was developed with the following technologies:
 - Select color theme
 - Select font size
 - Theme and font preferences are saved to localstorage
+- Added interceptor for get type requests
+- It is now possible to choose the application language between English and Portuguese
+- Language is saved in localstorage
 
 ## License
 
