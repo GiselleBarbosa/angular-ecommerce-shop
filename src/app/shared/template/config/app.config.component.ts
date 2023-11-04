@@ -1,12 +1,13 @@
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+
 import { ButtonModule } from 'primeng/button';
+import { ConfigService } from './services/config.service';
+import { FormsModule } from '@angular/forms';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { LayoutService } from 'src/app/shared/template/config/services/app.layout.service';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SidebarModule } from 'primeng/sidebar';
-import { LayoutService } from 'src/app/shared/template/config/services/app.layout.service';
-import { MenuService } from 'src/app/shared/template/config/services/app.menu.service';
 
 @Component({
   selector: 'app-config',
@@ -23,85 +24,71 @@ import { MenuService } from 'src/app/shared/template/config/services/app.menu.se
     NgClass,
   ],
 })
-export class AppConfigComponent {
+export class AppConfigComponent implements OnInit {
+  private _configService = inject(ConfigService);
+  private _layoutService = inject(LayoutService);
+
   @Input() public minimal = false;
 
   public scales: number[] = [14, 15, 16, 17, 18];
 
-  constructor(public layoutService: LayoutService, public menuService: MenuService) {}
+  public ngOnInit(): void {
+    const savedRipple = localStorage.getItem('saved_ripple');
+    const savedFontSize = this._configService.getFontSize();
+
+    if (savedFontSize) this.scale = savedFontSize;
+
+    if (savedRipple) this.ripple = JSON.parse(savedRipple);
+  }
 
   get visible(): boolean {
-    return this.layoutService.state.configSidebarVisible;
+    return this._layoutService.state.configSidebarVisible;
   }
 
   set visible(_val: boolean) {
-    this.layoutService.state.configSidebarVisible = _val;
+    this._layoutService.state.configSidebarVisible = _val;
   }
 
   get scale(): number {
-    return this.layoutService.config.scale;
+    return this._layoutService.config.scale;
   }
 
   set scale(_val: number) {
-    this.layoutService.config.scale = _val;
+    this._layoutService.config.scale = _val;
+    this._configService.setFontSize(_val);
   }
 
   get menuMode(): string {
-    return this.layoutService.config.menuMode;
+    return this._layoutService.config.menuMode;
   }
 
   set menuMode(_val: string) {
-    this.layoutService.config.menuMode = _val;
+    this._layoutService.config.menuMode = _val;
   }
 
   get inputStyle(): string {
-    return this.layoutService.config.inputStyle;
+    return this._layoutService.config.inputStyle;
   }
 
   set inputStyle(_val: string) {
-    this.layoutService.config.inputStyle = _val;
+    this._layoutService.config.inputStyle = _val;
   }
 
   get ripple(): boolean {
-    return this.layoutService.config.ripple;
+    return this._layoutService.config.ripple;
   }
 
   set ripple(_val: boolean) {
-    this.layoutService.config.ripple = _val;
+    this._layoutService.config.ripple = _val;
+    localStorage.setItem('saved_ripple', JSON.stringify(_val));
   }
 
   public onConfigButtonClick(): void {
-    this.layoutService.showConfigSidebar();
+    this._layoutService.showConfigSidebar();
   }
 
   public changeTheme(theme: string, colorScheme: string): void {
-    const themeLink = <HTMLLinkElement>document.getElementById('theme-css');
-    const newHref = themeLink
-      .getAttribute('href')!
-      .replace(this.layoutService.config.theme, theme);
-    this.layoutService.config.colorScheme;
-    this.replaceThemeLink(newHref, () => {
-      this.layoutService.config.theme = theme;
-      this.layoutService.config.colorScheme = colorScheme;
-      this.layoutService.onConfigUpdate();
-    });
-  }
-
-  public replaceThemeLink(href: string, onComplete: Function): void {
-    const id = 'theme-css';
-    const themeLink = <HTMLLinkElement>document.getElementById('theme-css');
-    const cloneLinkElement = <HTMLLinkElement>themeLink.cloneNode(true);
-
-    cloneLinkElement.setAttribute('href', href);
-    cloneLinkElement.setAttribute('id', id + '-clone');
-
-    themeLink.parentNode!.insertBefore(cloneLinkElement, themeLink.nextSibling);
-
-    cloneLinkElement.addEventListener('load', () => {
-      themeLink.remove();
-      cloneLinkElement.setAttribute('id', id);
-      onComplete();
-    });
+    this._configService.changeTheme(theme, colorScheme);
   }
 
   public decrementScale(): void {
@@ -115,6 +102,6 @@ export class AppConfigComponent {
   }
 
   public applyScale(): void {
-    document.documentElement.style.fontSize = this.scale + 'px';
+    this._configService.applyScale(this.scale);
   }
 }
