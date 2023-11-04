@@ -26,8 +26,12 @@ import { ToolbarModule } from 'primeng/toolbar';
     SidebarComponent,
     TranslocoModule,
   ],
-  template: `<p-toolbar styleClass="align-items-center pt-0 pb-0">
-    <div class="p-toolbar-group-start gap-4">
+  template: `<p-toolbar styleClass="align-items-center p-0 pr-5 pl-5 pt-2 ">
+    <div class="p-toolbar-group-start gap-1">
+      <i
+        style="font-size: 1.5rem; color: var(--primary-color)"
+        class="icon pi pi-shopping-bag mr-2 cursor-pointer"
+        routerLink="cart"></i>
       <h4 class="cursor-pointer" style="color: var(--primary-color)" routerLink="/">
         Angular e-commerce
       </h4>
@@ -66,18 +70,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private subscription!: Subscription;
 
-  public setButtonTheme!: boolean;
-  public currentTheme!: string;
-
   public totalUnits$ = this._cartService.totalUnits$;
 
   public ngOnInit(): void {
     this._cartService.getTotalUnits();
 
-    this.getCurrentLanguage();
+    const savedLanguage = localStorage.getItem('saved_language');
+
+    if (savedLanguage) {
+      this._translocoService.setActiveLang(savedLanguage);
+    }
+    console.log(savedLanguage);
+    this.getActiveLang();
   }
 
-  public getCurrentLanguage(): string {
+  public getActiveLang(): string {
     const currentLang = this._translocoService.getActiveLang();
     return currentLang;
   }
@@ -86,15 +93,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     const portuguese = 'pt';
     const english = 'en';
 
-    const checkCurrentLang = this.getCurrentLanguage();
-
+    const checkCurrentLang = this.getActiveLang();
     if (checkCurrentLang === english) {
       this._translocoService.setActiveLang(portuguese);
-      console.log(checkCurrentLang);
     } else if (checkCurrentLang === portuguese) {
       this._translocoService.setActiveLang(english);
-      console.log(checkCurrentLang);
     }
+
+    localStorage.setItem('saved_language', this.getActiveLang());
   }
 
   public ngOnDestroy(): void {

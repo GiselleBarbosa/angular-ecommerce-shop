@@ -65,7 +65,7 @@ bootstrapApplication(AppComponent, {
     provideTransloco({
       config: {
         availableLangs: ['en', 'pt'],
-        defaultLang: 'en',
+        defaultLang: 'pt',
         // Remove this option if your application doesn't support changing language in runtime.
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),

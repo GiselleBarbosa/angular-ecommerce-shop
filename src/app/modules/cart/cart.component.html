@@ -21,7 +21,7 @@
             <th>{{ transloco('cart-page.actions') }}</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-product *ngIf="products ? products.length : 0">
           <tr>
             <td>{{ product.title }}</td>
             <td>
@@ -61,7 +61,7 @@
             <div *ngIf="products ? products.length : 0">
               <div>
                 {{ transloco('cart-page.total-items') }}
-                {{ products ? products.length : 0 }} products.
+                {{ products ? products.length : 0 }} {{ transloco('cart-page.product') }}
               </div>
             </div>
 

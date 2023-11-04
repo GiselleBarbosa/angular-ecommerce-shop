@@ -13,7 +13,8 @@
     "subtotal": "Subtotal",
     "actions": "Ações",
     "total-items": "No total existem",
-    "empty-cart": "Seu carrinho de compras está vazio."
+    "empty-cart": "Seu carrinho de compras está vazio.",
+    "product": "produto(s)"
   },
 
   "detail-product-page": {
