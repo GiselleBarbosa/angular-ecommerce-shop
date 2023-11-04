@@ -4,6 +4,8 @@
   <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
   <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;  
   <a href="#memo-license">License</a> 
+  <a href="#running-locally">Running locally</a> 
+  <a href="#available-functions">Available functions</a> 
 </p>
 
 ## 💻 Project
@@ -16,11 +18,14 @@ This project aims to improve the use of the angular framework. It will apply con
 
 This project was developed with the following technologies:
 
+**Frontend**
+
 - Angular
-- Javascript
-- Typescript
-- Ng Prime / Ng Flex
-- API with Json-server
+- Primeng
+
+**Backend**
+
+- Dummy Json API
 
 ## :memo: License
 
@@ -28,6 +33,37 @@ This project is licensed under the MIT. <p align="center">
 <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
 
 </p>
+
+## Running locally
+
+#### Clone the project
+
+`git clone https://github.com/GiselleBarbosa/angular-wishlist.git`
+
+#### Install dependencies
+
+`npm install`
+
+#### Start the server
+
+`http://localhost:4200/`.
+`
+
+#### Run the application
+
+`npm run start`
+
+## Available functions
+
+- List all products
+- List by category
+- List by id
+- Add product to shopping cart
+- Remove, adjust quantities or clean the cart
+- Cart status is saved in localstorage
+- Select color theme
+- Select font size
+- Theme and font preferences are saved to localstorage
 
 ---
 
