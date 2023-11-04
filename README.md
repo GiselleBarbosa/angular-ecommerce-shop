@@ -4,7 +4,7 @@
   <a href="#project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;  
   <a href="#technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
   <a href="#running-the-application">Running the application</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-  <a href="#available-functions">Available functions</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+  <a href="#available-functions">Available functions</a>
 </p>
 
 ## Project
