@@ -3,43 +3,60 @@ import { first, map } from 'rxjs';
 
 import { ButtonModule } from 'primeng/button';
 import { CategoriesService } from 'src/app/modules/management/services/categories/categories.service';
+import { ChangeLanguageService } from '../services/change-language.service';
 import { FormsModule } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 import { RouterLink } from '@angular/router';
 import { SidebarModule } from 'primeng/sidebar';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [SidebarModule, ButtonModule, FormsModule, RouterLink, MenuModule],
+  imports: [
+    SidebarModule,
+    ButtonModule,
+    FormsModule,
+    RouterLink,
+    MenuModule,
+    TranslocoModule,
+  ],
 
   template: `
-    <p-sidebar
-      [(visible)]="sidebarVisible"
-      position="right"
-      styleClass="min-w-min w-20rem">
-      <h4 class="cursor-pointer mb-3 font-semibold text-primary" routerLink="products">
-        Angular E-commerce
-      </h4>
+    <ng-container *transloco="let transloco">
+      <p-sidebar
+        [(visible)]="sidebarVisible"
+        position="right"
+        styleClass="min-w-min w-20rem ">
+        <div class="flex align-items-center gap-2">
+          <i
+            style="font-size: 1.5rem; color: var(--primary-color)"
+            class="icon pi pi-shopping-bag cursor-pointer"
+            routerLink="cart"></i>
+          <h4 class="cursor-pointerfont-semibold text-primary" routerLink="products">
+            Angular e-commerce
+          </h4>
+        </div>
 
-      <h6>Panel</h6>
-      <p-menu [model]="navigationMenuItems" styleClass="w-15rem"></p-menu>
+        <h6>{{ transloco('sidebar.setting') }}</h6>
+        <p-menu [model]="navigationMenuItems" styleClass="w-15rem"></p-menu>
 
-      <div class="mt-4">
-        <h6>Categories</h6>
+        <div class="mt-4">
+          <h6>{{ transloco('sidebar.categories') }}</h6>
+          <p-menu [model]="categories" styleClass="w-15rem"></p-menu>
+        </div>
+      </p-sidebar>
 
-        <p-menu [model]="categories" styleClass="w-15rem"></p-menu>
-      </div>
-    </p-sidebar>
-
-    <p-button (click)="sidebarHandler()" icon="pi pi-align-justify" />
+      <p-button (click)="sidebarHandler()" icon="pi pi-align-justify" />
+    </ng-container>
   `,
 })
 export class SidebarComponent implements OnInit {
   private _categoriesService = inject(CategoriesService);
+  private _changeLanguageService = inject(ChangeLanguageService);
 
-  public sidebarVisible = false;
+  public sidebarVisible = true;
 
   public navigationMenuItems!: MenuItem[];
 
@@ -91,7 +108,7 @@ export class SidebarComponent implements OnInit {
         label: 'Translate',
         icon: 'pi pi-language',
         command: (): void => {
-          alert('pending implementation');
+          this._changeLanguageService.changeLanguage();
         },
       },
     ];

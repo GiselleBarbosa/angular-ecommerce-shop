@@ -4,6 +4,7 @@ import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 import { BadgeModule } from 'primeng/badge';
 import { CartService } from 'src/app/modules/cart/services/cart.service';
+import { ChangeLanguageService } from '../services/change-language.service';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { RouterLink } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -67,6 +68,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 export class HeaderComponent implements OnInit, OnDestroy {
   private _cartService = inject(CartService);
   private _translocoService = inject(TranslocoService);
+  private _changeLanguageService = inject(ChangeLanguageService);
 
   private subscription!: Subscription;
 
@@ -74,33 +76,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this._cartService.getTotalUnits();
-
     const savedLanguage = localStorage.getItem('saved_language');
 
     if (savedLanguage) {
       this._translocoService.setActiveLang(savedLanguage);
     }
-    console.log(savedLanguage);
     this.getActiveLang();
   }
 
-  public getActiveLang(): string {
-    const currentLang = this._translocoService.getActiveLang();
-    return currentLang;
+  public getActiveLang(): void {
+    this._changeLanguageService.getActiveLang();
   }
 
   public changeLanguage(): void {
-    const portuguese = 'pt';
-    const english = 'en';
-
-    const checkCurrentLang = this.getActiveLang();
-    if (checkCurrentLang === english) {
-      this._translocoService.setActiveLang(portuguese);
-    } else if (checkCurrentLang === portuguese) {
-      this._translocoService.setActiveLang(english);
-    }
-
-    localStorage.setItem('saved_language', this.getActiveLang());
+    this._changeLanguageService.changeLanguage();
   }
 
   public ngOnDestroy(): void {

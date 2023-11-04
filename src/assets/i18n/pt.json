@@ -20,5 +20,10 @@
   "detail-product-page": {
     "main-title": "Você esta vendo ",
     "brand": "Marca"
+  },
+
+  "sidebar": {
+    "setting": "Configurações",
+    "categories": "Categorias"
   }
 }

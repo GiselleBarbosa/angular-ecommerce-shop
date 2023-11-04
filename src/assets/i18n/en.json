@@ -19,6 +19,11 @@
 
   "detail-product-page": {
     "main-title": "Are you viewing ",
-    "brand" : "Brand"
+    "brand": "Brand"
+  },
+
+  "sidebar": {
+    "setting": "Settings",
+    "categories": "Categories"
   }
 }
