@@ -30,7 +30,7 @@ This project was developed with the following technologies:
 
 #### Clone the project
 
-`git clone https://github.com/GiselleBarbosa/angular-wishlist.git`
+`git clone https://github.com/GiselleBarbosa/angular-e-commerce`
 
 #### Install dependencies
 
