@@ -3,7 +3,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 import { BadgeModule } from 'primeng/badge';
-import { CartService } from 'src/app/modules/cart/services/cart.service';
+import { CartService } from 'src/app/features/cart/services/cart.service';
 import { ChangeLanguageService } from '../services/change-language.service';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { RouterLink } from '@angular/router';

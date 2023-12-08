@@ -1,8 +1,8 @@
-import { CartComponent } from './modules/cart/cart.component';
-import { CheckoutComponent } from './modules/checkout/checkout.component';
-import { LoginComponent } from './modules/auth/login/login.component';
-import { ProductDetailsComponent } from './modules/products/product-details/product-details.component';
-import { ProductsComponent } from './modules/products/products-container/products.component';
+import { CartComponent } from './features/cart/cart.component';
+import { CheckoutComponent } from './features/checkout/checkout.component';
+import { LoginComponent } from './features/auth/login/login.component';
+import { ProductDetailsComponent } from './features/products/product-details/product-details.component';
+import { ProductsComponent } from './features/products/products-container/products.component';
 import { Routes } from '@angular/router';
 
 export const productsRoutes: Routes = [

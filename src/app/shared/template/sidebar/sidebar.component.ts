@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { first, map } from 'rxjs';
 
 import { ButtonModule } from 'primeng/button';
-import { CategoriesService } from 'src/app/modules/management/services/categories/categories.service';
+import { CategoriesService } from 'src/app/features/products/services/categories/categories.service';
 import { ChangeLanguageService } from '../services/change-language.service';
 import { FormsModule } from '@angular/forms';
 import { MenuItem } from 'primeng/api';

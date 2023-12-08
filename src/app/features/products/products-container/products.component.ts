@@ -5,12 +5,12 @@ import { MessageService, SelectItem } from 'primeng/api';
 
 import { ButtonModule } from 'primeng/button';
 import { Cart } from 'src/app/core/interface/cart';
-import { CartService } from 'src/app/modules/cart/services/cart.service';
+import { CartService } from '../../cart/services/cart.service';
 import { CurrencyPipe } from '@angular/common';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
-import { ProductsService } from 'src/app/modules/management/services/products/products.service';
+import { ProductsService } from 'src/app/features/products/services/products/products.service';
 import { RatingModule } from 'primeng/rating';
 import { TranslocoModule } from '@ngneat/transloco';
 
