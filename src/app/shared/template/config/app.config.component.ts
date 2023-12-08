@@ -88,10 +88,6 @@ export class AppConfigComponent implements OnInit {
     localStorage.setItem('saved_ripple', JSON.stringify(_val));
   }
 
-  public onConfigButtonClick(): void {
-    this._layoutService.showConfigSidebar();
-  }
-
   public changeTheme(theme: string, colorScheme: string): void {
     this._configService.changeTheme(theme, colorScheme);
   }

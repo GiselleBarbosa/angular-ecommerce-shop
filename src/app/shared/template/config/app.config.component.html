@@ -1,13 +1,9 @@
-<button class="layout-config-button p-link" type="button" (click)="onConfigButtonClick()">
-  <i class="pi pi-cog"></i>
-</button>
-
 <p-sidebar
   [(visible)]="visible"
-  position="left"
+  position="right"
   [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'"
   styleClass="layout-config-sidebar w-20rem">
-  <h5>Scale</h5>
+  <h6>Scale</h6>
   <div class="flex align-items-center">
     <button
       icon="pi pi-minus"
@@ -32,7 +28,7 @@
   </div>
 
   <ng-container *ngIf="!minimal">
-    <h5>Menu Type</h5>
+    <h6>Menu Type</h6>
     <div class="field-radiobutton">
       <p-radioButton
         name="menuMode"
@@ -52,7 +48,7 @@
   </ng-container>
 
   <ng-container *ngIf="!minimal">
-    <h5>Input Style</h5>
+    <h6>Input Style</h6>
     <div class="flex">
       <div class="field-radiobutton flex-1">
         <p-radioButton
@@ -72,11 +68,11 @@
       </div>
     </div>
 
-    <h5>Ripple Effect</h5>
+    <h6>Ripple Effect</h6>
     <p-inputSwitch [(ngModel)]="ripple"></p-inputSwitch>
   </ng-container>
 
-  <h5>Bootstrap</h5>
+  <h6>Bootstrap</h6>
   <div class="grid">
     <div class="col-3">
       <button
@@ -120,7 +116,7 @@
     </div>
   </div>
 
-  <h5>Material Design</h5>
+  <h6>Material Design</h6>
   <div class="grid">
     <div class="col-3">
       <button
@@ -164,7 +160,7 @@
     </div>
   </div>
 
-  <h5>Material Design Compact</h5>
+  <h6>Material Design Compact</h6>
   <div class="grid">
     <div class="col-3">
       <button
@@ -208,7 +204,7 @@
     </div>
   </div>
 
-  <h5>Tailwind</h5>
+  <h6>Tailwind</h6>
   <div class="grid">
     <div class="col-3">
       <button
@@ -222,7 +218,7 @@
     </div>
   </div>
 
-  <h5>Fluent UI</h5>
+  <h6>Fluent UI</h6>
   <div class="grid">
     <div class="col-3">
       <button class="p-link w-2rem h-2rem" (click)="changeTheme('fluent-light', 'light')">
@@ -234,7 +230,7 @@
     </div>
   </div>
 
-  <h5>PrimeOne Design - 2022</h5>
+  <h6>PrimeOne Design - 2022</h6>
   <div class="grid">
     <div class="col-3">
       <button
@@ -318,7 +314,7 @@
     </div>
   </div>
 
-  <h5>PrimeOne Design - 2021</h5>
+  <h6>PrimeOne Design - 2021</h6>
   <div class="grid">
     <div class="col-3">
       <button class="p-link w-2rem h-2rem" (click)="changeTheme('saga-blue', 'light')">

@@ -2,7 +2,6 @@ import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/ro
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { filter, map, Subscription } from 'rxjs';
 
-import { AppConfigComponent } from './shared/template/config/app.config.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FooterComponent } from './shared/template/footer/footer.component';
 import { HeaderComponent } from './shared/template/header/header.component';
@@ -17,7 +16,6 @@ import { ToastModule } from 'primeng/toast';
     RouterOutlet,
     FooterComponent,
     HeaderComponent,
-    AppConfigComponent,
     ToastModule,
     ConfirmDialogModule,
   ],
@@ -30,8 +28,6 @@ import { ToastModule } from 'primeng/toast';
     <div class="p-5 mb-8" style="min-height: 73vh">
       <router-outlet />
     </div>
-
-    <app-config />
 
     <div class="bottom-0" style="width: 100%">
       <app-footer />
