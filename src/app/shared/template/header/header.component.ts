@@ -5,7 +5,6 @@ import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { AppConfigComponent } from '../config/app.config.component';
 import { BadgeModule } from 'primeng/badge';
 import { CartService } from 'src/app/features/cart/services/cart.service';
-import { ChangeLanguageService } from '../services/change-language.service';
 import { LayoutService } from '../config/services/app.layout.service';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { RouterLink } from '@angular/router';
@@ -36,7 +35,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private _cartService = inject(CartService);
   private _translocoService = inject(TranslocoService);
   private _layoutService = inject(LayoutService);
-  private _changeLanguageService = inject(ChangeLanguageService);
 
   private subscription!: Subscription;
 
@@ -44,20 +42,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this._cartService.getTotalUnits();
-    const savedLanguage = localStorage.getItem('saved_language');
-
-    if (savedLanguage) {
-      this._translocoService.setActiveLang(savedLanguage);
-    }
-    this.getActiveLang();
-  }
-
-  public getActiveLang(): void {
-    this._changeLanguageService.getActiveLang();
-  }
-
-  public changeLanguage(): void {
-    this._changeLanguageService.changeLanguage();
   }
 
   public onConfigButtonClick(): void {

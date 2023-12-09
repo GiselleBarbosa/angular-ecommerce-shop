@@ -3,7 +3,6 @@ import { first, map } from 'rxjs';
 
 import { ButtonModule } from 'primeng/button';
 import { CategoriesService } from 'src/app/features/products/services/categories/categories.service';
-import { ChangeLanguageService } from '../services/change-language.service';
 import { FormsModule } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
@@ -26,12 +25,9 @@ import { TranslocoModule } from '@ngneat/transloco';
 })
 export class SidebarComponent implements OnInit {
   private _categoriesService = inject(CategoriesService);
-  private _changeLanguageService = inject(ChangeLanguageService);
 
   public sidebarVisible = false;
-
   public navigationMenuItems!: MenuItem[];
-
   public categories!: MenuItem[] | any;
   public selectedCategories!: MenuItem[];
 
@@ -74,14 +70,6 @@ export class SidebarComponent implements OnInit {
         label: 'Login',
         icon: 'pi pi-user',
         routerLink: 'auth/login',
-      },
-
-      {
-        label: 'Translate',
-        icon: 'pi pi-language',
-        command: (): void => {
-          this._changeLanguageService.changeLanguage();
-        },
       },
     ];
   }
