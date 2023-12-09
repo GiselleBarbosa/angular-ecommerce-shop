@@ -23,7 +23,22 @@
   },
 
   "sidebar": {
-    "setting": "Settings",
+    "setting": "Navigation",
     "categories": "Categories"
+  },
+
+  "config": {
+    "title": "Accessibily menu",
+    "language": "Language",
+    "portuguese": "Portuguese",
+    "english": "English",
+    "scale": "Scale",
+    "menu-type": "Menu type",
+    "static": "Static",
+    "overlay": "Overlay",
+    "input-style": "Input style",
+    "outlined": "Outlined",
+    "filled": "Filled",
+    "ripple-effect": "Ripple Effect"
   }
 }

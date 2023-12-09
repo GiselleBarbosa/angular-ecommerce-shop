@@ -23,7 +23,22 @@
   },
 
   "sidebar": {
-    "setting": "Configurações",
+    "setting": "Navegação",
     "categories": "Categorias"
+  },
+
+  "config": {
+    "title": "Menu de acessibilidade",
+    "language": "Idioma",
+    "portuguese": "Portuguese",
+    "english": "English",
+    "scale": "Escala",
+    "menu-type": "Tipo de menu",
+    "static": "Estatico",
+    "overlay": "Sobreposto",
+    "input-style": "Tipo de campos de entrada",
+    "outlined": "Destacado",
+    "filled": "Preenchido",
+    "ripple-effect": "Efeito cascata"
   }
 }

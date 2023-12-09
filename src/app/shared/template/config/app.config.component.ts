@@ -1,5 +1,6 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { NgClass, NgFor, NgIf } from '@angular/common';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 import { ButtonModule } from 'primeng/button';
 import { ConfigService } from './services/config.service';
@@ -19,6 +20,7 @@ import { SidebarModule } from 'primeng/sidebar';
     RadioButtonModule,
     ButtonModule,
     InputSwitchModule,
+    TranslocoModule,
     NgIf,
     NgFor,
     NgClass,
@@ -27,10 +29,24 @@ import { SidebarModule } from 'primeng/sidebar';
 export class AppConfigComponent implements OnInit {
   private _configService = inject(ConfigService);
   private _layoutService = inject(LayoutService);
+  private _translocoService = inject(TranslocoService);
 
   @Input() public minimal = false;
 
   public scales: number[] = [14, 15, 16, 17, 18];
+
+  public languageOptions!: string;
+
+  constructor() {
+    const savedLanguage = localStorage.getItem('saved_language');
+
+    if (savedLanguage) {
+      this.languageOptions = savedLanguage;
+      this.setActiveLanguage(savedLanguage);
+    } else {
+      this.languageOptions = 'pt';
+    }
+  }
 
   public ngOnInit(): void {
     const savedFontSize = this._configService.getFontSize();
@@ -88,10 +104,6 @@ export class AppConfigComponent implements OnInit {
     localStorage.setItem('saved_ripple', JSON.stringify(_val));
   }
 
-  public onConfigButtonClick(): void {
-    this._layoutService.showConfigSidebar();
-  }
-
   public changeTheme(theme: string, colorScheme: string): void {
     this._configService.changeTheme(theme, colorScheme);
   }
@@ -108,5 +120,11 @@ export class AppConfigComponent implements OnInit {
 
   public applyScale(): void {
     this._configService.applyScale(this.scale);
+  }
+
+  public setActiveLanguage(lang: string): void {
+    this._translocoService.setActiveLang(lang);
+
+    localStorage.setItem('saved_language', lang);
   }
 }

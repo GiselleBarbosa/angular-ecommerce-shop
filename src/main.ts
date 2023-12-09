@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigService } from './app/shared/template/config/services/config.service';
 import { provideTransloco } from '@ngneat/transloco';
 import { RequestsInterceptor } from './app/core/interceptors/request-interceptor.service';
-import { TranslocoHttpLoader } from './app/modules/internationalization/transloco-loader';
+import { TranslocoHttpLoader } from './app/shared/internationalization/transloco-loader';
 
 export function setSavedTheme(_configService: ConfigService) {
   return (): void => {

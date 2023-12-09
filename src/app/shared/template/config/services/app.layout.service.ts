@@ -18,7 +18,7 @@ export class LayoutService {
 
   public state: LayoutState = {
     overlayMenuActive: false,
-    configSidebarVisible: false,
+    configSidebarVisible: true,
   };
 
   private configUpdate = new Subject<AppConfig>();

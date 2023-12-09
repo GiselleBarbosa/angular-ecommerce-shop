@@ -5,12 +5,12 @@ import { first, Subscription } from 'rxjs';
 
 import { ButtonModule } from 'primeng/button';
 import { Cart } from 'src/app/core/interface/cart';
-import { CartService } from 'src/app/modules/cart/services/cart.service';
+import { CartService } from '../../cart/services/cart.service';
 import { DataViewModule } from 'primeng/dataview';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Products } from '../../../core/interface/products';
-import { ProductsService } from 'src/app/modules/management/services/products/products.service';
+import { ProductsService } from 'src/app/features/products/services/products/products.service';
 import { RatingModule } from 'primeng/rating';
 import { TranslocoModule } from '@ngneat/transloco';
 
