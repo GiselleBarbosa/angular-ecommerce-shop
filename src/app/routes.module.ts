@@ -3,11 +3,15 @@ import { AdministratorComponent } from './features/administrator/administrator.c
 import { CartComponent } from './features/cart/cart.component';
 import { CheckoutComponent } from './features/checkout/checkout.component';
 import { CreateComponent } from './features/auth/create/create.component';
+import { FirstStepComponent } from './features/checkout/components/first-step/first-step.component';
+import { FourthStepComponent } from './features/checkout/components/fourth-step/fourth-step.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { LogoutComponent } from './features/auth/logout/logout.component';
 import { ProductDetailsComponent } from './features/products/product-details/product-details.component';
 import { ProductsComponent } from './features/products/products-container/products.component';
 import { Routes } from '@angular/router';
+import { SecondStepComponent } from './features/checkout/components/second-step/second-step.component';
+import { ThirdStepComponent } from './features/checkout/components/third-step/third-step.component';
 
 export const productsRoutes: Routes = [
   {
@@ -62,6 +66,25 @@ export const checkoutRoutes: Routes = [
     path: '',
     component: CheckoutComponent,
     title: 'Checkout page',
+
+    children: [
+      {
+        path: 'first-step',
+        component: FirstStepComponent,
+      },
+      {
+        path: 'second-step',
+        component: SecondStepComponent,
+      },
+      {
+        path: 'third-step',
+        component: ThirdStepComponent,
+      },
+      {
+        path: 'fourth-step',
+        component: FourthStepComponent,
+      },
+    ],
   },
 ];
 

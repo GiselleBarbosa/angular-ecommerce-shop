@@ -20,19 +20,19 @@ export class CheckoutComponent implements OnInit {
       {
         label: 'Dados pessoais',
         target: 'personal-data',
-        routerLink: 'personal-data',
+        routerLink: 'first-step',
       },
       {
         label: 'Dados da entrega',
-        routerLink: 'shipping',
+        routerLink: 'second-step',
       },
       {
         label: 'Dados do pagamento',
-        routerLink: 'payment',
+        routerLink: 'third-step',
       },
       {
         label: 'Confirmação do pedido',
-        routerLink: 'confirmation',
+        routerLink: 'fourth-step',
       },
     ];
   }
