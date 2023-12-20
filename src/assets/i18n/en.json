@@ -40,5 +40,34 @@
     "outlined": "Outlined",
     "filled": "Filled",
     "ripple-effect": "Ripple Effect"
+  },
+
+  "login": {
+    "title": "Acess your account",
+    "email": "Email",
+    "password": "Password",
+    "tipPassword": "Strength of your password",
+    "suggestions": "Suggestions",
+    "tip1": "At least one lowercase character",
+    "tip2": "At least one capital character",
+    "tip3": "At least one numeric character",
+    "tip4": "At least 8 character",
+    "forgotPassword": "Forgot password?",
+    "notHaveAccount": "I don't have an account",
+    "createAccount": "Register here"
+  },
+  
+  "logout": {
+    "title": "You have been disconnected. What do you want to do now?"
+  },
+
+  "invalidFormFeedback": {
+    "required": "Required field",
+    "maxLength": "Maximum characters is {{ maxLength}} ",
+    "minLength": "Minimum characters is {{ minLength }} ",
+    "email": "Invalid email",
+    "pattern": "Invalid character type for this field",
+    "confirmPassword": "Passwords do not match",
+    "invalid": "Select one of the option"
   }
 }

@@ -11,6 +11,7 @@ import { ToastModule } from 'primeng/toast';
 @Component({
   selector: 'app-root',
   standalone: true,
+  templateUrl: 'app.component.html',
   imports: [
     RouterOutlet,
     FooterComponent,
@@ -18,24 +19,9 @@ import { ToastModule } from 'primeng/toast';
     ToastModule,
     ConfirmDialogModule,
   ],
-  template: `
-    <p-toast />
-    <p-confirmDialog />
-
-    <app-header />
-
-    <div class="p-5 mb-8" style="min-height: 73vh">
-      <router-outlet />
-    </div>
-
-    <div class="bottom-0" style="width: 100%">
-      <app-footer />
-    </div>
-  `,
 })
 export class AppComponent implements OnInit, OnDestroy {
   private _primengConfig = inject(PrimeNGConfig);
-
   private _subscription!: Subscription;
 
   public ngOnInit(): void {

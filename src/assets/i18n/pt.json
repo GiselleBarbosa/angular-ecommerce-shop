@@ -40,5 +40,34 @@
     "outlined": "Destacado",
     "filled": "Preenchido",
     "ripple-effect": "Efeito cascata"
+  },
+
+  "login": {
+    "title": "Acesse sua conta",
+    "email": "Email",
+    "password": "Senha",
+    "tipPassword": "Força de sua senha",
+    "suggestions": "Sugestões",
+    "tip1": "Ao menos um caracter minúsculo",
+    "tip2": "Ao menos um caracter maiúsculo",
+    "tip3": "Ao menos um caracter numérico",
+    "tip4": "No minímo 8 caracteres",
+    "forgotPassword": "Esqueceu a senha?",
+    "notHaveAccount": "Não tenho uma conta",
+    "createAccount": "Cadastre-se aqui"
+  },
+
+  "logout": {
+    "title": "Você foi desconectado. O que deseja fazer agora?"
+  },
+
+  "invalidFormFeedback": {
+    "required": "Campo obrigatório",
+    "maxLength": "Máximo de caracteres é {{ maxLength }} ",
+    "minLength": "Minímo de caracteres é {{ minLength }}",
+    "email": "Email inválido",
+    "pattern": "Tipo de caracter inválido para este campo",
+    "confirmPassword": "Senhas não conferem",
+    "invalid": "Selecione uma opção"
   }
 }

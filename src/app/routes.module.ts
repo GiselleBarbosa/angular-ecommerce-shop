@@ -1,6 +1,10 @@
+import { AdminGuard } from './core/guards/admin.guard';
+import { AdministratorComponent } from './features/administrator/administrator.component';
 import { CartComponent } from './features/cart/cart.component';
 import { CheckoutComponent } from './features/checkout/checkout.component';
+import { CreateComponent } from './features/auth/create/create.component';
 import { LoginComponent } from './features/auth/login/login.component';
+import { LogoutComponent } from './features/auth/logout/logout.component';
 import { ProductDetailsComponent } from './features/products/product-details/product-details.component';
 import { ProductsComponent } from './features/products/products-container/products.component';
 import { Routes } from '@angular/router';
@@ -39,6 +43,18 @@ export const authRoutes: Routes = [
     component: LoginComponent,
     title: 'Login page',
   },
+
+  {
+    path: 'logout',
+    component: LogoutComponent,
+    title: 'Logout page',
+  },
+
+  {
+    path: 'create',
+    component: CreateComponent,
+    title: 'Register page',
+  },
 ];
 
 export const checkoutRoutes: Routes = [
@@ -46,5 +62,14 @@ export const checkoutRoutes: Routes = [
     path: '',
     component: CheckoutComponent,
     title: 'Checkout page',
+  },
+];
+
+export const adminRoutes: Routes = [
+  {
+    path: '',
+    component: AdministratorComponent,
+    title: 'Admin page',
+    canActivate: [AdminGuard],
   },
 ];

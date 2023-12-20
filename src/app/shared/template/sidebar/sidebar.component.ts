@@ -71,6 +71,12 @@ export class SidebarComponent implements OnInit {
         icon: 'pi pi-user',
         routerLink: 'auth/login',
       },
+
+      {
+        label: 'Admininstration',
+        icon: 'pi pi-shield',
+        routerLink: 'admin',
+      },
     ];
   }
 }
