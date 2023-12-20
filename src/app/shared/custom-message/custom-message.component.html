@@ -1,0 +1,36 @@
+<ng-container *transloco="let transloco">
+  <ng-container *ngIf="hasError()">
+    <ng-container *ngIf="form.get(field)?.hasError('required')">
+      <p>{{ transloco('invalidFormFeedback.required') }}</p>
+    </ng-container>
+
+    <ng-container *ngIf="form.get(field)?.hasError('maxlength')">
+      <p>{{ transloco('invalidFormFeedback.maxLength') }} {{ maxLength }}</p>
+    </ng-container>
+
+    <ng-container *ngIf="form.get(field)?.hasError('minlength')">
+      <p>{{ transloco('invalidFormFeedback.minLength') }} {{ minLength }}</p>
+    </ng-container>
+
+    <ng-container *ngIf="form.get(field)?.hasError('email')">
+      <p>{{ transloco('invalidFormFeedback.email') }}</p>
+    </ng-container>
+
+    <ng-container *ngIf="form.get(field)?.hasError('pattern')">
+      <p>{{ transloco('invalidFormFeedback.pattern') }}</p>
+    </ng-container>
+
+    <ng-container
+      *ngIf="
+        !form.get(field)?.hasError('required') &&
+        !form.get(field)?.hasError('maxlength') &&
+        !form.get(field)?.hasError('minlength') &&
+        !form.get(field)?.hasError('email') &&
+        !form.get(field)?.hasError('pattern')
+      ">
+      <p>
+        {{ transloco('invalidFormFeedback.invalid') }}
+      </p>
+    </ng-container>
+  </ng-container>
+</ng-container>
