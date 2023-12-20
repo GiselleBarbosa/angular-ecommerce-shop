@@ -1,1 +1,14 @@
-<p>checkout works!</p>
+<ng-container *transloco="let transloco">
+  <div class="flex align-content-center align-items-center gap-3">
+    <h1 style="color: var(--primary-color); font-size: 1.2rem">
+      {{ transloco('checkout.title') }}
+    </h1>
+  </div>
+
+  <div class="mt-4">
+    <p-steps [model]="items" [readonly]="true"></p-steps>
+    <div class="mt-7">
+      <router-outlet />
+    </div>
+  </div>
+</ng-container>

@@ -69,5 +69,9 @@
     "pattern": "Tipo de caracter inválido para este campo",
     "confirmPassword": "Senhas não conferem",
     "invalid": "Selecione uma opção"
+  },
+
+  "checkout": {
+    "title": "Finalize sua compra"
   }
 }

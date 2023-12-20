@@ -56,7 +56,7 @@
     "notHaveAccount": "I don't have an account",
     "createAccount": "Register here"
   },
-  
+
   "logout": {
     "title": "You have been disconnected. What do you want to do now?"
   },
@@ -69,5 +69,9 @@
     "pattern": "Invalid character type for this field",
     "confirmPassword": "Passwords do not match",
     "invalid": "Select one of the option"
+  },
+
+  "checkout": {
+    "title": "Complete your purchase"
   }
 }

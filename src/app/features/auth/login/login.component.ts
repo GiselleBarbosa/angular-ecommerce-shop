@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
-import { AuthService } from 'src/app/features/auth/services/auth/auth.service';
+import { AuthService } from '../services/auth/auth.service';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CustomMessageComponent } from 'src/app/shared/custom-message/custom-message.component';
