@@ -1,0 +1,16 @@
+import { AdminGuard } from './admin.guard';
+import { CanActivateFn } from '@angular/router';
+import { TestBed } from '@angular/core/testing';
+
+describe('AdminGuard', () => {
+  const executeGuard: CanActivateFn = (...guardParameters) =>
+    TestBed.runInInjectionContext(() => AdminGuard(...guardParameters));
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+  });
+
+  it('should be created', () => {
+    expect(executeGuard).toBeTruthy();
+  });
+});

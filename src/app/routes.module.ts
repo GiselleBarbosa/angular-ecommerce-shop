@@ -1,6 +1,7 @@
-import { AdminGuard } from './core/guards/admin.guard';
+import { AdminGuard } from './core/guards/admin/admin.guard';
 import { AdministratorComponent } from './features/administrator/administrator.component';
 import { CartComponent } from './features/cart/cart.component';
+import { CartGuard } from './core/guards/cart/cart.guard';
 import { CheckoutComponent } from './features/checkout/checkout.component';
 import { CreateComponent } from './features/auth/create/create.component';
 import { FirstStepComponent } from './features/checkout/components/first-step/first-step.component';
@@ -66,23 +67,28 @@ export const checkoutRoutes: Routes = [
     path: '',
     component: CheckoutComponent,
     title: 'Checkout page',
+    canActivate: [CartGuard],
 
     children: [
       {
         path: 'first-step',
         component: FirstStepComponent,
+        canActivate: [CartGuard],
       },
       {
         path: 'second-step',
         component: SecondStepComponent,
+        canActivate: [CartGuard],
       },
       {
         path: 'third-step',
         component: ThirdStepComponent,
+        canActivate: [CartGuard],
       },
       {
         path: 'fourth-step',
         component: FourthStepComponent,
+        canActivate: [CartGuard],
       },
     ],
   },

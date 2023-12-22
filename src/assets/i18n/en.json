@@ -72,6 +72,14 @@
   },
 
   "checkout": {
-    "title": "Complete your purchase"
+    "title": "Complete your purchase",
+    "first-step": {
+      "title": "Provide identification data",
+      "register": "Already registration?",
+      "name": "Full name",
+      "email": "Email",
+      "placeholder-name": "Provide full name",
+      "next-step-btn": "Next"
+    }
   }
 }

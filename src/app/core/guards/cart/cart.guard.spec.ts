@@ -1,9 +1,10 @@
-import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
+import { CartGuard } from './cart.guard';
+import { TestBed } from '@angular/core/testing';
 
-describe('adminGuard', () => {
+describe('CartGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) =>
-    TestBed.runInInjectionContext(() => adminGuard(...guardParameters));
+    TestBed.runInInjectionContext(() => CartGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
