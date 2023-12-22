@@ -8,7 +8,7 @@ describe('FirstStepComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FirstStepComponent]
+      imports: [FirstStepComponent],
     });
     fixture = TestBed.createComponent(FirstStepComponent);
     component = fixture.componentInstance;

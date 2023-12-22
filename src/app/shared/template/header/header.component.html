@@ -20,18 +20,24 @@
         severity="danger"
         value="{{ total }}"
         class="icon pi pi-shopping-cart mr-2 cursor-pointer text-secondary"
+        pTooltip="Você têm {{ total }} produto(s) no carrinho"
+        tooltipPosition="left"
         routerLink="cart"></i>
     </ng-container>
     <i
       (click)="onConfigButtonClick()"
       class="pi pi-cog cursor-pointer"
-      style="font-size: 1.5rem; color: var(--primary-color)"></i>
+      style="font-size: 1.5rem; color: var(--primary-color)"
+      pTooltip="Acessar o menu de acessibilidade"
+      tooltipPosition="left"></i>
 
     <ng-template #emptyCart>
       <i
         style="font-size: 1.5rem; color: var(--primary-color)"
         class="icon pi pi-shopping-cart mr-2 cursor-pointer"
-        routerLink="cart"></i>
+        routerLink="cart"
+        pTooltip="Acessar o carrinho de compras"
+        tooltipPosition="left"></i>
     </ng-template>
   </div>
 </p-toolbar>

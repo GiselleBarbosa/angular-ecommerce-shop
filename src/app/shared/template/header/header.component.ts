@@ -11,6 +11,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { Subscription } from 'rxjs';
 import { ToolbarModule } from 'primeng/toolbar';
+import { TooltipModule } from 'primeng/tooltip';
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
@@ -30,6 +31,7 @@ import { TranslocoModule } from '@ngneat/transloco';
     SidebarComponent,
     TranslocoModule,
     AppConfigComponent,
+    TooltipModule,
   ],
 })
 export class HeaderComponent implements OnInit, OnDestroy {

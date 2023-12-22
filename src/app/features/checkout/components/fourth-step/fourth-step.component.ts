@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './fourth-step.component.html',
-  styleUrls: ['./fourth-step.component.scss']
+  styleUrls: ['./fourth-step.component.scss'],
 })
-export class FourthStepComponent {
-
-}
+export class FourthStepComponent {}

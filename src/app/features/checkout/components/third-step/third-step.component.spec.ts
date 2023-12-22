@@ -8,7 +8,7 @@ describe('ThirdStepComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ThirdStepComponent]
+      imports: [ThirdStepComponent],
     });
     fixture = TestBed.createComponent(ThirdStepComponent);
     component = fixture.componentInstance;
