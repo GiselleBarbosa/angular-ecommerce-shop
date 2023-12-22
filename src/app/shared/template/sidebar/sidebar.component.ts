@@ -12,7 +12,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-sidebar',
-  standalone: true,
+  styleUrls: ['./sidebar.component.scss'],
   templateUrl: './sidebar.component.html',
   imports: [
     SidebarModule,
@@ -22,6 +22,7 @@ import { TranslocoModule } from '@ngneat/transloco';
     MenuModule,
     TranslocoModule,
   ],
+  standalone: true,
 })
 export class SidebarComponent implements OnInit {
   private _categoriesService = inject(CategoriesService);
