@@ -8,5 +8,5 @@ import { TranslocoService } from '@ngneat/transloco';
 export class ChangeLanguageService {
   private _translocoService = inject(TranslocoService);
 
-  p
+  p;
 }

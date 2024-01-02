@@ -1,6 +1,5 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 import { AppConfigComponent } from '../config/app.config.component';
 import { BadgeModule } from 'primeng/badge';
@@ -26,14 +25,12 @@ import { ToolbarModule } from 'primeng/toolbar';
     AsyncPipe,
     BadgeModule,
     SidebarComponent,
-    TranslocoModule,
     AppConfigComponent,
   ],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private _cartService = inject(CartService);
-  private _translocoService = inject(TranslocoService);
   private _layoutService = inject(LayoutService);
 
   private subscription!: Subscription;
