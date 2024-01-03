@@ -61,6 +61,7 @@ bootstrapApplication(AppComponent, {
 
     ConfirmationService,
     MessageService,
+
     provideHttpClient(),
     provideTransloco({
       config: {
