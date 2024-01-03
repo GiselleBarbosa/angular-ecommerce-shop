@@ -8,7 +8,7 @@ export class ConfigService {
   private _layoutService = inject(LayoutService);
 
   public getTheme(): string {
-    const savedTheme = localStorage.getItem('saved_theme');
+    const savedTheme = localStorage.getItem('ecommerce_saved_theme');
 
     if (savedTheme) {
       return savedTheme;
@@ -18,7 +18,7 @@ export class ConfigService {
   }
 
   public getScheme(): string {
-    const savedScheme = localStorage.getItem('saved_scheme');
+    const savedScheme = localStorage.getItem('ecommerce_saved_scheme');
 
     if (savedScheme) {
       return savedScheme;
@@ -28,12 +28,12 @@ export class ConfigService {
   }
 
   public setTheme(theme: string, colorScheme: string): void {
-    localStorage.setItem('saved_theme', theme);
-    localStorage.setItem('saved_scheme', colorScheme);
+    localStorage.setItem('ecommerce_saved_theme', theme);
+    localStorage.setItem('ecommerce_saved_scheme', colorScheme);
   }
 
   public getFontSize(): number {
-    const savedFontSize = localStorage.getItem('saved_font_size');
+    const savedFontSize = localStorage.getItem('ecommerce_saved_font_size');
 
     if (savedFontSize) {
       return JSON.parse(savedFontSize);
@@ -43,7 +43,7 @@ export class ConfigService {
   }
 
   public setFontSize(size: number): void {
-    localStorage.setItem('saved_font_size', JSON.stringify(size));
+    localStorage.setItem('ecommerce_saved_font_size', JSON.stringify(size));
   }
 
   public applyScale(scale: number): void {

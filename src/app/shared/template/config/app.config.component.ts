@@ -38,7 +38,7 @@ export class AppConfigComponent implements OnInit {
   public languageOptions!: string;
 
   constructor() {
-    const savedLanguage = localStorage.getItem('saved_language');
+    const savedLanguage = localStorage.getItem('ecommerce_saved_language');
 
     if (savedLanguage) {
       this.languageOptions = savedLanguage;
@@ -51,7 +51,7 @@ export class AppConfigComponent implements OnInit {
   public ngOnInit(): void {
     const savedFontSize = this._configService.getFontSize();
 
-    const savedRipple = localStorage.getItem('saved_ripple');
+    const savedRipple = localStorage.getItem('ecommerce_saved_ripple');
 
     if (savedFontSize) {
       this.scale = savedFontSize;
@@ -101,7 +101,7 @@ export class AppConfigComponent implements OnInit {
 
   set ripple(_val: boolean) {
     this._layoutService.config.ripple = _val;
-    localStorage.setItem('saved_ripple', JSON.stringify(_val));
+    localStorage.setItem('ecommerce_saved_ripple', JSON.stringify(_val));
   }
 
   public changeTheme(theme: string, colorScheme: string): void {
@@ -125,6 +125,6 @@ export class AppConfigComponent implements OnInit {
   public setActiveLanguage(lang: string): void {
     this._translocoService.setActiveLang(lang);
 
-    localStorage.setItem('saved_language', lang);
+    localStorage.setItem('ecommerce_saved_language', lang);
   }
 }
