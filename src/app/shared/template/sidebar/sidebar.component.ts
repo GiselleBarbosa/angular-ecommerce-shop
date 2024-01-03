@@ -37,8 +37,8 @@ export class SidebarComponent implements OnInit {
     this.getItemCategoriesMenu();
   }
 
-  public sidebarHandler(): void {
-    this.sidebarVisible = true;
+  public toogleSidebar(): void {
+    this.sidebarVisible = !this.sidebarVisible;
   }
 
   public getItemCategoriesMenu(): void {
@@ -51,6 +51,9 @@ export class SidebarComponent implements OnInit {
             return {
               label: category,
               routerLink: `products/category/${category}`,
+              command: (): void => {
+                this.toogleSidebar();
+              },
             };
           });
         })
@@ -64,12 +67,18 @@ export class SidebarComponent implements OnInit {
         label: 'Cart',
         icon: 'pi pi-shopping-cart',
         routerLink: '/cart',
+        command: (): void => {
+          this.toogleSidebar();
+        },
       },
 
       {
         label: 'Login',
         icon: 'pi pi-user',
         routerLink: 'auth/login',
+        command: (): void => {
+          this.toogleSidebar();
+        },
       },
     ];
   }
