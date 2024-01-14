@@ -10,8 +10,8 @@ import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   templateUrl: 'app.component.html',
+  standalone: true,
   imports: [
     RouterOutlet,
     FooterComponent,

@@ -29,7 +29,6 @@ import { TranslocoModule } from '@ngneat/transloco';
     AsyncPipe,
     BadgeModule,
     SidebarComponent,
-    TranslocoModule,
     AppConfigComponent,
     TooltipModule,
   ],
