@@ -11,10 +11,14 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { Subscription } from 'rxjs';
 import { ToolbarModule } from 'primeng/toolbar';
+import { TooltipModule } from 'primeng/tooltip';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-header',
   standalone: true,
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
   imports: [
     ToolbarModule,
     NgIf,
@@ -26,8 +30,8 @@ import { ToolbarModule } from 'primeng/toolbar';
     BadgeModule,
     SidebarComponent,
     AppConfigComponent,
+    TooltipModule,
   ],
-  templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private _cartService = inject(CartService);

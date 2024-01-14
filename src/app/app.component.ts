@@ -10,9 +10,8 @@ import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
+  templateUrl: 'app.component.html',
   standalone: true,
-  styleUrls: ['./app.component.scss'],
-  templateUrl: './app.component.html',
   imports: [
     RouterOutlet,
     FooterComponent,
@@ -23,7 +22,6 @@ import { ToastModule } from 'primeng/toast';
 })
 export class AppComponent implements OnInit, OnDestroy {
   private _primengConfig = inject(PrimeNGConfig);
-
   private _subscription!: Subscription;
 
   public ngOnInit(): void {

@@ -30,7 +30,8 @@
                 [routerLink]="['/products/product/details/' + product.id]"
                 [src]="product.images[0]"
                 [alt]="product.title"
-                [title]="'View detail product ' + product.title"
+                pTooltip="See more details of{{ product.title }}"
+                tooltipPosition="right"
                 width="100" />
             </td>
             <td>{{ product.units }}</td>
@@ -42,17 +43,23 @@
                 (onClick)="decreaseUnits(product)"
                 class="mr-1"
                 icon="pi pi-minus"
-                styleClass="p-button-rounded p-button-secondary p-button-text"></p-button>
+                styleClass="p-button-rounded p-button-secondary p-button-text"
+                pTooltip="Reduce units"
+                tooltipPosition="left"></p-button>
               <p-button
                 (onClick)="increaseUnits(product)"
                 class="mr-3"
                 icon="pi pi-plus"
-                styleClass="p-button-rounded p-button-secondary p-button-text"></p-button>
+                styleClass="p-button-rounded p-button-secondary p-button-text"
+                pTooltip="Increase units"
+                tooltipPosition="right"></p-button>
 
               <p-button
                 (onClick)="removeAllUnits(product.id)"
                 icon="pi pi-trash"
-                styleClass="p-button-rounded p-button-danger  p-button-text"></p-button>
+                styleClass="p-button-rounded p-button-danger  p-button-text"
+                pTooltip="Remove all units"
+                tooltipPosition="right"></p-button>
             </td>
           </tr>
         </ng-template>
@@ -88,7 +95,7 @@
           </div>
           <div>
             <p-button
-              routerLink="/checkout"
+              routerLink="/checkout/first-step"
               icon="pi pi-shopping-cart"
               label="Buy now"></p-button>
           </div>

@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
@@ -28,6 +29,7 @@ import { TranslocoModule } from '@ngneat/transloco';
     ToastModule,
     RouterLink,
     TranslocoModule,
+    TooltipModule,
   ],
 })
 export class CartComponent implements OnInit {

@@ -1,11 +1,12 @@
 import { catchError, retry } from 'rxjs/operators';
 import {
+  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
@@ -20,8 +21,14 @@ export class RequestsInterceptor implements HttpInterceptor {
     if (request.method === 'GET') {
       return next.handle(request).pipe(
         retry(4),
-        catchError(error => {
-          return of(error);
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 0) {
+            console.log('Request error, check internet connection.');
+            return throwError('Request error, check internet connection.');
+          } else {
+            console.log('Unexpected error occurred. Try again later.');
+            return throwError('Unexpected error occurred. Try again later.');
+          }
         })
       );
     } else {
