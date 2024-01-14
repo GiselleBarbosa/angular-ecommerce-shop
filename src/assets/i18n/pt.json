@@ -69,5 +69,17 @@
     "pattern": "Tipo de caracter inválido para este campo",
     "confirmPassword": "Senhas não conferem",
     "invalid": "Selecione uma opção"
+  },
+
+  "checkout": {
+    "title": "Finalize sua compra",
+    "first-step": {
+      "title": "Informe os dados para identificação",
+      "register": "Já tem uma conta?",
+      "name": "Nome completo",
+      "email": "Email",
+      "placeholder-name": "Digite o nome completo",
+      "next-step-btn": "Avançar"
+    }
   }
 }

@@ -12,6 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from 'src/app/features/products/services/products/products.service';
 import { RatingModule } from 'primeng/rating';
+import { TooltipModule } from 'primeng/tooltip';
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
@@ -27,6 +28,7 @@ import { TranslocoModule } from '@ngneat/transloco';
     RouterLink,
     CurrencyPipe,
     TranslocoModule,
+    TooltipModule,
   ],
 })
 export class ProductsComponent implements OnInit, OnDestroy {

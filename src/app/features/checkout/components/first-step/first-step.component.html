@@ -1,0 +1,57 @@
+<ng-container *transloco="let transloco">
+  <p-card>
+    <ng-template pTemplate="title">
+      <h1 style="color: var(--primary-color); font-size: 1.2rem">
+        {{ transloco('checkout.first-step.title') }}
+      </h1>
+    </ng-template>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="card p-fluid gap-3 col-12 flex-wrap formgroup-inline">
+        <div class="flex-auto col-12 lg:col-12 md:col-12 sm:col-12">
+          <label class="font-semibold block" for="register-button">
+            {{ transloco('checkout.first-step.register') }}</label
+          >
+
+          <div class="flex-auto col-12 lg:col-2 md:col-2 sm:col-2">
+            <p-button label="Login" routerLink="/auth/login" />
+          </div>
+        </div>
+
+        <div class="flex-auto col-6">
+          <label class="font-semibold block mb-2" for="name">
+            {{ transloco('checkout.first-step.name') }}</label
+          >
+          <input
+            type="text"
+            pInputText
+            formControlName="name"
+            placeholder="{{ transloco('checkout.first-step.placeholder-name') }}" />
+          <app-custom-message
+            [form]="form"
+            [field]="'name'"
+            [maxLength]="30"
+            [minLength]="5" />
+        </div>
+
+        <div class="flex-auto col-3">
+          <label class="font-semibold block mb-2">
+            {{ transloco('checkout.first-step.email') }}</label
+          >
+          <input
+            type="text"
+            pInputText
+            formControlName="email"
+            placeholder="email@email" />
+          <app-custom-message [form]="form" [field]="'email'" [pattern]="'email'" />
+        </div>
+      </div>
+
+      <div class="flex justify-content-end mt-4">
+        <p-button type="submit">
+          {{ transloco('checkout.first-step.next-step-btn') }}</p-button
+        >
+      </div>
+    </form>
+  </p-card>
+</ng-container>
