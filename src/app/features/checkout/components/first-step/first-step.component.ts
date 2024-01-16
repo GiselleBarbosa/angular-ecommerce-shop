@@ -11,7 +11,6 @@ import { MessageService } from 'primeng/api';
 import { regex } from 'src/app/core/regex/regex';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslocoModule } from '@ngneat/transloco';
-import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 
 @Component({
   selector: 'app-first-step',
@@ -24,7 +23,6 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
     InputTextModule,
     InputMaskModule,
     CustomMessageComponent,
-    TriStateCheckboxModule,
     ReactiveFormsModule,
     RouterLink,
     TranslocoModule,

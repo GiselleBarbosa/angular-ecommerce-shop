@@ -39,11 +39,10 @@
           <label class="font-semibold block mb-2" for="cpf">
             {{ transloco('checkout.first-step.cpf') }}</label
           >
-          <input
+          <p-inputMask
             type="text"
-            maxlength="14"
-            pInputText
             formControlName="cpf"
+            mask="999.999.999-99"
             placeholder="000.000.000-00" />
           <app-custom-message
             [form]="form"
@@ -70,10 +69,10 @@
           <label class="font-semibold block mb-2">
             {{ transloco('checkout.first-step.mobile') }}</label
           >
-          <input
+          <p-inputMask
             type="text"
-            pInputText
             formControlName="mobile"
+            mask="+99 (99) 99999-9999"
             placeholder="+55 (00) 00000-0000" />
           <app-custom-message [form]="form" [field]="'mobile'" />
         </div>

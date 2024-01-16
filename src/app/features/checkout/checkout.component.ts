@@ -18,20 +18,20 @@ export class CheckoutComponent implements OnInit {
   public ngOnInit(): void {
     this.items = [
       {
-        label: 'Dados pessoais',
+        label: 'Identificação',
         target: 'personal-data',
         routerLink: 'first-step',
       },
       {
-        label: 'Dados da entrega',
+        label: 'Endereço',
         routerLink: 'second-step',
       },
       {
-        label: 'Dados do pagamento',
+        label: 'Pagamento',
         routerLink: 'third-step',
       },
       {
-        label: 'Confirmação do pedido',
+        label: 'Confirmação',
         routerLink: 'fourth-step',
       },
     ];
