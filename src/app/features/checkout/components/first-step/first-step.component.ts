@@ -39,22 +39,7 @@ export class FirstStepComponent implements OnInit {
   public form!: FormGroup;
 
   public ngOnInit(): void {
-    this.form = this._fb.group({
-      name: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(30),
-          Validators.pattern(regex.char),
-        ]),
-      ],
-
-      email: [
-        '',
-        Validators.compose([Validators.required, Validators.pattern(regex.email)]),
-      ],
-    });
+    this.initializeForm();
 
     const savedForm = localStorage.getItem('saved_checkout_form_step_1');
 
@@ -69,11 +54,69 @@ export class FirstStepComponent implements OnInit {
       });
   }
 
+  public initializeForm(): void {
+    this.form = this._fb.group({
+      name: [
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(30),
+          Validators.pattern(regex.char),
+        ]),
+      ],
+
+      cpf: [
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(14),
+          Validators.maxLength(14),
+          Validators.pattern(regex.cpf),
+        ]),
+      ],
+
+      birthday: [null, Validators.required],
+
+      mobile: [
+        null,
+        Validators.compose([Validators.required, Validators.pattern(regex.phone)]),
+      ],
+      email: [
+        null,
+        Validators.compose([Validators.required, Validators.pattern(regex.email)]),
+      ],
+
+      password: [
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(6),
+          Validators.minLength(6),
+        ]),
+      ],
+
+      confirmPassword: [
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(6),
+          Validators.minLength(6),
+        ]),
+      ],
+    });
+  }
+
   public onSubmit(): void {
     this.form.markAllAsTouched();
 
     if (this.form.valid) {
       this.form.getRawValue();
+      this._messageService.add({
+        severity: 'success',
+        summary: 'Dados pessoais foram salvos',
+        life: 500,
+      });
       this._router.navigate(['/checkout/second-step']);
     } else {
       this._messageService.add({

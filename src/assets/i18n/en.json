@@ -77,8 +77,13 @@
       "title": "Provide identification data",
       "register": "Already registration?",
       "name": "Full name",
-      "email": "Email",
       "placeholder-name": "Provide full name",
+      "cpf": "Register number",
+      "email": "Email",
+      "mobile": "Mobile",
+      "birthday": "Birthday",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
       "next-step-btn": "Next"
     }
   }
