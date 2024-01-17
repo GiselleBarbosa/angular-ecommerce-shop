@@ -89,7 +89,15 @@
     },
 
     "second-step": {
-      "title": "Informe os dados do endereço de entrega"
+      "title": "Informe os dados do endereço de entrega",
+      "zipcode": "CEP",
+      "address": "Endereço",
+      "number": "Número",
+      "complement": "Completo",
+      "reference": "Referência",
+      "neighborhood": "Bairro",
+      "city": "Cidade",
+      "uf": "UF"
     }
   }
 }
