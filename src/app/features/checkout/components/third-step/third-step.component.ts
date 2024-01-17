@@ -4,13 +4,15 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CustomMessageComponent } from 'src/app/shared/custom-message/custom-message.component';
+import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { InstallmentOptions } from './interfaces/installmentOptions.interface';
 import { MessageService } from 'primeng/api';
-import { NgClass } from '@angular/common';
 import { regex } from 'src/app/core/regex/regex';
+import { RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
@@ -27,7 +29,8 @@ import { TranslocoModule } from '@ngneat/transloco';
     TranslocoModule,
     InputMaskModule,
     DropdownModule,
-    NgClass,
+    DialogModule,
+    RouterLink,
   ],
 })
 export class ThirdStepComponent implements OnInit {
@@ -39,9 +42,23 @@ export class ThirdStepComponent implements OnInit {
 
   public installment!: InstallmentOptions[];
 
+  public isVisibleDialog = true;
+
   public ngOnInit(): void {
     this.initializeForm();
     this.setInstallmentValues();
+
+    const savedForm = localStorage.getItem('saved_checkout_form_step_3');
+
+    if (savedForm) {
+      this.form.setValue(JSON.parse(savedForm));
+    }
+
+    this.form.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(formData => {
+        localStorage.setItem('saved_checkout_form_step_3', JSON.stringify(formData));
+      });
   }
 
   public initializeForm(): void {
@@ -93,14 +110,11 @@ export class ThirdStepComponent implements OnInit {
     this.form.markAllAsTouched();
 
     if (this.form.valid) {
-      this.form.getRawValue();
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Pagamento realizado com sucesso',
-        life: 1000,
-      });
-      console.log(this.form.getRawValue());
-      // adicionar algum modal de confirmacao
+      this.showDialog();
+      localStorage.removeItem('saved_checkout_form_step_3');
+      localStorage.removeItem('saved_checkout_form_step_2');
+      localStorage.removeItem('saved_checkout_form_step_1');
+      this.form.reset();
     } else {
       this.messageService.add({
         severity: 'error',
@@ -109,5 +123,9 @@ export class ThirdStepComponent implements OnInit {
         life: 1000,
       });
     }
+  }
+
+  public showDialog(): void {
+    this.isVisibleDialog = !this.isVisibleDialog;
   }
 }

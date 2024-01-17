@@ -68,7 +68,9 @@
       <!-- btn-actions-section -->
       <div class="flex justify-content-between mt-4">
         <div class="flex justify-content-end mt-4">
-          <p-button styleClass="p-button-outlined">
+          <p-button
+            styleClass="p-button-outlined"
+            [routerLink]="['/checkout/second-step']">
             {{ transloco('checkout.previous-step-btn') }}</p-button
           >
         </div>
@@ -81,3 +83,10 @@
   </p-card>
   <ng-container
 /></ng-container>
+
+<p-dialog
+  header="Pedido confirmado"
+  [(visible)]="isVisibleDialog"
+  [style]="{ width: '85%' }">
+  <p>Seu pagamento foi realizado com sucesso!</p>
+</p-dialog>

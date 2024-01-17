@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CustomMessageComponent } from 'src/app/shared/custom-message/custom-message.component';
 import { FindAddressService } from './services/find-address.service';
 import { InputMaskModule } from 'primeng/inputmask';
@@ -28,6 +29,7 @@ import { TranslocoModule } from '@ngneat/transloco';
     ReactiveFormsModule,
     RouterLink,
     TranslocoModule,
+    ConfirmDialogModule,
   ],
 })
 export class SecondStepComponent implements OnInit {
