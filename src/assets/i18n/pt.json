@@ -75,6 +75,8 @@
     "title": "Finalize sua compra",
     "next-step-btn": "Avançar",
     "previous-step-btn": "Voltar",
+    "payment-btn": "Confirmar pedido",
+    
     "first-step": {
       "title": "Informe os dados para identificação",
       "register": "Já tem uma conta?",
@@ -98,6 +100,12 @@
       "neighborhood": "Bairro",
       "city": "Cidade",
       "uf": "UF"
+    },
+
+    "third-step": {
+      "title": "Informe os detalhes do pagamento",
+      "card": "Número do cartão",
+      "name": "Nome completo"
     }
   }
 }

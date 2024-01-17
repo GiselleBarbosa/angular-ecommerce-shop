@@ -75,6 +75,7 @@
     "title": "Complete your purchase",
     "next-step-btn": "Next",
     "previous-step-btn": "Previous",
+    "payment-btn": "Confirm order",
 
     "first-step": {
       "title": "Provide identification data",
@@ -99,6 +100,12 @@
       "neighborhood": "Neighborhood",
       "city": "City",
       "uf": "UF"
+    },
+
+    "third-step": {
+      "title": "Provide payment details",
+      "card": "Card number",
+      "name": "Full name"
     }
   }
 }

@@ -1,1 +1,70 @@
-<p>third-step works!</p>
+<ng-container *transloco="let transloco">
+  <p-card>
+    <ng-template pTemplate="title">
+      <h1 style="color: var(--primary-color); font-size: 1.2rem">
+        {{ transloco('checkout.third-step.title') }}
+      </h1>
+    </ng-template>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="card p-fluid gap-3 col-12 flex flex-wrap formgroup-inline">
+        <!-- name -->
+        <div class="col-12 sm:col-12 md:col-8 lg:col-8">
+          <label class="font-semibold block mb-2" for="name">
+            {{ transloco('checkout.third-step.name') }}</label
+          >
+          <input pInputText formControlName="name" />
+          <app-custom-message
+            [form]="form"
+            [field]="'name'"
+            [maxLength]="50"
+            [minLength]="7"
+            [pattern]="''" />
+        </div>
+
+        <!-- card number -->
+        <div class="col-12 sm:col-6 md:col-4 lg:col-4">
+          <label class="font-semibold block mb-2" for="card">
+            {{ transloco('checkout.third-step.card') }}</label
+          >
+          <p-inputMask
+            mask="9999.9999.9999.9999"
+            formControlName="card"
+            placeholder="0000 0000 0000 0000" />
+          <app-custom-message
+            [form]="form"
+            [field]="'card'"
+            [maxLength]="16"
+            [minLength]="16"
+            [pattern]="''" />
+        </div>
+
+        <!-- cvv -->
+        <div class="col-12 sm:col-2 md:col-2 lg:col-2">
+          <label class="font-semibold block mb-2" for="cvv"> CVV</label>
+          <input pInputText formControlName="cvv" />
+          <app-custom-message
+            [form]="form"
+            [field]="'cvv'"
+            [maxLength]="3"
+            [minLength]="3"
+            [pattern]="''" />
+        </div>
+      </div>
+
+      <!-- btn-actions-section -->
+      <div class="flex justify-content-between mt-4">
+        <div class="flex justify-content-end mt-4">
+          <p-button styleClass="p-button-outlined">
+            {{ transloco('checkout.previous-step-btn') }}</p-button
+          >
+        </div>
+
+        <div class="flex justify-content-end mt-4">
+          <p-button type="submit"> {{ transloco('checkout.payment-btn') }}</p-button>
+        </div>
+      </div>
+    </form>
+  </p-card>
+  <ng-container
+/></ng-container>
