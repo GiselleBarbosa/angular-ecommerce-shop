@@ -4,9 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CustomMessageComponent } from 'src/app/shared/custom-message/custom-message.component';
+import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
+import { InstallmentOptions } from './interfaces/installmentOptions.interface';
 import { MessageService } from 'primeng/api';
+import { NgClass } from '@angular/common';
 import { regex } from 'src/app/core/regex/regex';
 import { TranslocoModule } from '@ngneat/transloco';
 
@@ -23,6 +26,8 @@ import { TranslocoModule } from '@ngneat/transloco';
     ReactiveFormsModule,
     TranslocoModule,
     InputMaskModule,
+    DropdownModule,
+    NgClass,
   ],
 })
 export class ThirdStepComponent implements OnInit {
@@ -32,22 +37,15 @@ export class ThirdStepComponent implements OnInit {
 
   public form!: FormGroup;
 
+  public installment!: InstallmentOptions[];
+
   public ngOnInit(): void {
     this.initializeForm();
+    this.setInstallmentValues();
   }
 
   public initializeForm(): void {
     this.form = this._fb.group({
-      card: [
-        null,
-        Validators.compose([
-          Validators.required,
-          Validators.maxLength(16),
-          Validators.minLength(16),
-          Validators.pattern(regex.numericPattern),
-        ]),
-      ],
-
       name: [
         null,
         Validators.compose([
@@ -55,6 +53,16 @@ export class ThirdStepComponent implements OnInit {
           Validators.maxLength(50),
           Validators.minLength(7),
           Validators.pattern(regex.alphabeticPattern),
+        ]),
+      ],
+
+      cardNumber: [
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(19),
+          Validators.minLength(19),
+          Validators.pattern(regex.creditCard),
         ]),
       ],
 
@@ -71,6 +79,16 @@ export class ThirdStepComponent implements OnInit {
     });
   }
 
+  public setInstallmentValues(): void {
+    this.installment = [
+      { key: 'Á vista', value: '1' },
+      { key: '2x sem juros', value: '2' },
+      { key: '3x sem juros', value: '3' },
+      { key: '10x com juros', value: '10' },
+      { key: '12x com juros', value: '12' },
+    ];
+  }
+
   public onSubmit(): void {
     this.form.markAllAsTouched();
 
@@ -81,6 +99,7 @@ export class ThirdStepComponent implements OnInit {
         summary: 'Pagamento realizado com sucesso',
         life: 1000,
       });
+      console.log(this.form.getRawValue());
       // adicionar algum modal de confirmacao
     } else {
       this.messageService.add({

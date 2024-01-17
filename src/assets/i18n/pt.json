@@ -105,7 +105,8 @@
     "third-step": {
       "title": "Informe os detalhes do pagamento",
       "card": "Número do cartão",
-      "name": "Nome completo"
+      "name": "Nome completo",
+      "installment": "Parcelamento"
     }
   }
 }

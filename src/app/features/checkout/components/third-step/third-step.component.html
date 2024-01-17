@@ -24,16 +24,16 @@
 
         <!-- card number -->
         <div class="col-12 sm:col-6 md:col-4 lg:col-4">
-          <label class="font-semibold block mb-2" for="card">
+          <label class="font-semibold block mb-2" for="cardNumber">
             {{ transloco('checkout.third-step.card') }}</label
           >
           <p-inputMask
             mask="9999.9999.9999.9999"
-            formControlName="card"
+            formControlName="cardNumber"
             placeholder="0000 0000 0000 0000" />
           <app-custom-message
             [form]="form"
-            [field]="'card'"
+            [field]="'cardNumber'"
             [maxLength]="16"
             [minLength]="16"
             [pattern]="''" />
@@ -49,6 +49,19 @@
             [maxLength]="3"
             [minLength]="3"
             [pattern]="''" />
+        </div>
+
+        <!-- cvv -->
+        <div class="col-12 sm:col-4 md:col-4 lg:col-4">
+          <label class="font-semibold block mb-2" for="installment">
+            {{ transloco('checkout.third-step.installment') }}
+          </label>
+          <p-dropdown
+            formControlName="installment"
+            [options]="installment"
+            optionLabel="key"
+            placeholder="Selecione"></p-dropdown>
+          <app-custom-message [form]="form" [field]="'installment'" />
         </div>
       </div>
 

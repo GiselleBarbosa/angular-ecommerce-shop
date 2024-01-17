@@ -105,7 +105,8 @@
     "third-step": {
       "title": "Provide payment details",
       "card": "Card number",
-      "name": "Full name"
+      "name": "Full name",
+      "installment": "Installment"
     }
   }
 }
