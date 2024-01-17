@@ -131,8 +131,34 @@ export class SecondStepComponent implements OnInit {
     });
   }
 
+  public PopulateFields(): void {
+    const zipcode = this.form.get('zipcode')?.value;
+
+    if (zipcode && zipcode.length === 9) {
+      this.findAddressService
+        .findAddress(zipcode)
+        .pipe(take(1))
+        .subscribe(responseApi => {
+          this.form.patchValue({
+            address: responseApi.logradouro,
+            neighborhood: responseApi.bairro,
+            city: responseApi.localidade,
+            uf: responseApi.uf,
+          });
+        });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Dados inválidos',
+        detail: 'Verifique se o cep esta correto.',
+        life: 1000,
+      });
+    }
+  }
+
   public onSubmit(): void {
     this.form.markAllAsTouched();
+    console.log('marcou??');
 
     if (this.form.valid) {
       this.form.getRawValue();
@@ -150,32 +176,5 @@ export class SecondStepComponent implements OnInit {
         life: 1000,
       });
     }
-  }
-
-  public PopulateFields(): void {
-    const zipcode = this.form.get('zipcode')?.value;
-
-    this.form.get('zipcode')?.valueChanges.subscribe(() => {
-      if (zipcode && zipcode.length === 9) {
-        this.findAddressService
-          .findAddress(zipcode)
-          .pipe(take(1))
-          .subscribe(responseApi => {
-            this.form.patchValue({
-              address: responseApi.logradouro,
-              neighborhood: responseApi.bairro,
-              city: responseApi.localidade,
-              uf: responseApi.uf,
-            });
-          });
-      } else {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Dados inválidos',
-          detail: 'Verifique se o cep esta correto.',
-          life: 1000,
-        });
-      }
-    });
   }
 }

@@ -9,16 +9,23 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="card p-fluid gap-3 col-12 flex flex-wrap formgroup-inline">
         <!-- zipcode -->
-        <div class="col-12 sm:col-2 md:col-2 lg:col-2">
+        <div class="col-12 sm:col-4 md:col-4 lg:col-4">
           <label class="font-semibold block mb-2" for="zipcode">
             {{ transloco('checkout.second-step.zipcode') }}</label
           >
-          <p-inputMask
-            (onComplete)="PopulateFields()"
-            type="text"
-            formControlName="zipcode"
-            placeholder="00000-000"
-            mask="99999-999" />
+          <div class="flex gap-3">
+            <p-inputMask
+              type="text"
+              formControlName="zipcode"
+              placeholder="00000-000"
+              mask="99999-999" />
+
+            <p-button
+              (click)="PopulateFields()"
+              styleClass="p-button-rounded p-button-secondary"
+              icon="pi pi-search"
+              severity="success"></p-button>
+          </div>
           <app-custom-message
             [form]="form"
             [field]="'zipcode'"
