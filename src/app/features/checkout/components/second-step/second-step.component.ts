@@ -120,14 +120,6 @@ export class SecondStepComponent implements OnInit {
           Validators.minLength(2),
         ]),
       ],
-      country: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.maxLength(40),
-          Validators.minLength(3),
-        ]),
-      ],
     });
   }
 
@@ -158,7 +150,8 @@ export class SecondStepComponent implements OnInit {
 
   public onSubmit(): void {
     this.form.markAllAsTouched();
-    console.log('marcou??');
+
+    console.log(this.form.value);
 
     if (this.form.valid) {
       this.form.getRawValue();

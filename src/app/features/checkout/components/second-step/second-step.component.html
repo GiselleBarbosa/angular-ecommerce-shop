@@ -15,7 +15,6 @@
           >
           <div class="flex gap-3">
             <p-inputMask
-              type="text"
               formControlName="zipcode"
               placeholder="00000-000"
               mask="99999-999" />
@@ -47,7 +46,7 @@
         </div>
 
         <!-- number -->
-        <div class="col-12 sm:col-4 md:col-2 lg:col-2">
+        <div class="col-12 sm:col-4 md:col-3 lg:col-3">
           <label class="font-semibold block mb-2">
             {{ transloco('checkout.second-step.number') }}</label
           >
@@ -124,19 +123,21 @@
             [minLength]="2" />
         </div>
       </div>
+
+      <!-- btn-actions-section -->
+      <div class="flex justify-content-between mt-4">
+        <div class="flex justify-content-end mt-4">
+          <p-button
+            styleClass="p-button-outlined"
+            [routerLink]="['/checkout/first-step']">
+            {{ transloco('checkout.previous-step-btn') }}</p-button
+          >
+        </div>
+
+        <div class="flex justify-content-end mt-4">
+          <p-button type="submit"> {{ transloco('checkout.next-step-btn') }}</p-button>
+        </div>
+      </div>
     </form>
   </p-card>
-
-  <!-- btn-actions-section -->
-  <div class="flex justify-content-between mt-4">
-    <div class="flex justify-content-end mt-4">
-      <p-button styleClass="p-button-outlined" [routerLink]="['/checkout/first-step']">
-        {{ transloco('checkout.previous-step-btn') }}</p-button
-      >
-    </div>
-
-    <div class="flex justify-content-end mt-4">
-      <p-button type="submit"> {{ transloco('checkout.next-step-btn') }}</p-button>
-    </div>
-  </div>
 </ng-container>
