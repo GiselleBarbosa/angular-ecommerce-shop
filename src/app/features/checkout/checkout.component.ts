@@ -30,10 +30,6 @@ export class CheckoutComponent implements OnInit {
         label: 'Pagamento',
         routerLink: 'third-step',
       },
-      {
-        label: 'Confirmação',
-        routerLink: 'fourth-step',
-      },
     ];
   }
 }
