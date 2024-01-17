@@ -73,13 +73,40 @@
 
   "checkout": {
     "title": "Finalize sua compra",
+    "next-step-btn": "Avançar",
+    "previous-step-btn": "Voltar",
+    "payment-btn": "Confirmar pedido",
+    
     "first-step": {
       "title": "Informe os dados para identificação",
       "register": "Já tem uma conta?",
       "name": "Nome completo",
+      "cpf": "CPF",
       "email": "Email",
+      "mobile": "Celular",
+      "birthday": "Data de nascimento",
       "placeholder-name": "Digite o nome completo",
-      "next-step-btn": "Avançar"
+      "password": "Senha",
+      "confirmPassword": "Confirmar a senha"
+    },
+
+    "second-step": {
+      "title": "Informe os dados do endereço de entrega",
+      "zipcode": "CEP",
+      "address": "Endereço",
+      "number": "Número",
+      "complement": "Completo",
+      "reference": "Referência",
+      "neighborhood": "Bairro",
+      "city": "Cidade",
+      "uf": "UF"
+    },
+
+    "third-step": {
+      "title": "Informe os detalhes do pagamento",
+      "card": "Número do cartão",
+      "name": "Nome completo",
+      "installment": "Parcelamento"
     }
   }
 }

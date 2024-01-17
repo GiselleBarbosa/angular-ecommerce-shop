@@ -5,7 +5,6 @@ import { CartGuard } from './core/guards/cart/cart.guard';
 import { CheckoutComponent } from './features/checkout/checkout.component';
 import { CreateComponent } from './features/auth/create/create.component';
 import { FirstStepComponent } from './features/checkout/components/first-step/first-step.component';
-import { FourthStepComponent } from './features/checkout/components/fourth-step/fourth-step.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { LogoutComponent } from './features/auth/logout/logout.component';
 import { ProductDetailsComponent } from './features/products/product-details/product-details.component';
@@ -83,11 +82,6 @@ export const checkoutRoutes: Routes = [
       {
         path: 'third-step',
         component: ThirdStepComponent,
-        canActivate: [CartGuard],
-      },
-      {
-        path: 'fourth-step',
-        component: FourthStepComponent,
         canActivate: [CartGuard],
       },
     ],

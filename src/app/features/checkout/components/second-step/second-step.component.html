@@ -1,1 +1,143 @@
-<p>second-step works!</p>
+<ng-container *transloco="let transloco">
+  <p-card>
+    <ng-template pTemplate="title">
+      <h1 style="color: var(--primary-color); font-size: 1.2rem">
+        {{ transloco('checkout.second-step.title') }}
+      </h1>
+    </ng-template>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="card p-fluid gap-3 col-12 flex flex-wrap formgroup-inline">
+        <!-- zipcode -->
+        <div class="col-12 sm:col-4 md:col-4 lg:col-4">
+          <label class="font-semibold block mb-2" for="zipcode">
+            {{ transloco('checkout.second-step.zipcode') }}</label
+          >
+          <div class="flex gap-3">
+            <p-inputMask
+              formControlName="zipcode"
+              placeholder="00000-000"
+              mask="99999-999" />
+
+            <p-button
+              (click)="PopulateFields()"
+              styleClass="p-button-rounded p-button-secondary"
+              icon="pi pi-search"
+              severity="success"></p-button>
+          </div>
+          <app-custom-message
+            [form]="form"
+            [field]="'zipcode'"
+            [maxLength]="9"
+            [minLength]="9" />
+        </div>
+
+        <!-- address -->
+        <div class="col-12">
+          <label class="font-semibold block mb-2">
+            {{ transloco('checkout.second-step.address') }}</label
+          >
+          <input type="text" pInputText formControlName="address" />
+          <app-custom-message
+            [form]="form"
+            [field]="'address'"
+            [maxLength]="50"
+            [minLength]="3" />
+        </div>
+
+        <!-- number -->
+        <div class="col-12 sm:col-4 md:col-3 lg:col-3">
+          <label class="font-semibold block mb-2">
+            {{ transloco('checkout.second-step.number') }}</label
+          >
+          <input type="number" pInputText formControlName="number" />
+          <app-custom-message
+            [form]="form"
+            [field]="'number'"
+            [maxLength]="10"
+            [minLength]="1" />
+        </div>
+
+        <!-- complement -->
+        <div class="col-12 sm:col-12 md:col-12 lg:col-4">
+          <label class="font-semibold block mb-2">
+            {{ transloco('checkout.second-step.complement') }}</label
+          >
+          <input type="text" pInputText formControlName="complement" />
+          <app-custom-message
+            [form]="form"
+            [field]="'complement'"
+            [maxLength]="35"
+            [minLength]="1" />
+        </div>
+
+        <!-- reference -->
+        <div class="col-12 sm:col-12 md:col-12 lg:col-5">
+          <label class="font-semibold block mb-2">
+            {{ transloco('checkout.second-step.reference') }}</label
+          >
+          <input type="text" pInputText formControlName="reference" />
+          <app-custom-message
+            [form]="form"
+            [field]="'reference'"
+            [maxLength]="50"
+            [minLength]="1" />
+        </div>
+
+        <!-- neighborhood -->
+        <div class="col-12 sm:col-12 md:col-12 lg:col-5">
+          <label class="font-semibold block mb-2">
+            {{ transloco('checkout.second-step.neighborhood') }}</label
+          >
+          <input type="text" pInputText formControlName="neighborhood" />
+          <app-custom-message
+            [form]="form"
+            [field]="'neighborhood'"
+            [maxLength]="40"
+            [minLength]="3" />
+        </div>
+
+        <!-- city -->
+        <div class="col-12 sm:col-3 md:col-3 lg:col-3">
+          <label class="font-semibold block mb-2">
+            {{ transloco('checkout.second-step.city') }}</label
+          >
+          <input type="text" pInputText formControlName="city" />
+          <app-custom-message
+            [form]="form"
+            [field]="'city'"
+            [maxLength]="40"
+            [minLength]="3" />
+        </div>
+
+        <!-- uf -->
+        <div class="col-12 sm:col-3 md:col-3 lg:col-3">
+          <label class="font-semibold block mb-2">
+            {{ transloco('checkout.second-step.uf') }}</label
+          >
+          <input type="text" pInputText formControlName="uf" />
+          <app-custom-message
+            [form]="form"
+            [field]="'uf'"
+            [maxLength]="2"
+            [minLength]="2" />
+        </div>
+      </div>
+
+      <!-- btn-actions-section -->
+      <div class="flex justify-content-between mt-4">
+        <div class="flex justify-content-end mt-4">
+          <p-button
+            styleClass="p-button-outlined"
+            [routerLink]="['/checkout/first-step']">
+            {{ transloco('checkout.previous-step-btn') }}</p-button
+          >
+        </div>
+
+        <div class="flex justify-content-end mt-4">
+          <p-button type="submit"> {{ transloco('checkout.next-step-btn') }}</p-button>
+        </div>
+      </div>
+    </form>
+  </p-card>
+</ng-container>
