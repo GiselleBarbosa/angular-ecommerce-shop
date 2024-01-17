@@ -14,6 +14,7 @@
             {{ transloco('checkout.second-step.zipcode') }}</label
           >
           <p-inputMask
+            (onComplete)="PopulateFields()"
             type="text"
             formControlName="zipcode"
             placeholder="00000-000"
@@ -30,11 +31,7 @@
           <label class="font-semibold block mb-2">
             {{ transloco('checkout.second-step.address') }}</label
           >
-          <input
-            type="text"
-            pInputText
-            formControlName="address"
-            placeholder="Av. Paulista" />
+          <input type="text" pInputText formControlName="address" />
           <app-custom-message
             [form]="form"
             [field]="'address'"

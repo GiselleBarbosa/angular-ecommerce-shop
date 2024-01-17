@@ -5,10 +5,13 @@ import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CustomMessageComponent } from 'src/app/shared/custom-message/custom-message.component';
+import { FindAddressService } from './services/find-address.service';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import { regex } from 'src/app/core/regex/regex';
+import { take } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
@@ -32,11 +35,24 @@ export class SecondStepComponent implements OnInit {
   private _router = inject(Router);
   private messageService = inject(MessageService);
   private destroyRef = inject(DestroyRef);
+  private findAddressService = inject(FindAddressService);
 
   public form!: FormGroup;
 
   public ngOnInit(): void {
     this.initializeForm();
+
+    const savedForm = localStorage.getItem('saved_checkout_form_step_2');
+
+    if (savedForm) {
+      this.form.setValue(JSON.parse(savedForm));
+    }
+
+    this.form.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(formData => {
+        localStorage.setItem('saved_checkout_form_step_2', JSON.stringify(formData));
+      });
   }
 
   public initializeForm(): void {
@@ -125,7 +141,7 @@ export class SecondStepComponent implements OnInit {
         summary: 'Dados pessoais foram salvos',
         life: 500,
       });
-      this._router.navigate(['/checkout/second-step']);
+      this._router.navigate(['/checkout/third-step']);
     } else {
       this.messageService.add({
         severity: 'error',
@@ -134,5 +150,32 @@ export class SecondStepComponent implements OnInit {
         life: 1000,
       });
     }
+  }
+
+  public PopulateFields(): void {
+    const zipcode = this.form.get('zipcode')?.value;
+
+    this.form.get('zipcode')?.valueChanges.subscribe(() => {
+      if (zipcode && zipcode.length === 9) {
+        this.findAddressService
+          .findAddress(zipcode)
+          .pipe(take(1))
+          .subscribe(responseApi => {
+            this.form.patchValue({
+              address: responseApi.logradouro,
+              neighborhood: responseApi.bairro,
+              city: responseApi.localidade,
+              uf: responseApi.uf,
+            });
+          });
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Dados inválidos',
+          detail: 'Verifique se o cep esta correto.',
+          life: 1000,
+        });
+      }
+    });
   }
 }
