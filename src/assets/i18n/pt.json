@@ -73,6 +73,8 @@
 
   "checkout": {
     "title": "Finalize sua compra",
+    "next-step-btn": "Avançar",
+    "previous-step-btn": "Voltar",
     "first-step": {
       "title": "Informe os dados para identificação",
       "register": "Já tem uma conta?",
@@ -83,8 +85,11 @@
       "birthday": "Data de nascimento",
       "placeholder-name": "Digite o nome completo",
       "password": "Senha",
-      "confirmPassword": "Confirmar a senha",
-      "next-step-btn": "Avançar"
+      "confirmPassword": "Confirmar a senha"
+    },
+
+    "second-step": {
+      "title": "Informe os dados do endereço de entrega"
     }
   }
 }

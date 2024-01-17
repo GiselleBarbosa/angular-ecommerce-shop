@@ -1,1 +1,42 @@
-<p>second-step works!</p>
+<ng-container *transloco="let transloco">
+  <p-card>
+    <ng-template pTemplate="title">
+      <h1 style="color: var(--primary-color); font-size: 1.2rem">
+        {{ transloco('checkout.second-step.title') }}
+      </h1>
+    </ng-template>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="card p-fluid gap-3 col-12 flex flex-wrap formgroup-inline">
+        <div class="flex-auto col-12">
+          <label class="font-semibold block mb-2" for="name">
+            {{ transloco('checkout.first-step.name') }}</label
+          >
+          <input
+            type="text"
+            pInputText
+            formControlName="name"
+            placeholder="{{ transloco('checkout.first-step.placeholder-name') }}" />
+          <app-custom-message
+            [form]="form"
+            [field]="'name'"
+            [maxLength]="30"
+            [minLength]="5" />
+        </div>
+      </div>
+    </form>
+  </p-card>
+
+  <!-- btn-actions-section -->
+  <div class="flex justify-content-between mt-4">
+    <div class="flex justify-content-end mt-4">
+      <p-button styleClass="p-button-outlined" [routerLink]="['/checkout/first-step']">
+        {{ transloco('checkout.previous-step-btn') }}</p-button
+      >
+    </div>
+
+    <div class="flex justify-content-end mt-4">
+      <p-button type="submit"> {{ transloco('checkout.next-step-btn') }}</p-button>
+    </div>
+  </div>
+</ng-container>

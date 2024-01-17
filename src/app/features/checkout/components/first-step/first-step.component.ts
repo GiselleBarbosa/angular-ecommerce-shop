@@ -31,8 +31,8 @@ import { TranslocoModule } from '@ngneat/transloco';
 export class FirstStepComponent implements OnInit {
   private _fb = inject(FormBuilder);
   private _router = inject(Router);
-  private _messageService = inject(MessageService);
-  private _destroyRef = inject(DestroyRef);
+  private messageService = inject(MessageService);
+  private destroyRef = inject(DestroyRef);
 
   public form!: FormGroup;
 
@@ -46,7 +46,7 @@ export class FirstStepComponent implements OnInit {
     }
 
     this.form.valueChanges
-      .pipe(takeUntilDestroyed(this._destroyRef))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(formData => {
         localStorage.setItem('saved_checkout_form_step_1', JSON.stringify(formData));
       });
@@ -110,14 +110,14 @@ export class FirstStepComponent implements OnInit {
 
     if (this.form.valid) {
       this.form.getRawValue();
-      this._messageService.add({
+      this.messageService.add({
         severity: 'success',
         summary: 'Dados pessoais foram salvos',
         life: 500,
       });
       this._router.navigate(['/checkout/second-step']);
     } else {
-      this._messageService.add({
+      this.messageService.add({
         severity: 'error',
         summary: 'Dados inválidos',
         detail: 'Verifique os campos destacados.',
