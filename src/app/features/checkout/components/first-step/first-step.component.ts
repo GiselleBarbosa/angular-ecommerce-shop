@@ -113,7 +113,7 @@ export class FirstStepComponent implements OnInit {
       this.messageService.add({
         severity: 'success',
         summary: 'Dados pessoais foram salvos',
-        life: 500,
+        life: 1000,
       });
       this._router.navigate(['/checkout/second-step']);
     } else {

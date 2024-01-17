@@ -157,8 +157,8 @@ export class SecondStepComponent implements OnInit {
       this.form.getRawValue();
       this.messageService.add({
         severity: 'success',
-        summary: 'Dados pessoais foram salvos',
-        life: 500,
+        summary: 'Endereço foi salvo com sucesso',
+        life: 1000,
       });
       this._router.navigate(['/checkout/third-step']);
     } else {
