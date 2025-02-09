@@ -27,7 +27,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 export class SidebarComponent implements OnInit {
   private _categoriesService = inject(CategoriesService);
 
-  public sidebarVisible = true;
+  public sidebarVisible = false;
   public navigationMenuItems!: MenuItem[];
   public categories!: MenuItem[] | any;
   public selectedCategories!: MenuItem[];
