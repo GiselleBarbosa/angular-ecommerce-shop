@@ -27,7 +27,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 export class SidebarComponent implements OnInit {
   private _categoriesService = inject(CategoriesService);
 
-  public sidebarVisible = false;
+  public sidebarVisible = true;
   public navigationMenuItems!: MenuItem[];
   public categories!: MenuItem[] | any;
   public selectedCategories!: MenuItem[];
@@ -50,8 +50,8 @@ export class SidebarComponent implements OnInit {
         map(category => {
           this.categories = category.map(category => {
             return {
-              label: category,
-              routerLink: `products/category/${category}`,
+              label: category.name,
+              routerLink: `products/category/${category.name}`,
               command: (): void => {
                 this.toogleSidebar();
               },
