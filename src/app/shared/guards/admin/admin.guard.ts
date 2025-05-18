@@ -9,27 +9,32 @@ import {
 } from '@angular/router';
 import { inject, Injectable } from '@angular/core';
 
-import { CartService } from 'src/app/features/cart/services/cart.service';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CartGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   private router = inject(Router);
-  private _cartService = inject(CartService);
+  private _authService = inject(AuthService);
 
   public canActivate(
     _route: ActivatedRouteSnapshot,
     _state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const cartLength = this._cartService.cart.length;
+    const adminToken = Boolean(localStorage.getItem('saved_admin_loggedIn'));
+    const isLoggedIn = this._authService.isLoggedIn;
 
-    if (cartLength > 0) {
+    if (adminToken) {
       return true;
-    } else {
-      this.router.navigate(['/products']);
+    } else if (!adminToken && isLoggedIn) {
+      this._authService.isLoggedIn = false;
+      this._authService.logout();
       return false;
+    } else {
+      this.router.navigate(['/auth/login']);
     }
+    return false;
   }
 }

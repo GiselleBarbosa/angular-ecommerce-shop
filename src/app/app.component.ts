@@ -1,12 +1,12 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { FooterComponent } from './shared/template/footer/footer.component';
-import { HeaderComponent } from './shared/template/header/header.component';
-import { PrimeNGConfig } from 'primeng/api';
 import { RouterOutlet } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { PrimeNGConfig } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { Subscription } from 'rxjs';
+import { FooterComponent } from './views/footer/footer.component';
+import { HeaderComponent } from './views/header/header.component';
 
 @Component({
   selector: 'app-root',

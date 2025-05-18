@@ -5,15 +5,17 @@ import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { CustomMessageComponent } from 'src/app/shared/custom-message/custom-message.component';
-import { FindAddressService } from './services/find-address.service';
+
+import { MessageService } from 'primeng/api';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
-import { MessageService } from 'primeng/api';
-import { regex } from 'src/app/core/regex/regex';
-import { take } from 'rxjs';
+import { FindAddressService } from './services/find-address.service';
+
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslocoModule } from '@ngneat/transloco';
+import { take } from 'rxjs';
+import { CustomMessageComponent } from 'src/app/shared/components/custom-message/custom-message.component';
+import { regex } from 'src/app/shared/regex/regex';
 
 @Component({
   selector: 'app-second-step',

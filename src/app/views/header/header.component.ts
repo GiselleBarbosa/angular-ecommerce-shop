@@ -1,18 +1,17 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
-import { AppConfigComponent } from '../config/app.config.component';
-import { BadgeModule } from 'primeng/badge';
-import { CartService } from 'src/app/features/cart/services/cart.service';
-import { LayoutService } from '../config/services/app.layout.service';
-import { MegaMenuModule } from 'primeng/megamenu';
 import { RouterLink } from '@angular/router';
-import { SidebarComponent } from '../sidebar/sidebar.component';
+import { BadgeModule } from 'primeng/badge';
+import { MegaMenuModule } from 'primeng/megamenu';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { Subscription } from 'rxjs';
 import { ToolbarModule } from 'primeng/toolbar';
 import { TooltipModule } from 'primeng/tooltip';
-import { TranslocoModule } from '@ngneat/transloco';
+import { Subscription } from 'rxjs';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { LayoutService } from '../../services/layout/app.layout.service';
+import { AppConfigComponent } from '../config/app.config.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-header',

@@ -10,10 +10,12 @@ import {
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ConfigService } from './app/shared/template/config/services/config.service';
+
 import { provideTransloco } from '@ngneat/transloco';
-import { RequestsInterceptor } from './app/core/interceptors/request-interceptor.service';
+
 import { TranslocoHttpLoader } from './app/shared/internationalization/transloco-loader';
+import { ConfigService } from './app/services/config/config.service';
+import { RequestsInterceptor } from './app/shared/interceptors/request-interceptor.service';
 
 export function setSavedTheme(_configService: ConfigService) {
   return (): void => {

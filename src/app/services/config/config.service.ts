@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { LayoutService } from './app.layout.service';
+import { LayoutService } from '../layout/app.layout.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,14 +1,14 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
 import { NgClass, NgFor, NgIf } from '@angular/common';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
-import { ButtonModule } from 'primeng/button';
-import { ConfigService } from './services/config.service';
 import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { LayoutService } from 'src/app/shared/template/config/services/app.layout.service';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SidebarModule } from 'primeng/sidebar';
+import { ConfigService } from '../../services/config/config.service';
+import { LayoutService } from 'src/app/services/layout/app.layout.service';
 
 @Component({
   selector: 'app-config',

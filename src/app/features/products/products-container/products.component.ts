@@ -1,19 +1,18 @@
-import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
-import { catchError, first, Subscription } from 'rxjs';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { MessageService, SelectItem } from 'primeng/api';
-
-import { ButtonModule } from 'primeng/button';
-import { Cart } from 'src/app/core/interface/cart';
-import { CartService } from '../../cart/services/cart.service';
 import { CurrencyPipe } from '@angular/common';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
+import { TranslocoModule } from '@ngneat/transloco';
+import { MessageService, SelectItem } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
-import { ProductsService } from 'src/app/features/products/services/products/products.service';
 import { RatingModule } from 'primeng/rating';
 import { TooltipModule } from 'primeng/tooltip';
-import { TranslocoModule } from '@ngneat/transloco';
+import { Subscription, catchError, first } from 'rxjs';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { ProductsService } from 'src/app/services/products/products.service';
+import { Cart } from 'src/app/shared/interface/cart';
 
 @Component({
   selector: 'app-products',

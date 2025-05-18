@@ -2,13 +2,14 @@ import { Component, inject, OnInit } from '@angular/core';
 import { first, map } from 'rxjs';
 
 import { ButtonModule } from 'primeng/button';
-import { CategoriesService } from 'src/app/features/products/services/categories/categories.service';
+
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { TranslocoModule } from '@ngneat/transloco';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
-import { RouterLink } from '@angular/router';
 import { SidebarModule } from 'primeng/sidebar';
-import { TranslocoModule } from '@ngneat/transloco';
+import { CategoriesService } from 'src/app/services/categories/categories.service';
 
 @Component({
   selector: 'app-sidebar',
