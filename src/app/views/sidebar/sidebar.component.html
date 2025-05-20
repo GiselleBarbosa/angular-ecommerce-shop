@@ -17,6 +17,63 @@
       <h6>{{ transloco('sidebar.categories') }}</h6>
       <p-menu [model]="categories" styleClass="w-15rem"></p-menu>
     </div>
+
+    <hr />
+    <div class="mt-3">
+      <p-card header="Filtros" [style]="{ width: 'width' }" styleClass="styleClass">
+        <div class="mt-1">
+          <h2 class="mb-4 text-600 font-normal" style="font-size: 1.4rem">
+            {{ transloco('sidebar-filter.filterPrice') }}
+          </h2>
+          <p *ngIf="selectedPrice > 0" class="mb-1">
+            {{ 'Preço: R$ ' + selectedPrice }}
+          </p>
+
+          <p-slider
+            styleClass="w-8 ml-2 pt-3"
+            (onChange)="getSelectedPrice()"
+            [min]="0"
+            [max]="100"
+            [(ngModel)]="selectedPrice"></p-slider>
+        </div>
+
+        <div class="mt-5">
+          <ng-container *ngIf="filterCategories.length > 0">
+            <h2 class="mb-3 text-600 font-normal" style="font-size: 1.4rem">
+              {{ transloco('sidebar-filter.filterCategories') }}
+            </h2>
+            <div *ngFor="let category of filterCategories" class="field-checkbox">
+              <p-checkbox
+                name="group"
+                [value]="category.id"
+                (onChange)="getSelectedCategories()"
+                [(ngModel)]="selectedMultiplesCategories"
+                [inputId]="category.id + ''">
+              </p-checkbox>
+
+              <label [for]="category.id">{{ category.name }}</label>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="mt-5">
+          <h2 class="mb-3 text-600 font-normal" style="font-size: 1.4rem">
+            {{ transloco('sidebar-filter.filterRating') }}
+          </h2>
+          <p-rating
+            [(ngModel)]="selectedRating"
+            (onRate)="getSelectedRating()"
+            [cancel]="true"></p-rating>
+        </div>
+
+        <div class="flex justify-content-center pt-2 pb-2 mt-3">
+          <p-button
+            styleClass="p-button-lg"
+            (onClick)="applyFilters()"
+            label="Aplicar Filtros"></p-button>
+        </div>
+      </p-card>
+    </div>
   </p-sidebar>
 
   <p-button (click)="toogleSidebar()" icon="pi pi-align-justify" />

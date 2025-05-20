@@ -1,13 +1,12 @@
-import { Filters } from '@interfaces/filters';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-
+import { Filters } from 'src/app/shared/interface/filters';
 @Injectable({
   providedIn: 'root',
 })
 export class FiltersService {
   public category = '';
-  public multiplesCategories = [];
+  public multiplesCategories: string[] = [];
   public price = 0;
   public rating = 0;
 

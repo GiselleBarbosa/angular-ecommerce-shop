@@ -1,14 +1,25 @@
+<ng-container *ngIf="getAllProductsWithFilter$ | async"></ng-container>
+
 <ng-container *transloco="let transloco">
-  <div class="mb-4">
-    <h5 style="color: var(--primary-color)">{{ transloco('home-page.main-title') }}</h5>
-  </div>
+  <ng-container *ngIf="isLoading; else content">
+    <div class="flex flex-column m-auto justify-items-center align-items-center gap-6">
+      <p-progressSpinner></p-progressSpinner>
+      <p class="text-primary">{{ 'Carregando, por favor aguarde.' }}</p>
+    </div>
+  </ng-container>
+
+  <ng-template #content>
+    <div class="mb-4">
+      <h5 style="color: var(--primary-color)">{{ transloco('home-page.main-title') }}</h5>
+    </div></ng-template
+  >
 
   <p-dataView
     #dv
-    [rows]="12"
     [value]="products"
-    [layout]="'grid'"
     [paginator]="true"
+    [rows]="rows"
+    [layout]="'grid'"
     [sortField]="sortField"
     [sortOrder]="sortOrder">
     <ng-template pTemplate="header">
@@ -17,6 +28,11 @@
           [options]="sortOptions"
           placeholder="Sort By Price"
           (onChange)="onSortChange($event)"
+          styleClass="md:mb-0"></p-dropdown>
+        <p-dropdown
+          [options]="quantityOptions"
+          [(ngModel)]="quantitySelected"
+          (onChange)="onChangeQuantityItemPage()"
           styleClass="md:mb-0"></p-dropdown>
         <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
       </div>
