@@ -15,7 +15,18 @@
 
     <div class="mt-4">
       <h6>{{ transloco('sidebar.categories') }}</h6>
-      <p-menu [model]="categories" styleClass="w-15rem"></p-menu>
+      <p-menu
+        [model]="showAllCategories ? categories : categories.slice(0, 8)"
+        styleClass="w-15rem"></p-menu>
+      <div *ngIf="categories.length > 8" class="mt-2">
+        <button
+          pButton
+          type="button"
+          (click)="toggleShowAllCategories()"
+          styleClass="p-button-text">
+          {{ showAllCategories ? 'Mostrar menos' : 'Mostrar mais' }}
+        </button>
+      </div>
     </div>
 
     <hr />
@@ -38,25 +49,6 @@
         </div>
 
         <div class="mt-5">
-          <ng-container *ngIf="filterCategories.length > 0">
-            <h2 class="mb-3 text-600 font-normal" style="font-size: 1.4rem">
-              {{ transloco('sidebar-filter.filterCategories') }}
-            </h2>
-            <div *ngFor="let category of filterCategories" class="field-checkbox">
-              <p-checkbox
-                name="group"
-                [value]="category.id"
-                (onChange)="getSelectedCategories()"
-                [(ngModel)]="selectedMultiplesCategories"
-                [inputId]="category.id + ''">
-              </p-checkbox>
-
-              <label [for]="category.id">{{ category.name }}</label>
-            </div>
-          </ng-container>
-        </div>
-
-        <div class="mt-5">
           <h2 class="mb-3 text-600 font-normal" style="font-size: 1.4rem">
             {{ transloco('sidebar-filter.filterRating') }}
           </h2>
@@ -64,6 +56,26 @@
             [(ngModel)]="selectedRating"
             (onRate)="getSelectedRating()"
             [cancel]="true"></p-rating>
+        </div>
+
+        <div class="mt-5">
+          <ng-container *ngIf="filterCategories.length > 0">
+            <h2 class="mb-3 text-600 font-normal" style="font-size: 1.4rem">
+              {{ transloco('sidebar-filter.filterCategories') }}
+            </h2>
+            <div *ngFor="let category of filterCategories" class="field-checkbox">
+              <p-checkbox
+                name="categories"
+                [value]="category.name"
+                [(ngModel)]="selectedMultiplesCategories"
+                (onChange)="getSelectedCategories()"
+                [inputId]="'cat_' + category.name">
+              </p-checkbox>
+              <label [for]="'cat_' + category.name" class="ml-2">{{
+                category.name
+              }}</label>
+            </div>
+          </ng-container>
         </div>
 
         <div class="flex justify-content-center pt-2 pb-2 mt-3">

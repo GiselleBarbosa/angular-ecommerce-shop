@@ -1,22 +1,20 @@
+import { NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { first, map } from 'rxjs';
-
-import { ButtonModule } from 'primeng/button';
-
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { MenuItem } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { CheckboxModule } from 'primeng/checkbox';
 import { MenuModule } from 'primeng/menu';
+import { RatingModule } from 'primeng/rating';
 import { SidebarModule } from 'primeng/sidebar';
+import { SliderModule } from 'primeng/slider';
+import { first, map } from 'rxjs';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 import { FiltersService } from 'src/app/services/filter/filters.service';
 import { Categories } from 'src/app/shared/interface/categories';
-import { RatingModule } from 'primeng/rating';
-import { CheckboxModule } from 'primeng/checkbox';
-import { SliderModule } from 'primeng/slider';
-import { CardModule } from 'primeng/card';
-import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
@@ -40,26 +38,30 @@ import { NgFor, NgIf } from '@angular/common';
 })
 export class SidebarComponent implements OnInit {
   private _categoriesService = inject(CategoriesService);
-
-  public sidebarVisible = false;
-  public navigationMenuItems!: MenuItem[];
-  public categories!: MenuItem[] | any;
-  public selectedCategories!: MenuItem[];
   private _filtersService = inject(FiltersService);
-
-  public filterCategories: Categories[] = [];
   private _router = inject(Router);
 
-  public selectedRating = this._filtersService.rating;
-  public selectedPrice = this._filtersService.price;
-  public selectedMultiplesCategories = this._filtersService.multiplesCategories;
+  public sidebarVisible = true;
+  public navigationMenuItems!: MenuItem[];
+  public categories!: MenuItem[];
+  public selectedCategories!: MenuItem[];
+  public filterCategories: Categories[] = [];
+
+  public selectedRating = 0;
+  public selectedPrice = 0;
+  public selectedMultiplesCategories: string[] = [];
+
+  public showAllCategories = false;
 
   public ngOnInit(): void {
     this.getItemsForThePanelNavigationMenu();
-
+    this.getAllCategoriesList();
     this.getItemCategoriesMenu();
 
-    this.getAllCategoriesList();
+    // Initialize from service
+    this.selectedRating = this._filtersService.rating;
+    this.selectedPrice = this._filtersService.price;
+    this.selectedMultiplesCategories = [...this._filtersService.multiplesCategories];
   }
 
   public toogleSidebar(): void {
@@ -75,8 +77,15 @@ export class SidebarComponent implements OnInit {
           this.categories = category.map(category => {
             return {
               label: category.name,
-              routerLink: `products/category/${category.name}`,
               command: (): void => {
+                // Aplica o filtro de categoria
+                this._filtersService.updateFilters({
+                  category: category.name,
+                  multiplesCategories: [category.name],
+                });
+                this._filtersService.getRequests();
+                // Navega para a rota de produtos
+                this._router.navigate(['/products']);
                 this.toogleSidebar();
               },
             };
@@ -114,29 +123,46 @@ export class SidebarComponent implements OnInit {
     ];
   }
 
+  public getSelectedCategories(): void {
+    console.log('Categorias selecionadas:', this.selectedMultiplesCategories);
+    if (this.selectedMultiplesCategories && this.selectedMultiplesCategories.length > 0) {
+      this._filtersService.updateFilters({
+        multiplesCategories: this.selectedMultiplesCategories,
+      });
+    }
+  }
+
+  public getSelectedPrice(): void {
+    console.log('Preço selecionado:', this.selectedPrice);
+    this._filtersService.updateFilters({ price: this.selectedPrice });
+  }
+
+  public getSelectedRating(): void {
+    console.log('Rating selecionado:', this.selectedRating);
+    this._filtersService.updateFilters({ rating: this.selectedRating });
+  }
+
   public getAllCategoriesList(): void {
     this._categoriesService
       .getAllCategories()
       .pipe(first())
-      .subscribe(category => {
-        this.filterCategories = category;
+      .subscribe(categories => {
+        this.filterCategories = categories;
+        console.log('Categories loaded:', this.filterCategories);
       });
   }
 
-  public getSelectedCategories(): void {
-    this._filtersService.multiplesCategories = this.selectedMultiplesCategories;
-  }
-
-  public getSelectedPrice(): void {
-    this._filtersService.price = this.selectedPrice;
-  }
-
-  public getSelectedRating(): void {
-    this._filtersService.rating = this.selectedRating;
-  }
-
   public applyFilters(): void {
-    this._router.navigate(['/']);
+    console.log('Aplicando filtros:', {
+      price: this.selectedPrice,
+      rating: this.selectedRating,
+      categories: this.selectedMultiplesCategories,
+    });
     this._filtersService.getRequests();
+    this._router.navigate(['/']);
+  }
+
+  public toggleShowAllCategories(): void {
+    this.showAllCategories = !this.showAllCategories;
   }
 }

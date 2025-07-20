@@ -3,6 +3,7 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Products } from 'src/app/shared/interface/products';
+import { Filters } from 'src/app/shared/interface/filters';
 
 @Injectable({
   providedIn: 'root',
@@ -25,32 +26,28 @@ export class ProductsService {
     );
   }
 
-  public getAllProductsWithFilter(
-    category: string,
-    multipleCategories: string | null,
-    price: number,
-    rating: number
-  ): Observable<Products[]> {
+  public getAllProductsWithFilter(filters: Filters): Observable<Products[]> {
+    let url = 'https://dummyjson.com/products';
+
+    // Se tiver categorias selecionadas
+    if (filters.multiplesCategories && filters.multiplesCategories.length > 0) {
+      url += `/category/${filters.multiplesCategories[0]}`;
+    }
+
+    // Adiciona query params para preço e rating
     let params = new HttpParams();
-
-    if (category) {
-      params = params.append('category_id_like', category);
+    if (filters.price > 0) {
+      params = params.append('price_lte', filters.price.toString());
+    }
+    if (filters.rating > 0) {
+      params = params.append('rating_gte', filters.rating.toString());
     }
 
-    if (multipleCategories) {
-      params = params.append('category_id_like', multipleCategories);
-    }
+    console.log('Calling API with URL:', url, 'and params:', params.toString());
 
-    if (price) {
-      params = params.append('unitPrice_lte', price);
-    }
-
-    if (rating) {
-      params = params.append('rating', rating);
-    }
-
-    return this.http.get<any>(`${this.url}/products`, { params }).pipe(
+    return this.http.get<any>(url, { params }).pipe(
       map(response => {
+        console.log('API Response:', response);
         return response.products || response;
       })
     );

@@ -1,6 +1,6 @@
 export interface Filters {
-  category: string;
-  rating: number;
   price: number;
+  rating: number;
+  category: string;
   multiplesCategories: string[];
 }
