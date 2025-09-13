@@ -2,15 +2,16 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { CustomMessageComponent } from 'src/app/shared/custom-message/custom-message.component';
-import { InputMaskModule } from 'primeng/inputmask';
-import { InputTextModule } from 'primeng/inputtext';
-import { MessageService } from 'primeng/api';
-import { regex } from 'src/app/core/regex/regex';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslocoModule } from '@ngneat/transloco';
+import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InputTextModule } from 'primeng/inputtext';
+import { regex } from 'src/app/shared/regex/regex';
+import { CustomMessageComponent } from 'src/app/shared/components/custom-message/custom-message.component';
+
 
 @Component({
   selector: 'app-first-step',
@@ -22,10 +23,10 @@ import { TranslocoModule } from '@ngneat/transloco';
     CardModule,
     InputTextModule,
     InputMaskModule,
-    CustomMessageComponent,
     ReactiveFormsModule,
     RouterLink,
     TranslocoModule,
+    CustomMessageComponent,
   ],
 })
 export class FirstStepComponent implements OnInit {

@@ -1,17 +1,17 @@
-import { AsyncPipe, CurrencyPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, CurrencyPipe, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
+import { RouterLink } from '@angular/router';
+import { TranslocoModule } from '@ngneat/transloco';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { Cart } from 'src/app/core/interface/cart';
-import { CartService } from './services/cart.service';
-import { RouterLink } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
-import { TranslocoModule } from '@ngneat/transloco';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { Cart } from 'src/app/shared/interface/cart';
 
 @Component({
   selector: 'app-cart',
@@ -25,7 +25,6 @@ import { TranslocoModule } from '@ngneat/transloco';
     TagModule,
     ButtonModule,
     NgIf,
-    NgFor,
     ToastModule,
     RouterLink,
     TranslocoModule,

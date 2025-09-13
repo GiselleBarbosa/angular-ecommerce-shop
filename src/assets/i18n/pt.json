@@ -2,7 +2,6 @@
   "home-page": {
     "main-title": "Catalogo de produtos"
   },
-
   "cart-page": {
     "main-title": "Carrinho de compras",
     "subtitle": "Estes são os produtos adicionados ao seu carrinho",
@@ -16,17 +15,14 @@
     "empty-cart": "Seu carrinho de compras está vazio.",
     "product": "produto(s)"
   },
-
   "detail-product-page": {
     "main-title": "Você esta vendo ",
     "brand": "Marca"
   },
-
   "sidebar": {
     "setting": "Navegação",
     "categories": "Categorias"
   },
-
   "config": {
     "title": "Menu de acessibilidade",
     "language": "Idioma",
@@ -41,7 +37,6 @@
     "filled": "Preenchido",
     "ripple-effect": "Efeito cascata"
   },
-
   "login": {
     "title": "Acesse sua conta",
     "email": "Email",
@@ -56,11 +51,9 @@
     "notHaveAccount": "Não tenho uma conta",
     "createAccount": "Cadastre-se aqui"
   },
-
   "logout": {
     "title": "Você foi desconectado. O que deseja fazer agora?"
   },
-
   "invalidFormFeedback": {
     "required": "Campo obrigatório",
     "maxLength": "Máximo de caracteres é {{ maxLength }} ",
@@ -70,13 +63,11 @@
     "confirmPassword": "Senhas não conferem",
     "invalid": "Selecione uma opção"
   },
-
   "checkout": {
     "title": "Finalize sua compra",
     "next-step-btn": "Avançar",
     "previous-step-btn": "Voltar",
     "payment-btn": "Confirmar pedido",
-    
     "first-step": {
       "title": "Informe os dados para identificação",
       "register": "Já tem uma conta?",
@@ -89,7 +80,6 @@
       "password": "Senha",
       "confirmPassword": "Confirmar a senha"
     },
-
     "second-step": {
       "title": "Informe os dados do endereço de entrega",
       "zipcode": "CEP",
@@ -101,12 +91,17 @@
       "city": "Cidade",
       "uf": "UF"
     },
-
     "third-step": {
       "title": "Informe os detalhes do pagamento",
       "card": "Número do cartão",
       "name": "Nome completo",
       "installment": "Parcelamento"
     }
+  },
+  "sidebar-filter": {
+    "title": "Filtrar produtos",
+    "filterCategories": "Categorias",
+    "filterPrice": "Preço",
+    "filterRating": "Avaliação"
   }
 }

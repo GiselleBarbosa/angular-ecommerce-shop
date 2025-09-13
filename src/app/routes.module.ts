@@ -1,7 +1,3 @@
-import { AdminGuard } from './core/guards/admin/admin.guard';
-import { AdministratorComponent } from './features/administrator/administrator.component';
-import { CartComponent } from './features/cart/cart.component';
-import { CartGuard } from './core/guards/cart/cart.guard';
 import { CheckoutComponent } from './features/checkout/checkout.component';
 import { CreateComponent } from './features/auth/create/create.component';
 import { FirstStepComponent } from './features/checkout/components/first-step/first-step.component';
@@ -12,6 +8,10 @@ import { ProductsComponent } from './features/products/products-container/produc
 import { Routes } from '@angular/router';
 import { SecondStepComponent } from './features/checkout/components/second-step/second-step.component';
 import { ThirdStepComponent } from './features/checkout/components/third-step/third-step.component';
+import { CartComponent } from './features/cart/cart.component';
+import { AdministratorComponent } from './features/administrator/administrator.component';
+import { AdminGuard } from './shared/guards/admin/admin.guard';
+import { CartGuard } from './shared/guards/cart/cart.guard';
 
 export const productsRoutes: Routes = [
   {

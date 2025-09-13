@@ -1,19 +1,24 @@
-import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
-import { catchError, first, Subscription } from 'rxjs';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { MessageService, SelectItem } from 'primeng/api';
-
+import { AsyncPipe, CurrencyPipe, NgIf } from '@angular/common';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { TranslocoModule } from '@ngneat/transloco';
+import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
-import { Cart } from 'src/app/core/interface/cart';
-import { CartService } from '../../cart/services/cart.service';
-import { CurrencyPipe } from '@angular/common';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
-import { ProductsService } from 'src/app/features/products/services/products/products.service';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { RatingModule } from 'primeng/rating';
 import { TooltipModule } from 'primeng/tooltip';
-import { TranslocoModule } from '@ngneat/transloco';
+import { catchError, of, tap } from 'rxjs';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { FiltersService } from 'src/app/services/filter/filters.service';
+import { ProductsService } from 'src/app/services/products/products.service';
+import { ItemsPerPageService } from 'src/app/services/sort-items-per-page/items-per-page.service';
+import { PriceOrderService } from 'src/app/services/sort-price-order/price-order.service';
+import { Cart } from 'src/app/shared/interface/cart';
+import { Products } from 'src/app/shared/interface/products';
 
 @Component({
   selector: 'app-products',
@@ -29,42 +34,92 @@ import { TranslocoModule } from '@ngneat/transloco';
     CurrencyPipe,
     TranslocoModule,
     TooltipModule,
+    NgIf,
+    AsyncPipe,
+    ProgressSpinnerModule,
   ],
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
   private _cartService = inject(CartService);
   private _productsService = inject(ProductsService);
   private _messageService = inject(MessageService);
+  private destroyRef = inject(DestroyRef);
+  private _filtersService = inject(FiltersService);
+  private _confirmationService = inject(ConfirmationService);
+  private _itemsPerPageService = inject(ItemsPerPageService);
+  private _priceOrderService = inject(PriceOrderService);
   private _route = inject(ActivatedRoute);
-  private _subscription!: Subscription;
 
-  public products!: any[];
-
+  public products: Products[] = [];
+  public isLoading = true;
   public sortOptions!: SelectItem[];
   public sortOrder!: number;
   public sortField!: string;
+  public rows = 12;
+  public quantityOptions!: SelectItem[];
+  public quantitySelected!: number;
 
-  public ngOnInit(): void {
-    this.getAllProducts();
-    this.getSortProductsValues();
+  constructor() {
+    this._filtersService.getAllProductsWithFilter$
+      .pipe(
+        takeUntilDestroyed(),
+        tap(() => {
+          console.log('Filter observable triggered');
+          this.getAllProductsWithFilter();
+        })
+      )
+      .subscribe();
   }
 
-  public getAllProducts(): void {
-    this._subscription = this._route.paramMap.subscribe((params: ParamMap) => {
-      const categoryByRoute = params.get('categoryName');
+  public ngOnInit(): void {
+    console.log('Component initialized');
+    this.getAllProductsWithFilter();
+    this.sortOptions = this._priceOrderService.orderPriceOptions();
+    this.quantityOptions = this._itemsPerPageService.quantityItemsOptions();
+  }
 
-      this._productsService
-        .getAllProducts(categoryByRoute)
-        .pipe(
-          first(),
-          catchError(err => {
-            throw (this.showErrorToast(), err);
-          })
-        )
-        .subscribe(data => {
-          this.products = data;
-        });
-    });
+  public getAllProductsWithFilter(): void {
+    const filters = {
+      price: this._filtersService.price,
+      rating: this._filtersService.rating,
+      category: this._filtersService.category,
+      multiplesCategories: this._filtersService.multiplesCategories,
+    };
+
+    console.warn('Fetching products with filters:', JSON.stringify(filters));
+    this.isLoading = true;
+    this.products = [];
+
+    this._productsService
+      .getAllProductsWithFilter(filters)
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        catchError(err => {
+          console.error('Error loading products:', err);
+          this.isLoading = false;
+          this.onConfirm();
+          return of([]);
+        })
+      )
+      .subscribe({
+        next: products => {
+          console.log('Products received:', JSON.stringify(products));
+          this.products = products;
+          this.isLoading = false;
+        },
+        error: error => {
+          console.error('Error in subscription:', error);
+          this.isLoading = false;
+          this.products = [];
+        },
+        complete: () => {
+          this.isLoading = false;
+        },
+      });
+  }
+
+  public onChangeQuantityItemPage(): void {
+    this.rows = this.quantitySelected;
   }
 
   public getSortProductsValues(): void {
@@ -84,6 +139,24 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.sortOrder = 1;
       this.sortField = value;
     }
+  }
+
+  public onConfirm(): void {
+    this._confirmationService.confirm({
+      message: 'Falha ao exibir os produtos. Deseja atualizar a página?',
+      icon: 'pi pi-exclamation-circle',
+      accept: () => {
+        location.reload();
+      },
+      reject: () => {
+        this._messageService.add({
+          severity: 'info',
+          summary: 'Cancelado',
+          detail: 'Não foram feitas alterações.',
+          life: 2000,
+        });
+      },
+    });
   }
 
   public addProductOnCart(product: Cart): void {
@@ -108,18 +181,5 @@ export class ProductsComponent implements OnInit, OnDestroy {
       detail: 'Sent to cart',
       life: 500,
     });
-  }
-
-  private showErrorToast(): void {
-    this._messageService.add({
-      severity: 'error',
-      summary: 'Unexpected error',
-      detail: 'Unable to load products',
-      life: 3000,
-    });
-  }
-
-  public ngOnDestroy(): void {
-    this._subscription.unsubscribe();
   }
 }

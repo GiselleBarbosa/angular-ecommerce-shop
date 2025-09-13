@@ -3,17 +3,17 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { CustomMessageComponent } from 'src/app/shared/custom-message/custom-message.component';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { InstallmentOptions } from './interfaces/installmentOptions.interface';
 import { MessageService } from 'primeng/api';
-import { regex } from 'src/app/core/regex/regex';
 import { RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslocoModule } from '@ngneat/transloco';
+import { CustomMessageComponent } from 'src/app/shared/components/custom-message/custom-message.component';
+import { regex } from 'src/app/shared/regex/regex';
 
 @Component({
   selector: 'app-third-step',

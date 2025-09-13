@@ -1,18 +1,20 @@
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { CurrencyPipe, NgIf } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { first, Subscription } from 'rxjs';
 
 import { ButtonModule } from 'primeng/button';
-import { Cart } from 'src/app/core/interface/cart';
-import { CartService } from '../../cart/services/cart.service';
-import { DataViewModule } from 'primeng/dataview';
+
 import { FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { Products } from '../../../core/interface/products';
-import { ProductsService } from 'src/app/features/products/services/products/products.service';
-import { RatingModule } from 'primeng/rating';
+import { DataViewModule } from 'primeng/dataview';
+
 import { TranslocoModule } from '@ngneat/transloco';
+import { RatingModule } from 'primeng/rating';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { ProductsService } from 'src/app/services/products/products.service';
+import { Cart } from 'src/app/shared/interface/cart';
+import { Products } from 'src/app/shared/interface/products';
 
 @Component({
   selector: 'app-product-details',
@@ -23,7 +25,6 @@ import { TranslocoModule } from '@ngneat/transloco';
     ButtonModule,
     RatingModule,
     FormsModule,
-    NgFor,
     NgIf,
     CurrencyPipe,
     TranslocoModule,

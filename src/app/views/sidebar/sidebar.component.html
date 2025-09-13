@@ -1,0 +1,107 @@
+<ng-container *transloco="let transloco">
+  <p-sidebar [(visible)]="sidebarVisible" position="left" styleClass="min-w-min w-20rem ">
+    <div class="flex align-items-center gap-2">
+      <i
+        style="font-size: 1.5rem; color: var(--primary-color)"
+        class="icon pi pi-shopping-bag cursor-pointer"
+        routerLink="/products"></i>
+      <h5 class="cursor-pointer font-semibold" routerLink="products">
+        Angular e-commerce
+      </h5>
+    </div>
+
+    <h6>{{ transloco('sidebar.setting') }}</h6>
+    <p-menu [model]="navigationMenuItems" styleClass="w-15rem"></p-menu>
+
+    <div class="mt-4">
+      <h6>{{ transloco('sidebar.categories') }}</h6>
+      <p-menu
+        [model]="showAllCategories ? categories : categories.slice(0, 5)"
+        styleClass="w-15rem"></p-menu>
+      <div *ngIf="categories.length > 5" class="mt-2">
+        <button
+          pButton
+          type="button"
+          (click)="toggleShowAllCategories()"
+          styleClass="p-button-text">
+          {{ showAllCategories ? 'Mostrar menos' : 'Mostrar mais' }}
+        </button>
+      </div>
+    </div>
+
+    <hr />
+    <div class="mt-3">
+      <p-card header="Filtros" [style]="{ width: 'width' }" styleClass="styleClass">
+        <div class="mt-1">
+          <h2 class="mb-4 text-600 font-normal" style="font-size: 1.4rem">
+            {{ transloco('sidebar-filter.filterPrice') }}
+          </h2>
+          <p *ngIf="minPrice > 0 || maxPrice > 0" class="mb-1">
+            {{ 'Preço: R$ ' + minPrice + ' até R$ ' + maxPrice }}
+          </p>
+
+          <div class="flex gap-2 align-items-center">
+            <label for="minPrice">Min:</label>
+            <input
+              type="number"
+              id="minPrice"
+              [(ngModel)]="minPrice"
+              (change)="getSelectedPrice()"
+              [min]="0"
+              [max]="maxPrice"
+              class="p-inputtext"
+              style="width: 80px" />
+            <label for="maxPrice">Max:</label>
+            <input
+              type="number"
+              id="maxPrice"
+              [(ngModel)]="maxPrice"
+              (change)="getSelectedPrice()"
+              [min]="minPrice"
+              class="p-inputtext"
+              style="width: 80px" />
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <h2 class="mb-3 text-600 font-normal" style="font-size: 1.4rem">
+            {{ transloco('sidebar-filter.filterRating') }}
+          </h2>
+          <p-rating
+            [(ngModel)]="selectedRating"
+            (onRate)="getSelectedRating()"
+            [cancel]="true"></p-rating>
+        </div>
+
+        <div class="mt-5">
+          <ng-container *ngIf="filterCategories.length > 0">
+            <h2 class="mb-3 text-600 font-normal" style="font-size: 1.4rem">
+              {{ transloco('sidebar-filter.filterCategories') }}
+            </h2>
+            <div *ngFor="let category of filterCategories" class="field-checkbox">
+              <p-checkbox
+                name="categories"
+                [value]="category.name"
+                [(ngModel)]="selectedMultiplesCategories"
+                (onChange)="getSelectedCategories()"
+                [inputId]="'cat_' + category.name">
+              </p-checkbox>
+              <label [for]="'cat_' + category.name" class="ml-2">{{
+                category.name
+              }}</label>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="flex justify-content-center pt-2 pb-2 mt-3">
+          <p-button
+            styleClass="p-button-lg"
+            (onClick)="applyFilters()"
+            label="Aplicar Filtros"></p-button>
+        </div>
+      </p-card>
+    </div>
+  </p-sidebar>
+
+  <p-button (click)="toogleSidebar()" icon="pi pi-align-justify" />
+</ng-container>

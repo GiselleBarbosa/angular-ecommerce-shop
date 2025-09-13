@@ -1,8 +1,7 @@
 {
   "home-page": {
-    "main-title": "Products catalog"
+    "main-title": "Products"
   },
-
   "cart-page": {
     "main-title": "Shopping cart",
     "subtitle": "These are the products added to your cart",
@@ -16,17 +15,14 @@
     "empty-cart": "Your shopping cart is empty.",
     "product": "product(s)"
   },
-
   "detail-product-page": {
     "main-title": "Are you viewing ",
     "brand": "Brand"
   },
-
   "sidebar": {
     "setting": "Navigation",
     "categories": "Categories"
   },
-
   "config": {
     "title": "Accessibily menu",
     "language": "Language",
@@ -41,7 +37,6 @@
     "filled": "Filled",
     "ripple-effect": "Ripple Effect"
   },
-
   "login": {
     "title": "Acess your account",
     "email": "Email",
@@ -56,11 +51,9 @@
     "notHaveAccount": "I don't have an account",
     "createAccount": "Register here"
   },
-
   "logout": {
     "title": "You have been disconnected. What do you want to do now?"
   },
-
   "invalidFormFeedback": {
     "required": "Required field",
     "maxLength": "Maximum characters is {{ maxLength}} ",
@@ -70,13 +63,11 @@
     "confirmPassword": "Passwords do not match",
     "invalid": "Select one of the option"
   },
-
   "checkout": {
     "title": "Complete your purchase",
     "next-step-btn": "Next",
     "previous-step-btn": "Previous",
     "payment-btn": "Confirm order",
-
     "first-step": {
       "title": "Provide identification data",
       "register": "Already registration?",
@@ -89,7 +80,6 @@
       "password": "Password",
       "confirmPassword": "Confirm password"
     },
-
     "second-step": {
       "title": "Enter delivery address details",
       "zipcode": "Zipcode",
@@ -101,12 +91,19 @@
       "city": "City",
       "uf": "UF"
     },
-
     "third-step": {
       "title": "Provide payment details",
       "card": "Card number",
       "name": "Full name",
       "installment": "Installment"
     }
+    
+  },
+  
+  "sidebar-filter": {
+    "title": "Filters products",
+    "filterCategories": "Categories",
+    "filterPrice": "Price",
+    "filterRating": "Rating"
   }
 }
