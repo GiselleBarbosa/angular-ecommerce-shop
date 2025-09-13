@@ -16,9 +16,9 @@
     <div class="mt-4">
       <h6>{{ transloco('sidebar.categories') }}</h6>
       <p-menu
-        [model]="showAllCategories ? categories : categories.slice(0, 8)"
+        [model]="showAllCategories ? categories : categories.slice(0, 5)"
         styleClass="w-15rem"></p-menu>
-      <div *ngIf="categories.length > 8" class="mt-2">
+      <div *ngIf="categories.length > 5" class="mt-2">
         <button
           pButton
           type="button"
@@ -36,16 +36,31 @@
           <h2 class="mb-4 text-600 font-normal" style="font-size: 1.4rem">
             {{ transloco('sidebar-filter.filterPrice') }}
           </h2>
-          <p *ngIf="selectedPrice > 0" class="mb-1">
-            {{ 'Preço: R$ ' + selectedPrice }}
+          <p *ngIf="minPrice > 0 || maxPrice > 0" class="mb-1">
+            {{ 'Preço: R$ ' + minPrice + ' até R$ ' + maxPrice }}
           </p>
 
-          <p-slider
-            styleClass="w-8 ml-2 pt-3"
-            (onChange)="getSelectedPrice()"
-            [min]="0"
-            [max]="100"
-            [(ngModel)]="selectedPrice"></p-slider>
+          <div class="flex gap-2 align-items-center">
+            <label for="minPrice">Min:</label>
+            <input
+              type="number"
+              id="minPrice"
+              [(ngModel)]="minPrice"
+              (change)="getSelectedPrice()"
+              [min]="0"
+              [max]="maxPrice"
+              class="p-inputtext"
+              style="width: 80px" />
+            <label for="maxPrice">Max:</label>
+            <input
+              type="number"
+              id="maxPrice"
+              [(ngModel)]="maxPrice"
+              (change)="getSelectedPrice()"
+              [min]="minPrice"
+              class="p-inputtext"
+              style="width: 80px" />
+          </div>
         </div>
 
         <div class="mt-5">

@@ -14,6 +14,7 @@ import { SliderModule } from 'primeng/slider';
 import { first, map } from 'rxjs';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 import { FiltersService } from 'src/app/services/filter/filters.service';
+import { ProductsService } from 'src/app/services/products/products.service';
 import { Categories } from 'src/app/shared/interface/categories';
 
 @Component({
@@ -40,15 +41,17 @@ export class SidebarComponent implements OnInit {
   private _categoriesService = inject(CategoriesService);
   private _filtersService = inject(FiltersService);
   private _router = inject(Router);
+  private _productsService = inject(ProductsService);
 
   public sidebarVisible = true;
   public navigationMenuItems!: MenuItem[];
-  public categories!: MenuItem[];
+  public categories: MenuItem[] = [];
   public selectedCategories!: MenuItem[];
   public filterCategories: Categories[] = [];
 
   public selectedRating = 0;
-  public selectedPrice = 0;
+  public minPrice = 0;
+  public maxPrice = 100;
   public selectedMultiplesCategories: string[] = [];
 
   public showAllCategories = false;
@@ -58,9 +61,15 @@ export class SidebarComponent implements OnInit {
     this.getAllCategoriesList();
     this.getItemCategoriesMenu();
 
-    // Initialize from service
+    this._productsService
+      .getAllProducts(null)
+      .pipe(first())
+      .subscribe(products => {
+        this.maxPrice = Math.max(...products.map(p => p.price));
+      });
+
     this.selectedRating = this._filtersService.rating;
-    this.selectedPrice = this._filtersService.price;
+    this.maxPrice = this._filtersService.price;
     this.selectedMultiplesCategories = [...this._filtersService.multiplesCategories];
   }
 
@@ -78,13 +87,11 @@ export class SidebarComponent implements OnInit {
             return {
               label: category.name,
               command: (): void => {
-                // Aplica o filtro de categoria
                 this._filtersService.updateFilters({
                   category: category.name,
                   multiplesCategories: [category.name],
                 });
                 this._filtersService.getRequests();
-                // Navega para a rota de produtos
                 this._router.navigate(['/products']);
                 this.toogleSidebar();
               },
@@ -133,8 +140,8 @@ export class SidebarComponent implements OnInit {
   }
 
   public getSelectedPrice(): void {
-    console.log('Preço selecionado:', this.selectedPrice);
-    this._filtersService.updateFilters({ price: this.selectedPrice });
+    console.log('Preço selecionado:', this.minPrice, this.maxPrice);
+    this._filtersService.updateFilters({ price: this.maxPrice });
   }
 
   public getSelectedRating(): void {
@@ -148,13 +155,12 @@ export class SidebarComponent implements OnInit {
       .pipe(first())
       .subscribe(categories => {
         this.filterCategories = categories;
-        console.log('Categories loaded:', this.filterCategories);
       });
   }
 
   public applyFilters(): void {
     console.log('Aplicando filtros:', {
-      price: this.selectedPrice,
+      price: this.maxPrice,
       rating: this.selectedRating,
       categories: this.selectedMultiplesCategories,
     });

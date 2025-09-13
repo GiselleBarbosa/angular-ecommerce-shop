@@ -60,7 +60,6 @@ export class ProductsComponent implements OnInit {
   public quantitySelected!: number;
 
   constructor() {
-    // Subscribe to filter changes using takeUntilDestroyed
     this._filtersService.getAllProductsWithFilter$
       .pipe(
         takeUntilDestroyed(),
@@ -87,9 +86,9 @@ export class ProductsComponent implements OnInit {
       multiplesCategories: this._filtersService.multiplesCategories,
     };
 
-    console.log('Fetching products with filters:', filters);
+    console.warn('Fetching products with filters:', JSON.stringify(filters));
     this.isLoading = true;
-    this.products = []; // Clear current products
+    this.products = [];
 
     this._productsService
       .getAllProductsWithFilter(filters)
@@ -104,7 +103,7 @@ export class ProductsComponent implements OnInit {
       )
       .subscribe({
         next: products => {
-          console.log('Products received:', products);
+          console.log('Products received:', JSON.stringify(products));
           this.products = products;
           this.isLoading = false;
         },
