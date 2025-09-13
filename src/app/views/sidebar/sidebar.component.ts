@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit {
   private _router = inject(Router);
   private _productsService = inject(ProductsService);
 
-  public sidebarVisible = true;
+  public sidebarVisible = false;
   public navigationMenuItems!: MenuItem[];
   public categories: MenuItem[] = [];
   public selectedCategories!: MenuItem[];
@@ -159,13 +159,18 @@ export class SidebarComponent implements OnInit {
   }
 
   public applyFilters(): void {
-    console.log('Aplicando filtros:', {
+    const filters = {
       price: this.maxPrice,
       rating: this.selectedRating,
-      categories: this.selectedMultiplesCategories,
-    });
+      multiplesCategories: this.selectedMultiplesCategories,
+    };
+    console.log('Aplicando filtros:', filters);
+
+    this._filtersService.updateFilters(filters);
     this._filtersService.getRequests();
     this._router.navigate(['/']);
+
+    this.sidebarVisible = false;
   }
 
   public toggleShowAllCategories(): void {

@@ -50,10 +50,10 @@ export class ProductsService {
         if (filters.rating > 0) {
           const ratingFilter = Number(filters.rating);
           allProducts = allProducts.filter((product: Products) => {
-            const productRatingInt = Math.floor(product.rating);
-            const match = productRatingInt === ratingFilter;
+
+            const match = product.rating >= ratingFilter && product.rating < (ratingFilter + 1);
             if (!match) {
-              console.log(`Produto ${product.title} ignorado: rating ${product.rating} (int: ${productRatingInt}) != filtro ${ratingFilter}`);
+              console.log(`Produto ${product.title} ignorado: rating ${product.rating} não está no intervalo ${ratingFilter} - ${ratingFilter + 1}`);
             }
             return match;
           });
